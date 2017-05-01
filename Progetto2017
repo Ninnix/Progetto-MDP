@@ -1,0 +1,82 @@
+Metodologie di Programmazione (canale A-L) - A.A. 2016 - 17
+
+                                                La battaglia dei sessi
+
+Specifiche del Progetto 2017
+
+Definizioni. Una popolazione è un insieme di individui; gli individui si dividono
+in tipi. Chiamiamo stato di una popolazione la percentuale del numero di indi-
+vidui di ciascun tipo rispetto alla popolazione totale. Assumiamo che sia data
+una nozione di vicinanza fra stati, in modo che la differenza fra stati vicini possa
+essere considerata come statisticamente non rilevante. Le popolazioni si evolvono
+in base a regole evolutive che determinano in che modo, non necessariamente de-
+terministico, gli individui di ciascun tipo prosperano (aumentano in numero) o
+languono (diminuiscono nel numero) a seconda dello stato attuale della popo-
+lazione. Una evoluzione è una sequenza infinita < p 0 , p 1 , · · · > di popolazioni,
+dove p 0 è chiamata popolazione iniziale e ciascuna p n+1 è ottenuta dalla prece-
+dente applicando le regole evolutive. Diciamo che una evoluzione raggiunge uno
+stato s di stabilità evolutiva se s è lo stato di un suo elemento p n e, per ogni
+m > n lo stato di p m è vicino a s.
+
+I quattro tipi. Nello scenario descritto in questo progetto, la battaglia dei sessi,
+tratto da un libro di Richard Dawkins del 1976, The Selfish Gene, i tipi sono
+quattro: due maschili, M e A, e due femminili, P e S:
+
+– tipo M, uomini morigerati, sono disposti a corteggiare la donna amata e
+contribuiscono al pari di lei a crescere la prole;
+– tipo A, gli avventurieri, uomini senza scrupoli: se una donna non gli si concede
+immediatamente, tentano la sorte altrove senza perdere tempo corteggiarla;
+se gli si concede, partono comunque subito dopo per una nuova avventura,
+lasciando a lei l’incombenza di crescere la prole;
+– tipo P, donne prudenti, accettano un compagno con cui fare un figlio solo
+dopo un congruo periodo di corteggiamento;
+– tipo S, donne spregiudicate, si concedono ad un uomo anche al primo incontro,
+se cosı̀ credono.
+
+La tabella MAPS dei costi e benefici. Diamo un nome ai costi e ai benefici
+evolutivi che incontriamo nella battaglia dei sessi:
+a : premio per il successo nella generazione di figli
+b : costo del crescere figli
+c : costo del corteggiamento
+
+Descriviamo il risultato dell’incontro tra una donna di tipo X ed un uomo
+di tipo Y mediante una coppia (x, y), dove x è il payoff di X e y quello di Y . In
+base alla descrizione dei quattro tipi, la battaglia dei sessi può essere sintetizzata
+nella seguente tabella MAPS, che può essere usata nella definizione delle regole
+evolutive.
+
+                 M               |          A
+   ------------------------------------------------------              
+P  | (a - b/2 - c, a - b/2 - c)  |          -           |
+S  |     (a - b/2, a - b/2)      |      (a - b, a)      |
+   ------------------------------------------------------
+
+
+Il caso studio di Dawkins. Dawkins ha descritto la battaglia dei sessi adot-
+tando, a titolo esemplificativo, i seguenti valori: a = 15, b = 20 e c = 3. Ecco la
+corrispondente tabella MAPS:
+
+      M    |     A
+  ---------------------    
+P | (2, 2) |     -    |
+S | (5, 5) | (-5, 15) | 
+  ---------------------
+
+
+Con tali valori il sistema converge a uno stato di stabilità evolutiva in cui i
+5/6 delle donne è di tipo P e i 5/8 degli uomini è di tipo M. È facile verificare
+la stabilità della soluzione: con queste proporzioni, il guadagno medio di una
+donna prudente, che è di 2 · 5/8 è lo stesso che per una spregiudicata, che è di
+5·5/8−5·3/8; dunque a nessuna delle due conviene cambiare strategia evolutiva.
+Stesso per gli uomini.
+
+Lavoro da svolgere
+Implementare in Java un sistema di simulazione per la battaglia dei sessi.
+Il simulatore deve essere parametrico rispetto ai valori a, b e c. Deve essere
+in grado di rappresentare e far evolvere una popolazione iniziale data; se viene
+raggiunto uno stato evolutivamente stabile, questo è restituito come risultato
+della simulazione.
+Il sistema deve essere descritto mediante una relazione (indicativamente dieci
+pagine) che descriva il modello adottato (ad esempio le regole evolutive, il mec-
+canismo dell’accoppiamento, ecc.), l’organizzazione del codice e la discussione di
+qualche caso studio interessante.
