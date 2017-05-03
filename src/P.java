@@ -30,6 +30,11 @@ public class P extends Persona {
             corteggiamento(); // rischio buffer overflow nel caso di coda con moltissimi avventurieri
             popo.mercato.add(marito);// lo rimette nella coda dando la possibilita' ad un altra donna di accoppiarsi con lui
         }
+        if (marito != null){
+            // un corteggiamento tra un uomo morigerato e una donna prudente causa un costo in termini genetici
+            this.contentezza -= 3;
+            marito.contentezza -= 3;
+        }
         return marito;
     }
 
@@ -37,4 +42,5 @@ public class P extends Persona {
     private void accoppiamento(Persona m){
         //metodo per l'accoppiamento
     }
+
 }
