@@ -6,6 +6,7 @@ public class M extends Persona {
      * uomini morigerati, sono disposti a corteggiare la donna amata e
      * contribuiscono al pari di lei a crescere la prole;
      */
+
     public Popolazione popo;
 
     public M(Popolazione p) {
@@ -20,10 +21,7 @@ public class M extends Persona {
     }
 
 
-
     @Override
     public void run() {
-        //accoppiamento del morigerato
-        popo.mercato.add(this); //il morigerato si mette in lista di accoppiamento
     }
 }

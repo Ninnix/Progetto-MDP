@@ -19,7 +19,6 @@ public class P extends Persona {
         return tipo.P ;
     }
 
-
     @Override
     public void run() {
     }
@@ -33,7 +32,6 @@ public class P extends Persona {
         }
         return marito;
     }
-
 
 
     private void accoppiamento(Persona m){

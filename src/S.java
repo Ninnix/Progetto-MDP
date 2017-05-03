@@ -1,7 +1,37 @@
-package PACKAGE_NAME;
-
 /**
- * Created by Samuele on 03/05/2017.
+ * Created by nicolo on 03/05/17.
  */
-public class S {
+public class S extends Persona{
+    /**
+     * donne spregiudicate, si concedono ad un uomo anche al primo incontro,
+     * se cosı̀ credono.
+     */
+
+    public Popolazione popo;
+
+    public S(Popolazione p) {
+        //costruttore delle prudenti
+        super();
+        this.popo = p;
+    }
+
+    @Override
+    public Persona.tipo getType(){
+        return Persona.tipo.S ;
+    }
+
+    @Override
+    public void run() {
+    }
+
+    private Persona corteggiamento(){
+        //corteggiamento della spregiudicata
+        Persona marito = popo.mercato.poll(); //marito sara' null se la coda e' vuota
+        return marito;
+    }
+
+
+    private void accoppiamento(Persona m){
+        //metodo per l'accoppiamento
+    }
 }
