@@ -13,6 +13,7 @@ public class M extends Persona {
         //costruttore dei morigerati
         super();
         this.popo = p;
+        this.nascita= System.currentTimeMillis(); //imposto la data di nascita
     }
 
     @Override
@@ -23,6 +24,9 @@ public class M extends Persona {
 
     @Override
     public void run() {
+        while(!morte()){
+            // esegui operazione del thread
+        }
     }
 
     private void corteggiamento(){

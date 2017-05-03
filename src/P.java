@@ -12,6 +12,7 @@ public class P extends Persona {
         //costruttore delle prudenti
         super();
         this.popo = p;
+        this.nascita= System.currentTimeMillis(); //imposto la data di nascita
     }
 
     @Override
@@ -21,6 +22,9 @@ public class P extends Persona {
 
     @Override
     public void run() {
+        while(!morte()){
+            // esegui operazione del thread
+        }
     }
 
     private Persona corteggiamento(){
@@ -43,4 +47,8 @@ public class P extends Persona {
         //metodo per l'accoppiamento
     }
 
+
+    /* Appunto:
+    va inserito un tempo per la crescita dei figli, ad un certo punto diventeranno indipendenti e non dovranno piu'
+    essere accuditi dai genitori*/
 }

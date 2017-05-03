@@ -14,6 +14,7 @@ public class A extends Persona {
         //costruttore degli avventurieri
         super();
         this.popo = p;
+        this.nascita= System.currentTimeMillis(); //imposto la data di nascita
     }
 
     @Override
@@ -23,6 +24,9 @@ public class A extends Persona {
 
     @Override
     public void run() {
+        while(!morte()){
+            // esegui operazione del thread
+        }
     }
 
     private void corteggiamento(){
