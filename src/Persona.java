@@ -1,5 +1,3 @@
-package Tipologie;
-
 /**
  * Created by nicolo on 28/04/17.
  */

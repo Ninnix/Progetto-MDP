@@ -1,4 +1,3 @@
-import Tipologie.*;
 import java.util.*;
 
 /**
@@ -17,6 +16,9 @@ public class Popolazione {
     private int a;
     private int b;
     private int c;
+    //coda delle richieste di accoppiamento degli uomini
+    public Queue<Persona> mercato = new LinkedList<Persona>(); //coda deve essere sincronizzata
+
 
     public class Stato {
         //percentuale del numero di individui di ciascun tipo rispetto alla popolazione totale
@@ -55,25 +57,25 @@ public class Popolazione {
         this.c=c;
         //crea l'insieme dei morigerati
         for (int i=0; i < m; i++) {
-            M mor = new M();
+            M mor = new M(this);
             morigerati.add(mor);
         }
 
         //crea l'insieme degli avventurieri
         for (int i=0; i < av; i++) {
-            A avv = new A();
+            A avv = new A(this);
             avventurieri.add(avv);
         }
 
         //crea l'insieme delle prudenti
         for (int i=0; i < p; i++) {
-            P pru = new P();
+            P pru = new P(this);
             prudenti.add(pru);
         }
 
         //crea l'insieme delle spregiudicate
         for (int i=0; i < s; i++) {
-            S spr = new S();
+            S spr = new S(this);
             spregiudicate.add(spr);
         }
 
