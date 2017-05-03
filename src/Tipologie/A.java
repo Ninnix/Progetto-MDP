@@ -1,7 +1,9 @@
+package Tipologie;
+
 /**
  * Created by nicolo on 28/04/17.
  */
-public class A extends Persona{
+public class A extends Persona {
     /**
      * gli avventurieri, uomini senza scrupoli: se una donna non gli si concede
      * immediatamente, tentano la sorte altrove senza perdere tempo corteggiarla;
@@ -11,5 +13,10 @@ public class A extends Persona{
 
     public A() {
         //costruttore degli avventurieri
+    }
+
+    @Override
+    public void run() {
+        super.run();
     }
 }

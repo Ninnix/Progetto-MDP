@@ -1,4 +1,5 @@
-import java.util.HashSet;
+import Tipologie.*;
+import java.util.*;
 
 /**
  * Created by nicolo on 28/04/17.

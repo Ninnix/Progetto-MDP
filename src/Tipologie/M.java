@@ -1,3 +1,5 @@
+package Tipologie;
+
 /**
  * Created by nicolo on 28/04/17.
  */
@@ -9,5 +11,10 @@ public class M extends Persona {
 
     public M() {
         //costruttore dei morigerati
+    }
+
+    @Override
+    public void run() {
+        super.run();
     }
 }
