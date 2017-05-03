@@ -24,4 +24,9 @@ public class A extends Persona {
     @Override
     public void run() {
     }
+
+    private void corteggiamento(){
+        //corteggiamento dell' avventuriero
+        popo.mercato.add(this); //l'avventuriero si aggiunge alla coda per accoppiarsi
+    }
 }

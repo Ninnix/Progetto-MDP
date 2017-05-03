@@ -7,5 +7,4 @@ public abstract class Persona extends Thread {
     protected enum tipo{M,A,P,S}
 
     public abstract tipo getType(); //restituisce il tipo della persona
-
 }

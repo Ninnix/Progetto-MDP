@@ -24,4 +24,9 @@ public class M extends Persona {
     @Override
     public void run() {
     }
+
+    private void corteggiamento(){
+        //corteggiamento del morigerato
+        popo.mercato.add(this); //il morigerato si aggiunge alla coda per accoppiarsi
+    }
 }
