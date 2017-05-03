@@ -32,8 +32,8 @@ public class P extends Persona {
         }
         if (marito != null){
             // un corteggiamento tra un uomo morigerato e una donna prudente causa un costo in termini genetici
-            this.contentezza -= 3;
-            marito.contentezza -= 3;
+            this.contentezza -= popo.c;
+            marito.contentezza -= popo.c;
         }
         return marito;
     }

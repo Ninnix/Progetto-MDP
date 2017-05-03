@@ -13,9 +13,9 @@ public class Popolazione {
     public HashSet<Persona> prudenti = new HashSet<Persona>();
     public HashSet<Persona> spregiudicate = new HashSet<Persona>();
     //attributi che rappresentano costi e benefici evolutivi che incontriamo nella battaglia dei sessi
-    private int a;
-    private int b;
-    private int c;
+    protected int a;
+    protected int b;
+    protected int c;
     //coda delle richieste di accoppiamento degli uomini
     public Queue<Persona> mercato = new LinkedList<Persona>(); //coda deve essere sincronizzata
 
