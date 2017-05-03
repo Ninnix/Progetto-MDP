@@ -19,5 +19,7 @@ public class A extends Persona {
     @Override
     public void run() {
         super.run();
+        //accoppiamento dell' avventuriero
+        popo.mercato.add(this); //avventuriero si mette in lista di accoppiamento
     }
 }
