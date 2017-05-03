@@ -14,10 +14,15 @@ public class M extends Persona {
         this.popo = p;
     }
 
+    @Override
+    public tipo getType(){
+        return tipo.M ;
+    }
+
+
 
     @Override
     public void run() {
-        super.run();
         //accoppiamento del morigerato
         popo.mercato.add(this); //il morigerato si mette in lista di accoppiamento
     }

@@ -15,10 +15,28 @@ public class P extends Persona {
     }
 
     @Override
+    public tipo getType(){
+        return tipo.P ;
+    }
+
+
+    @Override
     public void run() {
-        super.run();
-        //accoppiamento della prudente
-        Persona marito = popo.mercato.poll();
-        //controllo se il marito e' null o e' avventurriero
+    }
+
+    private Persona corteggiamento(){
+        //corteggiamento della prudente
+        Persona marito = popo.mercato.poll(); //marito sara' null se la coda e' vuota
+        if(marito.getType()== tipo.A ){
+            corteggiamento(); // rischio buffer overflow nel caso di coda con moltissimi avventurieri
+            popo.mercato.add(marito);// lo rimette nella coda dando la possibilita' ad un altra donna di accoppiarsi con lui
+        }
+        return marito;
+    }
+
+
+
+    private void accoppiamento(Persona m){
+        //metodo per l'accoppiamento
     }
 }

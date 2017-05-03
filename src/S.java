@@ -15,7 +15,13 @@ public class S extends Persona {
     }
 
     @Override
+    public tipo getType(){
+        return tipo.S ;
+    }
+
+
+    @Override
     public void run() {
-        super.run();
+
     }
 }
