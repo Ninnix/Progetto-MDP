@@ -17,13 +17,7 @@ public class A extends Persona {
     }
 
     @Override
-    public tipo getType(){
-        return tipo.A ;
-    }
-
-
-    @Override
     public void run() {
-
+        super.run();
     }
 }

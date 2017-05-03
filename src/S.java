@@ -1,27 +1,7 @@
+package PACKAGE_NAME;
+
 /**
- * Created by nicolo on 28/04/17.
+ * Created by Samuele on 03/05/2017.
  */
-public class S extends Persona {
-    /**
-     * tipo S, donne spregiudicate, si concedono ad un uomo anche al primo incontro,
-     * se cosı̀ credono.
-     */
-    public Popolazione popo;
-
-    public S(Popolazione p) {
-        //costruttore delle spregiudicate
-        super();
-        this.popo = p;
-    }
-
-    @Override
-    public tipo getType(){
-        return tipo.S ;
-    }
-
-
-    @Override
-    public void run() {
-
-    }
+public class S {
 }
