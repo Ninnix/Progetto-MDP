@@ -47,8 +47,7 @@ public class P extends Persona {
         //metodo per l'accoppiamento
     }
 
-
-    /* Appunto:
-    va inserito un tempo per la crescita dei figli, ad un certo punto diventeranno indipendenti e non dovranno piu'
-    essere accuditi dai genitori*/
+    /* TODO: 04/05/17  Crescita figli
+    va inserito un tempo per la crescita dei figli, ad un certo punto diventeranno
+    indipendenti e non dovranno piu' essere accuditi dai genitori*/
 }

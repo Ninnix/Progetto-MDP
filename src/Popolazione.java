@@ -5,7 +5,6 @@ import java.util.concurrent.SynchronousQueue;
  * Created by nicolo on 28/04/17.
  */
 public class Popolazione {
-
     //un insieme di individui
     public HashSet<HashSet<Persona>> population = new HashSet<HashSet<Persona>>();
     //insiemi dei vari tipi
@@ -93,4 +92,6 @@ public class Popolazione {
     public Stato calcolaStato() {
         return new Stato();
     }
+
+    // TODO: 04/05/17 costruttore con percentuali
 }
