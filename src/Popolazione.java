@@ -13,10 +13,12 @@ public class Popolazione {
     public HashSet<Persona> avventurieri = new HashSet<Persona>();
     public HashSet<Persona> prudenti = new HashSet<Persona>();
     public HashSet<Persona> spregiudicate = new HashSet<Persona>();
+
     //attributi che rappresentano costi e benefici evolutivi che incontriamo nella battaglia dei sessi
     protected int a;
     protected int b;
     protected int c;
+
     //coda delle richieste di accoppiamento degli uomini
     public Queue<Persona> mercato = new SynchronousQueue<Persona>(); //coda sincronizzata vedi http://docs.oracle.com/javase/tutorial/collections/implementations/queue.html
 
