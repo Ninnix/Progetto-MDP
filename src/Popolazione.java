@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.concurrent.SynchronousQueue;
 
 /**
  * Created by nicolo on 28/04/17.
@@ -17,7 +18,7 @@ public class Popolazione {
     protected int b;
     protected int c;
     //coda delle richieste di accoppiamento degli uomini
-    public Queue<Persona> mercato = new LinkedList<Persona>(); //coda deve essere sincronizzata
+    public Queue<Persona> mercato = new SynchronousQueue<Persona>(); //coda sincronizzata vedi http://docs.oracle.com/javase/tutorial/collections/implementations/queue.html
 
 
     public class Stato {
