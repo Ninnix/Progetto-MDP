@@ -36,6 +36,9 @@ public class S extends Persona{
     private Persona corteggiamento(){
         //corteggiamento della spregiudicata
         Persona marito = popo.mercato.poll(); //marito sara' null se la coda e' vuota
+        if (!marito.isAlive()) {
+            return corteggiamento(); //se il marito e' morto lo scarta e ne cerca un altro
+        }
         return marito;
     }
 
