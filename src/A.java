@@ -8,7 +8,10 @@ public class A extends Persona {
      * se gli si concede, partono comunque subito dopo per una nuova avventura,
      * lasciando a lei l’incombenza di crescere la prole;
      */
+
     public Popolazione popo;
+    private double virilita = 0.4; //indice che indica la probabilita' di inserirsi nella coda mercato
+    private int tentativi = 10; //tentativi di inserirsi nella coda
 
     public A(Popolazione p) {
         //costruttore degli avventurieri

@@ -23,7 +23,7 @@ public abstract class Persona extends Thread {
     di contentezza molto negativo, -20 ad esempio, il metodo e' inserito in persona perche' e' equivalente per tutte
     le sottoclassi*/
     protected boolean morte(){
-        if(this.nascita < System.currentTimeMillis()- 60000 || this.contentezza<= -20){
+        if(this.nascita < System.currentTimeMillis()- 5000 || this.contentezza<= -20){
             return true;  // e' tempo di morire
         }
         return false;  // non e' arrivata la sua ora
