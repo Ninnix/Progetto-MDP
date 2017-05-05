@@ -33,4 +33,6 @@ public class M extends Persona {
         //corteggiamento del morigerato
         popo.mercato.add(this); //il morigerato si aggiunge alla coda per accoppiarsi
     }
+
+    // il morigerato non necessita di un metodo accoppiamento perche' tale metodo e' gestito dalla moglie
 }

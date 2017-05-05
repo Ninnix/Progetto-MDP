@@ -34,17 +34,23 @@ public class P extends Persona {
 
     private Persona corteggiamento(){
         //corteggiamento della prudente
-        Persona marito = popo.mercato.poll(); //marito sara' null se la coda e' vuota
-        if(marito.getType()== tipo.A ){
-            corteggiamento(); // rischio buffer overflow nel caso di coda con moltissimi avventurieri
-            popo.mercato.add(marito);// lo rimette nella coda dando la possibilita' ad un altra donna di accoppiarsi con lui
+        Persona spasimante = popo.mercato.poll();
+        if(spasimante.getType()== tipo.A ){
+            Persona marito= corteggiamento(); // rischio buffer overflow nel caso di coda con moltissimi avventurieri
+            if(spasimante.isAlive()){// un avventuriero potrebbe essere nella coda ma morto
+                popo.mercato.add(spasimante);// lo rimette nella coda dando la possibilita' ad un altra donna di accoppiarsi con lui
+            }
+            return marito; //torno null o un morigerato vivo
         }
-        if (marito != null){
+        if(!spasimante.isAlive()){ //il morigerato e' morto
+            return corteggiamento(); //si scarta e si prosegue nella ricerca
+        }
+        if (spasimante != null ){  //e' un morigerato vivo
             // un corteggiamento tra un uomo morigerato e una donna prudente causa un costo in termini genetici
             this.contentezza -= popo.c;
-            marito.contentezza -= popo.c;
+            spasimante.contentezza -= popo.c;
         }
-        return marito;
+        return spasimante;  //spasimante sara' null se la coda e' vuota o non ci sono morigerati
     }
 
 
