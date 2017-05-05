@@ -30,7 +30,7 @@ public class A extends Persona {
     public void run() {
         for (int i = 0; i <= 10; i++) { //tentativi di inserirsi nella coda
             double random = new Random().nextDouble();
-            if (random >= virilita){ //probabilita di avere successo nella riproduzione
+            if (random <= virilita){ //probabilita di avere successo nella riproduzione
                 this.corteggiamento(); //non e' corretto che l' avventurriero corteggia si mette semplicemente nella coda!
             }
         }
