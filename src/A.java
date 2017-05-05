@@ -1,3 +1,5 @@
+import java.util.Random;
+
 /**
  * Created by nicolo on 28/04/17.
  */
@@ -27,7 +29,10 @@ public class A extends Persona {
     @Override
     public void run() {
         for (int i = 0; i <= 10; i++) { //tentativi di inserirsi nella coda
-            this.corteggiamento(); //non e' corretto che l' avventurriero corteggia si mette semplicemente nella coda!
+            double random = new Random().nextDouble();
+            if (random >= virilita){ //probabilita di avere successo nella riproduzione
+                this.corteggiamento(); //non e' corretto che l' avventurriero corteggia si mette semplicemente nella coda!
+            }
         }
         while(!morte()){
             // esegui operazione del thread
