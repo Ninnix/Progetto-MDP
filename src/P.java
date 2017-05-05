@@ -1,3 +1,5 @@
+import java.util.Random;
+
 /**
  * Created by nicolo on 28/04/17.
  */
@@ -7,6 +9,9 @@ public class P extends Persona {
      * dopo un congruo periodo di corteggiamento;
      */
     public Popolazione popo;
+
+    //probabilita' di avere un figlio
+    protected double fertilita= 0.95 ;
 
     public P(Popolazione p) {
         //costruttore delle prudenti
@@ -44,7 +49,19 @@ public class P extends Persona {
 
 
     private void accoppiamento(Persona m){
-        //metodo per l'accoppiamento
+        // si stabilisce se la donna prudente concepira' un nuovo figlio
+        double random = new Random().nextDouble();
+        if (random >= fertilita){   //significa che la donna non concepira' bambini da qui in avanti
+            fertilita=0;
+            return;
+        }
+
+        //a questo punto sara' generato un figlio
+        Persona figlio = ((new Random().nextBoolean()) ? new P(this.popo) : new M(this.popo)); // scelta del sesso del nascituro
+        figlio.run();   // nasce il figlio
+        this.contentezza += (popo.a - popo.b/2 - popo.c);  // aggiorniamo il valore di contentezza della prudente
+        m.contentezza += (popo.a - popo.b/2 - popo.c);  // aggiorniamo il valore di contentezza del morigerato
+        fertilita -= 0.2; // aggiorniamo la probabilita' che la prudente abbia un altro figlio
     }
 
     /* TODO: 04/05/17  Crescita figli

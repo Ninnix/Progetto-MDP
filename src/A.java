@@ -33,4 +33,6 @@ public class A extends Persona {
         //corteggiamento dell' avventuriero
         popo.mercato.add(this); //l'avventuriero si aggiunge alla coda per accoppiarsi
     }
+
+    //gestire accoppiamento avventuriero, dare limite ai figli
 }

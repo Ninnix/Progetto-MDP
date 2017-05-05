@@ -1,3 +1,5 @@
+import java.util.Random;
+
 /**
  * Created by nicolo on 03/05/17.
  */
@@ -8,6 +10,9 @@ public class S extends Persona{
      */
 
     public Popolazione popo;
+
+    //probabilita' di avere un figlio
+    protected double fertilita= 0.95 ;
 
     public S(Popolazione p) {
         //costruttore delle prudenti
@@ -36,6 +41,19 @@ public class S extends Persona{
 
 
     private void accoppiamento(Persona m){
-        //metodo per l'accoppiamento
+        // si stabilisce se la donna spregiudicata concepira' un nuovo figlio
+        double random = new Random().nextDouble();
+        if (random >= fertilita){   //significa che la donna non concepira' bambini da qui in avanti
+            fertilita=0;
+            return;
+        }
+
+        //a questo punto sara' generato un figlio
+        Persona figlio = ((m.getType()== tipo.M)) ? (new Random().nextBoolean()) ? new S(this.popo) : new M(this.popo) :
+                          (new Random().nextBoolean()) ? new S(this.popo) : new A(this.popo); // scelta del sesso del nascituro
+        figlio.run();   // nasce il figlio
+        this.contentezza += ((m.getType()== tipo.M) ? popo.a - popo.b/2 : popo.a - popo.b );  // aggiorniamo il valore di contentezza della spregiudicata
+        m.contentezza += ((m.getType()== tipo.M) ? popo.a - popo.b/2 : popo.a); // aggiorniamo il valore di contentezza del marito
+        fertilita -= 0.2; // aggiorniamo la probabilita' che la spregiudicata abbia un altro figlio
     }
 }
