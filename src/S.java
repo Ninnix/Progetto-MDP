@@ -69,3 +69,4 @@ public class S extends Persona{
                            //la donna spregiudicata non perde appeal verso il suo partner ed in media fara' piu' figli
     }
 }
+
