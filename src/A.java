@@ -12,6 +12,7 @@ public class A extends Persona {
      */
 
     public Popolazione popo;
+
     private double virilita = 0.4; //indice che indica la probabilita' di inserirsi nella coda mercato
 
     public A(Popolazione p) {
@@ -32,6 +33,7 @@ public class A extends Persona {
             double random = new Random().nextDouble();
             if (random <= virilita){ //probabilita di avere successo nella riproduzione
                 this.corteggiamento(); //non e' corretto che l' avventurriero corteggia si mette semplicemente nella coda!
+                //sleep() // dopo un successo deve aspettare un po
             }
         }
         while(!morte()){
