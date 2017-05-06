@@ -13,7 +13,7 @@ public class A extends Persona {
 
     public Popolazione popo;
 
-    private double virilita = 0.4; //indice che indica la probabilita' di inserirsi nella coda mercato
+    private double virilita = 0.5; //indice che indica la probabilita' di inserirsi nella coda mercato
 
     public A(Popolazione p) {
         //costruttore degli avventurieri
@@ -29,15 +29,14 @@ public class A extends Persona {
 
     @Override
     public void run() {
-        for (int i = 0; i <= 10; i++) { //tentativi di inserirsi nella coda
+        for (int i = 0; i < 10; i++) { //tentativi di inserirsi nella coda
             double random = new Random().nextDouble();
             if (random <= virilita){ //probabilita di avere successo nella riproduzione
                 this.corteggiamento(); //non e' corretto che l' avventurriero corteggia si mette semplicemente nella coda!
-                //sleep() // dopo un successo deve aspettare un po
+                try {
+                    this.sleep(4); // dopo un corteggiamento deve aspettare un po(andrebbe posto uguale al tempo di esecuzione di corteggiamento pe le donne, va scoperto tale valore!!
+                }catch (InterruptedException e){}
             }
-        }
-        while(!morte()){
-            // esegui operazione del thread
         }
     }
 
@@ -46,5 +45,5 @@ public class A extends Persona {
         popo.mercato.add(this); // in realta' e' un falso corteggiamento si mette solo nel mercato!
     }
 
-    //gestire accoppiamento avventuriero, dare limite ai figli
+    //accoppiamento dell'avventuriero gestito nel run
 }

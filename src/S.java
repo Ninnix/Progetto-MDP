@@ -28,8 +28,16 @@ public class S extends Persona{
 
     @Override
     public void run() {
-        while(!morte()){
-            // esegui operazione del thread
+        int tentativi=10;  // la spregiudicata avra' 10 tentativi a disposizione per trovare un amante, altrimenti morira' di vecchiaia
+        while(fertilita != 0 || contentezza> (popo.a-popo.b)*4 || tentativi==0){ //dopo 3 o 4 figli avuti con avventurieri muore per la fatica di crescerli da sola
+            Persona amante= corteggiamento();
+            if(amante!=null) {
+                accoppiamento(amante);
+                if (amante.getType() == tipo.M) {
+                    ((M) amante).virilita.decrementAndGet();  // toglie un po di virilita' all'amante morigerato
+                }
+            }
+            tentativi--;
         }
     }
 

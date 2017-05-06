@@ -27,14 +27,26 @@ public class P extends Persona {
 
     @Override
     public void run() {
-        while(!morte()){
-            // esegui operazione del thread
+        Persona marito=corteggiamento();
+        int tentativi=10;  // la prudente avra' 10 tentatvi a disposizione per trovare un compagno, altrimenti morira' di vecchiaia
+        while(marito != null || tentativi==0){
+            marito = corteggiamento(); // la prudente cerca un marito
+            tentativi--;
         }
-    }
+        if (tentativi != 0){ // significa che ha trovato un marito
+            while(fertilita != 0){
+                accoppiamento(marito);
+            }
+        }
+        //la prudente e il marito morigerato muoiono insieme dopo aver cresciuto i propri figli
+        ((M)marito).virilita.set(0); //muore il marito ...
+        // ... e muore lei
+}
 
-    private Persona corteggiamento(){
+    public Persona corteggiamento(){
         //corteggiamento della prudente
         Persona spasimante = popo.mercato.poll();
+        if(spasimante==null){return null;}
         if(spasimante.getType()== tipo.A ){
             Persona marito= corteggiamento(); // rischio buffer overflow nel caso di coda con moltissimi avventurieri
             if(spasimante.isAlive()){// un avventuriero potrebbe essere nella coda ma morto
@@ -45,16 +57,16 @@ public class P extends Persona {
         if(!spasimante.isAlive()){ //il morigerato e' morto
             return corteggiamento(); //si scarta e si prosegue nella ricerca
         }
-        if (spasimante != null ){  //e' un morigerato vivo
-            // un corteggiamento tra un uomo morigerato e una donna prudente causa un costo in termini genetici
-            this.contentezza -= popo.c;
-            spasimante.contentezza -= popo.c;
-        }
+        //e' un morigerato vivo
+        // un corteggiamento tra un uomo morigerato e una donna prudente causa un costo in termini genetici
+        this.contentezza -= popo.c;
+        spasimante.contentezza -= popo.c;
         return spasimante;  //spasimante sara' null se la coda e' vuota o non ci sono morigerati
+
     }
 
 
-    private void accoppiamento(Persona m){
+    public void accoppiamento(Persona m){
         // si stabilisce se la donna prudente concepira' un nuovo figlio
         double random = new Random().nextDouble();
         if (random >= fertilita){   //significa che la donna non concepira' bambini da qui in avanti
