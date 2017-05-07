@@ -28,7 +28,14 @@ public class M extends Persona {
 
     @Override
     public void run() {
-
+        while(virilita.get()> 0){
+            this.corteggiamento(); //morigerato va alla ricerca di una donna al mercato
+            try {
+                virilita.wait();
+            } catch (InterruptedException e) {
+                System.out.println("problema con l accoppiamento del morigerato");
+            }
+        }
     }
 
     private void corteggiamento(){

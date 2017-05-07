@@ -35,6 +35,11 @@ public class S extends Persona{
                 accoppiamento(amante);
                 if (amante.getType() == tipo.M) {
                     ((M) amante).virilita.decrementAndGet();  // toglie un po di virilita' all'amante morigerato
+                    ((M) amante).virilita.notify();
+                }
+                else if(amante.getType() == tipo.A){
+                    ((A)amante).conquiste.getAndIncrement();
+                    ((A) amante).conquiste.notify();
                 }
             }
             tentativi--;

@@ -29,7 +29,7 @@ public class P extends Persona {
     public void run() {
         Persona marito=corteggiamento();
         int tentativi=10;  // la prudente avra' 10 tentatvi a disposizione per trovare un compagno, altrimenti morira' di vecchiaia
-        while(marito != null || tentativi==0){
+        while(marito == null || tentativi>0){
             marito = corteggiamento(); // la prudente cerca un marito
             tentativi--;
         }
@@ -40,6 +40,7 @@ public class P extends Persona {
         }
         //la prudente e il marito morigerato muoiono insieme dopo aver cresciuto i propri figli
         ((M)marito).virilita.set(0); //muore il marito ...
+        ((M) marito).virilita.notify();
         // ... e muore lei
 }
 
@@ -81,8 +82,4 @@ public class P extends Persona {
         m.contentezza += (popo.a - popo.b/2 - popo.c);  // aggiorniamo il valore di contentezza del morigerato
         fertilita -= 0.2; // aggiorniamo la probabilita' che la prudente abbia un altro figlio
     }
-
-    /* TODO: 04/05/17  Crescita figli
-    va inserito un tempo per la crescita dei figli, ad un certo punto diventeranno
-    indipendenti e non dovranno piu' essere accuditi dai genitori*/
 }

@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by nicolo on 28/04/17.
@@ -14,6 +15,7 @@ public class A extends Persona {
     public Popolazione popo;
 
     private double virilita = 0.5; //indice che indica la probabilita' di inserirsi nella coda mercato
+    protected AtomicInteger conquiste=new AtomicInteger(0); // serve all avventuriero per tenere traccia del numero delle sue conquiste amorose
 
     public A(Popolazione p) {
         //costruttore degli avventurieri
@@ -32,10 +34,12 @@ public class A extends Persona {
         for (int i = 0; i < 10; i++) { //tentativi di inserirsi nella coda
             double random = new Random().nextDouble();
             if (random <= virilita){ //probabilita di avere successo nella riproduzione
-                this.corteggiamento(); //non e' corretto che l' avventurriero corteggia si mette semplicemente nella coda!
+                this.corteggiamento(); //non e' corretto che l' avventurriero corteggia, si mette semplicemente nella coda!
                 try {
-                    this.sleep(4); // dopo un corteggiamento deve aspettare un po(andrebbe posto uguale al tempo di esecuzione di corteggiamento pe le donne, va scoperto tale valore!!
-                }catch (InterruptedException e){}
+                    conquiste.wait();
+                } catch (InterruptedException e) {
+                    System.out.println("problema con accoppiamento avventuriero");
+                }
             }
         }
     }
