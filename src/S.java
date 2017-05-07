@@ -67,6 +67,13 @@ public class S extends Persona{
         //a questo punto sara' generato un figlio
         Persona figlio = ((m.getType()== tipo.M)) ? (new Random().nextBoolean()) ? new S(this.popo) : new M(this.popo) :
                           (new Random().nextBoolean()) ? new S(this.popo) : new A(this.popo); // scelta del sesso del nascituro
+
+        if (figlio.getType() == tipo.S) popo.spregiudicate.add(figlio);  //aggiunge il figlio alla popolazione
+        else {
+            if (figlio.getType() == tipo.M) popo.morigerati.add(figlio);
+            else popo.avventurieri.add(figlio);
+        }
+
         figlio.run();   // nasce il figlio
         this.contentezza += ((m.getType()== tipo.M) ? popo.a - popo.b/2 : popo.a - popo.b );  // aggiorniamo il valore di contentezza della spregiudicata
         m.contentezza += ((m.getType()== tipo.M) ? popo.a - popo.b/2 : popo.a); // aggiorniamo il valore di contentezza del marito
