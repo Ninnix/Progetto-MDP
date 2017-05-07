@@ -11,7 +11,8 @@ public class M extends Persona {
 
     public Popolazione popo;
 
-    protected AtomicInteger virilita= new AtomicInteger(3);
+    protected AtomicInteger limiteMor = new AtomicInteger(3); //limite morale di un morigerato, se e' sfortunato in amore fa massimo 3 tentativi poi si rassegna
+                                                                //se e' settato a 0 muore
 
     public M(Popolazione p) {
         //costruttore dei morigerati
@@ -28,10 +29,10 @@ public class M extends Persona {
 
     @Override
     public void run() {
-        while(virilita.get()> 0){
+        while(limiteMor.get()> 0){
             this.corteggiamento(); //morigerato va alla ricerca di una donna al mercato
             try {
-                virilita.wait();
+                limiteMor.wait();
             } catch (InterruptedException e) {
                 System.out.println("problema con l accoppiamento del morigerato");
             }

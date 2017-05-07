@@ -22,7 +22,6 @@ public class Popolazione {
     public Queue<Persona> mercato = new SynchronousQueue<Persona>(); //coda sincronizzata vedi http://docs.oracle.com/javase/tutorial/collections/implementations/queue.html
 
 
-
     public Popolazione(int a, int b, int c, int m, int av, int p, int s) throws InvalidPopulationException {
         //costruttore della popolazione
 
@@ -68,11 +67,9 @@ public class Popolazione {
         // metodo che da vita al mondo, invocando il metodo run dei vari componenti della popolazione
     }
 
-
     private Stato calcolaStato() {
         return new Stato();
     }
-
 
 
     //classe annidata che rappresenta lo stato della popolazione
@@ -110,6 +107,13 @@ public class Popolazione {
             System.out.println("Morigerati: " + (perMor*100) + "%, " + "Avventurieri: " + (perAvv*100) + "%, " + "Prudenti: " + (perPru*100) + "%, " + "Spregiudicate: " + (perSpr*100) +"%");
         }
 
+        //funzione che calcola il guadagno medio degli uomini morigerati in questo istante
+        private double guadagno_m(){ return  (double)(a-b/2-c)*perPru + (float)(a - b/2)*perSpr;}
+
+        //funzione che calcola il guadagno medio degli uomini avventurieri in questo istante
+        private double guadagno_av(){
+            return (double)a*perSpr ;
+        }
 
         //funzione che calcola il guadagno medio delle donne prudenti in questo istante
         private double guadagno_p(){
@@ -119,16 +123,6 @@ public class Popolazione {
         //funzione che calcola il guadagno medio delle donne spregiudicate in questo istante
         private double guadagno_s(){
             return (double)(a-b/2)*perMor + (float)(a-b)*perAvv;
-        }
-
-        //funzione che calcola il guadagno medio degli uomini morigerati in questo istante
-        private double guadagno_m(){
-            return  (double)(a-b/2-c)*perPru + (float)(a - b/2)*perSpr;
-        }
-
-        //funzione che calcola il guadagno medio degli uomini avventurieri in questo istante
-        private double guadagno_av(){
-            return (double)a*perSpr ;
         }
     }
 

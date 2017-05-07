@@ -16,8 +16,8 @@ public abstract class Persona extends Thread {
     di default viene inizializzata a 0 per evitare Nullpointexpction in morte()*/
     protected long nascita=0;
 
-    public abstract tipo getType(); //restituisce il tipo della persona
 
+    public abstract tipo getType(); //restituisce il tipo della persona
 
     /*un thread muore se vive per piu' di 1 minuto(tempo che puo' essere modificato) oppure se raggiunge un valore
     di contentezza molto negativo, -20 ad esempio, il metodo e' inserito in persona perche' e' equivalente per tutte
