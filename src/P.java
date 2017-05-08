@@ -17,7 +17,6 @@ public class P extends Persona {
         //costruttore delle prudenti
         super();
         this.popo = p;
-        this.nascita= System.currentTimeMillis(); //imposto la data di nascita
     }
 
     @Override
@@ -39,10 +38,12 @@ public class P extends Persona {
             }
         }
         //la prudente e il marito morigerato muoiono insieme dopo aver cresciuto i propri figli
-        ((M) marito).limiteMor.set(0); //muore il marito ...
-        ((M) marito).limiteMor.notify();
-        // ... e muore lei
-}
+        synchronized (((M)marito).limiteMor) {
+            ((M) marito).limiteMor = 0; //muore il marito ...
+            ((M) marito).limiteMor.notify();
+        }
+            // ... e muore lei
+    }
 
     public Persona corteggiamento(){
         //corteggiamento della prudente

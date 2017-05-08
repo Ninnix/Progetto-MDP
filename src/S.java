@@ -18,7 +18,6 @@ public class S extends Persona{
         //costruttore delle prudenti
         super();
         this.popo = p;
-        this.nascita= System.currentTimeMillis(); //imposto la data di nascita
     }
 
     @Override
@@ -34,12 +33,16 @@ public class S extends Persona{
             if(amante!=null) {
                 accoppiamento(amante);
                 if (amante.getType() == tipo.M) {
-                    ((M) amante).limiteMor.decrementAndGet();  // toglie un po di virilita' all'amante morigerato
-                    ((M) amante).limiteMor.notify();
+                    synchronized (((M) amante).limiteMor) {
+                        ((M) amante).limiteMor--;  // toglie un po di virilita' all'amante morigerato
+                        ((M) amante).limiteMor.notify();
+                    }
                 }
-                else if(amante.getType() == tipo.A){
-                    ((A)amante).conquiste.getAndIncrement();
-                    ((A) amante).conquiste.notify();
+                else if(amante.getType() == tipo.A) {
+                    synchronized (((A)amante).conquiste) {
+                        ((A) amante).conquiste++;
+                        ((A) amante).conquiste.notify();
+                    }
                 }
             }
             tentativi--;
