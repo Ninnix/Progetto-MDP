@@ -1,5 +1,6 @@
 import java.util.*;
-import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+
 
 /**
  * Created by nicolo on 28/04/17.
@@ -19,7 +20,7 @@ public class Popolazione {
     protected int c;
 
     //coda delle richieste di accoppiamento degli uomini
-    public SynchronousQueue<Persona> mercato = new SynchronousQueue<Persona>(); //coda sincronizzata vedi http://docs.oracle.com/javase/tutorial/collections/implementations/queue.html
+    public LinkedBlockingQueue<Persona> mercato = new LinkedBlockingQueue<>(); //coda sincronizzata vedi http://docs.oracle.com/javase/tutorial/collections/implementations/queue.html
 
 
     public Popolazione(int a, int b, int c, int m, int av, int p, int s) throws InvalidPopulationException {
@@ -69,10 +70,10 @@ public class Popolazione {
         Thread threadAvv = new Thread(()->{for (A avv : avventurieri){avv.run();}});
         Thread threadPru = new Thread(()->{for (P pru : prudenti){pru.run();}});
         Thread threadSpr = new Thread(()->{for (S spr : spregiudicate){spr.run();}});
-        threadMor.run();
-        threadAvv.run();
         threadPru.run();
         threadSpr.run();
+        threadMor.run();
+        threadAvv.run();
         while (!calcolaStato().isStabile()) {calcolaStato().stampaStato();} //potrebbe andare in loop
         calcolaStato().stampaStato();
         for (M mor : morigerati){
@@ -85,7 +86,7 @@ public class Popolazione {
                 avv.virilita = 0.0;
             }
         }
-        mercato = new SynchronousQueue<Persona>();
+        mercato = new LinkedBlockingQueue<Persona>();
     }
 
     private Stato calcolaStato() {
