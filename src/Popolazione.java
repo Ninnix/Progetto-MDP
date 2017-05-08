@@ -65,15 +65,15 @@ public class Popolazione {
 
     public void start(){
         // metodo che da vita al mondo, invocando il metodo run dei vari componenti della popolazione
-        Thread threadMor = new Thread(()->{for (M mor : morigerati){mor.start();}});
-        Thread threadAvv = new Thread(()->{for (A avv : avventurieri){avv.start();}});
-        Thread threadPru = new Thread(()->{for (P pru : prudenti){pru.start();}});
-        Thread threadSpr = new Thread(()->{for (S spr : spregiudicate){spr.start();}});
-        threadMor.start();
-        threadAvv.start();
-        threadPru.start();
-        threadSpr.start();
-        while (!calcolaStato().isStabile()) {;} //potrebbe andare in loop
+        Thread threadMor = new Thread(()->{for (M mor : morigerati){mor.run();}});
+        Thread threadAvv = new Thread(()->{for (A avv : avventurieri){avv.run();}});
+        Thread threadPru = new Thread(()->{for (P pru : prudenti){pru.run();}});
+        Thread threadSpr = new Thread(()->{for (S spr : spregiudicate){spr.run();}});
+        threadMor.run();
+        threadAvv.run();
+        threadPru.run();
+        threadSpr.run();
+        while (!calcolaStato().isStabile()) {calcolaStato().stampaStato();} //potrebbe andare in loop
         calcolaStato().stampaStato();
         for (M mor : morigerati){
             synchronized (mor.limiteMor) {
