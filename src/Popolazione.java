@@ -19,7 +19,7 @@ public class Popolazione {
     protected int c;
 
     //coda delle richieste di accoppiamento degli uomini
-    public Queue<Persona> mercato = new SynchronousQueue<Persona>(); //coda sincronizzata vedi http://docs.oracle.com/javase/tutorial/collections/implementations/queue.html
+    public SynchronousQueue<Persona> mercato = new SynchronousQueue<Persona>(); //coda sincronizzata vedi http://docs.oracle.com/javase/tutorial/collections/implementations/queue.html
 
 
     public Popolazione(int a, int b, int c, int m, int av, int p, int s) throws InvalidPopulationException {
@@ -82,7 +82,7 @@ public class Popolazione {
         }
         for (A avv : avventurieri) {
             synchronized (avv.virilita) {
-                avv.virilita = new Double(0);
+                avv.virilita = 0.0;
             }
         }
         mercato = new SynchronousQueue<Persona>();
