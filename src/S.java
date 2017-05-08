@@ -28,7 +28,7 @@ public class S extends Persona{
     @Override
     public void run() {
         int tentativi=10;  // la spregiudicata avra' 10 tentativi a disposizione per trovare un amante, altrimenti morira' di vecchiaia
-        while(fertilita != 0 || contentezza> (popo.a-popo.b)*4 || tentativi==0){ //dopo 3 o 4 figli avuti con avventurieri muore per la fatica di crescerli da sola
+        while(fertilita != 0 && contentezza > (popo.a-popo.b)*4 && tentativi > 0){ //dopo 3 o 4 figli avuti con avventurieri muore per la fatica di crescerli da sola
             Persona amante= corteggiamento();
             if(amante!=null) {
                 accoppiamento(amante);
@@ -53,7 +53,7 @@ public class S extends Persona{
     private Persona corteggiamento(){
         //corteggiamento della spregiudicata
         Persona marito = popo.mercato.poll(); //marito sara' null se la coda e' vuota
-        if (!marito.isAlive()) {
+        if (marito != null && !marito.isAlive()) {
             return corteggiamento(); //se il marito e' morto lo scarta e ne cerca un altro
         }
         return marito;
