@@ -47,6 +47,7 @@ public class S extends Persona{
             }
             tentativi--;
         }
+        this.popo.spregiudicate.remove(this);
     }
 
     private Persona corteggiamento(){
@@ -71,10 +72,10 @@ public class S extends Persona{
         Persona figlio = ((m.getType()== tipo.M)) ? (new Random().nextBoolean()) ? new S(this.popo) : new M(this.popo) :
                           (new Random().nextBoolean()) ? new S(this.popo) : new A(this.popo); // scelta del sesso del nascituro
 
-        if (figlio.getType() == tipo.S) popo.spregiudicate.add(figlio);  //aggiunge il figlio alla popolazione
+        if (figlio.getType() == tipo.S) popo.spregiudicate.add((S)figlio);  //aggiunge il figlio alla popolazione
         else {
-            if (figlio.getType() == tipo.M) popo.morigerati.add(figlio);
-            else popo.avventurieri.add(figlio);
+            if (figlio.getType() == tipo.M) popo.morigerati.add((M)figlio);
+            else popo.avventurieri.add((A)figlio);
         }
 
         figlio.run();   // nasce il figlio

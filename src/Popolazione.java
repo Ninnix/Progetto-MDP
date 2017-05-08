@@ -6,12 +6,12 @@ import java.util.concurrent.SynchronousQueue;
  */
 public class Popolazione {
     //un insieme di individui
-    public HashSet<HashSet<Persona>> population = new HashSet<HashSet<Persona>>();
+    public HashSet<HashSet<? extends Persona>> population = new HashSet<>();
     //insiemi dei vari tipi
-    public HashSet<Persona> morigerati = new HashSet<Persona>();
-    public HashSet<Persona> avventurieri = new HashSet<Persona>();
-    public HashSet<Persona> prudenti = new HashSet<Persona>();
-    public HashSet<Persona> spregiudicate = new HashSet<Persona>();
+    public HashSet<M> morigerati = new HashSet<M>();
+    public HashSet<A> avventurieri = new HashSet<A>();
+    public HashSet<P> prudenti = new HashSet<P>();
+    public HashSet<S> spregiudicate = new HashSet<S>();
 
     //attributi che rappresentano costi e benefici evolutivi che incontriamo nella battaglia dei sessi
     protected int a;
@@ -65,6 +65,27 @@ public class Popolazione {
 
     public void start(){
         // metodo che da vita al mondo, invocando il metodo run dei vari componenti della popolazione
+        Thread threadMor = new Thread(()->{for (M mor : morigerati){mor.start();}});
+        Thread threadAvv = new Thread(()->{for (A avv : avventurieri){avv.start();}});
+        Thread threadPru = new Thread(()->{for (P pru : prudenti){pru.start();}});
+        Thread threadSpr = new Thread(()->{for (S spr : spregiudicate){spr.start();}});
+        threadMor.start();
+        threadAvv.start();
+        threadPru.start();
+        threadSpr.start();
+        while (!calcolaStato().isStabile()) {;} //potrebbe andare in loop
+        calcolaStato().stampaStato();
+        for (M mor : morigerati){
+            synchronized (mor.limiteMor) {
+                mor.limiteMor = 0;
+            }
+        }
+        for (A avv : avventurieri) {
+            synchronized (avv.virilita) {
+                avv.virilita = new Double(0);
+            }
+        }
+        mercato = new SynchronousQueue<Persona>();
     }
 
     private Stato calcolaStato() {
