@@ -46,6 +46,7 @@ public class P extends Persona {
         this.popo.prudenti.remove(this);
     }
 
+
     public Persona corteggiamento(){
         //corteggiamento della prudente
         Persona spasimante = popo.mercato.poll();
