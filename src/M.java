@@ -38,6 +38,7 @@ public class M extends Persona {
                 }
             }
         }
+        this.popo.morigerati.remove(this);
     }
 
     private void corteggiamento(){
