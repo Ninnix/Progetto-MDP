@@ -11,13 +11,13 @@ public class M extends Persona {
 
     public Popolazione popo;
 
-    protected Integer virilita= 3;
+    protected Integer limiteMor = 3; //limite morale di un morigerato, se e' sfortunato in amore fa massimo 3 tentativi poi si rassegna
+                                                                //se e' settato a 0 muore
 
     public M(Popolazione p) {
         //costruttore dei morigerati
         super();
         this.popo = p;
-        this.nascita= System.currentTimeMillis(); //imposto la data di nascita
     }
 
     @Override
@@ -28,11 +28,11 @@ public class M extends Persona {
 
     @Override
     public void run() {
-        synchronized (this.virilita) {
-            while (virilita > 0) {
+        synchronized (this.limiteMor) {
+            while (limiteMor > 0) {
                 this.corteggiamento(); //morigerato va alla ricerca di una donna al mercato
                 try {
-                    virilita.wait();
+                    limiteMor.wait();
                 } catch (InterruptedException e) {
                     System.out.println("problema con l accoppiamento del morigerato");
                 }

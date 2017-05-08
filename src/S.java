@@ -18,7 +18,6 @@ public class S extends Persona{
         //costruttore delle prudenti
         super();
         this.popo = p;
-        this.nascita= System.currentTimeMillis(); //imposto la data di nascita
     }
 
     @Override
@@ -34,14 +33,14 @@ public class S extends Persona{
             if(amante!=null) {
                 accoppiamento(amante);
                 if (amante.getType() == tipo.M) {
-                    synchronized (((M)amante).virilita) {
-                        ((M) amante).virilita--;  // toglie un po di virilita' all'amante morigerato
-                        ((M) amante).virilita.notify();
+                    synchronized (((M) amante).limiteMor) {
+                        ((M) amante).limiteMor--;  // toglie un po di virilita' all'amante morigerato
+                        ((M) amante).limiteMor.notify();
                     }
                 }
-                else if(amante.getType() == tipo.A){
+                else if(amante.getType() == tipo.A) {
                     synchronized (((A)amante).conquiste) {
-                        ((A) amante).conquiste++ ;
+                        ((A) amante).conquiste++;
                         ((A) amante).conquiste.notify();
                     }
                 }
@@ -71,6 +70,13 @@ public class S extends Persona{
         //a questo punto sara' generato un figlio
         Persona figlio = ((m.getType()== tipo.M)) ? (new Random().nextBoolean()) ? new S(this.popo) : new M(this.popo) :
                           (new Random().nextBoolean()) ? new S(this.popo) : new A(this.popo); // scelta del sesso del nascituro
+
+        if (figlio.getType() == tipo.S) popo.spregiudicate.add(figlio);  //aggiunge il figlio alla popolazione
+        else {
+            if (figlio.getType() == tipo.M) popo.morigerati.add(figlio);
+            else popo.avventurieri.add(figlio);
+        }
+
         figlio.run();   // nasce il figlio
         this.contentezza += ((m.getType()== tipo.M) ? popo.a - popo.b/2 : popo.a - popo.b );  // aggiorniamo il valore di contentezza della spregiudicata
         m.contentezza += ((m.getType()== tipo.M) ? popo.a - popo.b/2 : popo.a); // aggiorniamo il valore di contentezza del marito

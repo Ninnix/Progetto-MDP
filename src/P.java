@@ -17,7 +17,6 @@ public class P extends Persona {
         //costruttore delle prudenti
         super();
         this.popo = p;
-        this.nascita= System.currentTimeMillis(); //imposto la data di nascita
     }
 
     @Override
@@ -39,12 +38,12 @@ public class P extends Persona {
             }
         }
         //la prudente e il marito morigerato muoiono insieme dopo aver cresciuto i propri figli
-        synchronized (((M)marito).virilita) {
-            ((M) marito).virilita=0 ; //muore il marito ...
-            ((M) marito).virilita.notify();
+        synchronized (((M)marito).limiteMor) {
+            ((M) marito).limiteMor = 0; //muore il marito ...
+            ((M) marito).limiteMor.notify();
         }
-        // ... e muore lei
-}
+            // ... e muore lei
+    }
 
     public Persona corteggiamento(){
         //corteggiamento della prudente
@@ -79,6 +78,8 @@ public class P extends Persona {
 
         //a questo punto sara' generato un figlio
         Persona figlio = ((new Random().nextBoolean()) ? new P(this.popo) : new M(this.popo)); // scelta del sesso del nascituro
+        if (figlio.getType() == tipo.P) popo.prudenti.add(figlio);  //aggiunge il figlio alla popolazione
+        else popo.morigerati.add(figlio);
         figlio.run();   // nasce il figlio
         this.contentezza += (popo.a - popo.b/2 - popo.c);  // aggiorniamo il valore di contentezza della prudente
         m.contentezza += (popo.a - popo.b/2 - popo.c);  // aggiorniamo il valore di contentezza del morigerato
