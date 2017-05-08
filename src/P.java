@@ -82,7 +82,7 @@ public class P extends Persona {
         Persona figlio = ((new Random().nextBoolean()) ? new P(this.popo) : new M(this.popo)); // scelta del sesso del nascituro
         if (figlio.getType() == tipo.P) popo.prudenti.add((P)figlio);  //aggiunge il figlio alla popolazione
         else popo.morigerati.add((M)figlio);
-        figlio.run();   // nasce il figlio
+        figlio.start();   // nasce il figlio
         this.contentezza += (popo.a - popo.b/2 - popo.c);  // aggiorniamo il valore di contentezza della prudente
         m.contentezza += (popo.a - popo.b/2 - popo.c);  // aggiorniamo il valore di contentezza del morigerato
         fertilita -= 0.2; // aggiorniamo la probabilita' che la prudente abbia un altro figlio

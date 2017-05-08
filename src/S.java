@@ -78,7 +78,7 @@ public class S extends Persona{
             else popo.avventurieri.add((A)figlio);
         }
 
-        figlio.run();   // nasce il figlio
+        figlio.start();   // nasce il figlio
         this.contentezza += ((m.getType()== tipo.M) ? popo.a - popo.b/2 : popo.a - popo.b );  // aggiorniamo il valore di contentezza della spregiudicata
         m.contentezza += ((m.getType()== tipo.M) ? popo.a - popo.b/2 : popo.a); // aggiorniamo il valore di contentezza del marito
         fertilita -= 0.18; // aggiorniamo la probabilita' che la spregiudicata abbia un altro figlio(stare attenti al valore)
