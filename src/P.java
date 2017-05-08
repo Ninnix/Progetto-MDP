@@ -39,8 +39,10 @@ public class P extends Persona {
             }
         }
         //la prudente e il marito morigerato muoiono insieme dopo aver cresciuto i propri figli
-        ((M)marito).virilita.set(0); //muore il marito ...
-        ((M) marito).virilita.notify();
+        synchronized (((M)marito).virilita) {
+            ((M) marito).virilita=0 ; //muore il marito ...
+            ((M) marito).virilita.notify();
+        }
         // ... e muore lei
 }
 

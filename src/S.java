@@ -34,12 +34,16 @@ public class S extends Persona{
             if(amante!=null) {
                 accoppiamento(amante);
                 if (amante.getType() == tipo.M) {
-                    ((M) amante).virilita.decrementAndGet();  // toglie un po di virilita' all'amante morigerato
-                    ((M) amante).virilita.notify();
+                    synchronized (((M)amante).virilita) {
+                        ((M) amante).virilita--;  // toglie un po di virilita' all'amante morigerato
+                        ((M) amante).virilita.notify();
+                    }
                 }
                 else if(amante.getType() == tipo.A){
-                    ((A)amante).conquiste.getAndIncrement();
-                    ((A) amante).conquiste.notify();
+                    synchronized (((A)amante).conquiste) {
+                        ((A) amante).conquiste++ ;
+                        ((A) amante).conquiste.notify();
+                    }
                 }
             }
             tentativi--;
