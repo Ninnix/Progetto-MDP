@@ -52,7 +52,7 @@ public class A extends Persona {
     private void corteggiamento(){
         //corteggiamento dell' avventuriero
         try {
-            popo.mercato.put(this); // in realta' e' un falso corteggiamento si mette solo nel mercato!
+            popo.osteria.put(this); // in realta' e' un falso corteggiamento si mette solo nel mercato!
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

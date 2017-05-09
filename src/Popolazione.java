@@ -18,9 +18,9 @@ public class Popolazione {
     protected int b;
     protected int c;
 
-    //coda delle richieste di accoppiamento degli uomini
-    public LinkedBlockingQueue<Persona> mercato = new LinkedBlockingQueue<>(); //coda sincronizzata vedi http://docs.oracle.com/javase/tutorial/collections/implementations/queue.html
-
+    //code delle richieste di accoppiamento degli uomini http://docs.oracle.com/javase/tutorial/collections/implementations/queue.html
+    public LinkedBlockingQueue<M> ristorante = new LinkedBlockingQueue<>(); //coda sincronizzata dei morigerati
+    public LinkedBlockingQueue<A> osteria = new LinkedBlockingQueue<>(); //coda sincronizzata degli avventurieri
 
     public Popolazione(int a, int b, int c, int m, int av, int p, int s) throws InvalidPopulationException {
         //costruttore della popolazione
@@ -80,12 +80,13 @@ public class Popolazione {
                 mor.limiteMor = 0;
             }
         }
+        ristorante = new LinkedBlockingQueue<M>();
         for (A avv : avventurieri) {
             synchronized (avv.virilita) {
                 avv.virilita = 0.0;
             }
         }
-        mercato = new LinkedBlockingQueue<Persona>();
+        osteria = new LinkedBlockingQueue<A>();
     }
 
     private Stato calcolaStato() {

@@ -11,7 +11,7 @@ public class M extends Persona {
     public Popolazione popo;
 
     protected Integer limiteMor = 3; //limite morale di un morigerato, se e' sfortunato in amore fa massimo 3 tentativi poi si rassegna
-                                                                //se e' settato a 0 muore
+                                     //se e' settato a 0 muore
 
     public M(Popolazione p) {
         //costruttore dei morigerati
@@ -43,7 +43,7 @@ public class M extends Persona {
     private void corteggiamento(){
         //corteggiamento del morigerato
         try {
-            popo.mercato.put(this); //il morigerato si aggiunge alla coda per accoppiarsi
+            popo.ristorante.put(this); //il morigerato si aggiunge alla coda per accoppiarsi
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

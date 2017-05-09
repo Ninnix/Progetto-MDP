@@ -52,8 +52,10 @@ public class S extends Persona{
 
     private Persona corteggiamento(){
         //corteggiamento della spregiudicata
-        Persona marito = popo.mercato.poll(); //marito sara' null se la coda e' vuota
-        if (marito != null && !marito.isAlive()) {
+        boolean bool = new Random().nextBoolean();
+        Persona marito = ((bool) ? popo.ristorante.poll() : popo.osteria.poll()); //sceglie de prendere un morigerato o un avventuriero
+        if (marito == null) return null;
+        if (!marito.isAlive()) {
             return corteggiamento(); //se il marito e' morto lo scarta e ne cerca un altro
         }
         return marito;
