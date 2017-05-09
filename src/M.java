@@ -10,8 +10,7 @@ public class M extends Persona {
 
     public Popolazione popo;
 
-    protected Integer limiteMor = 3; //limite morale di un morigerato, se e' sfortunato in amore fa massimo 3 tentativi poi si rassegna
-                                     //se e' settato a 0 muore
+    protected Integer limiteMor = 3; //limite morale di un morigerato, se e' sfortunato in amore fa massimo 3 tentativi poi si rassegna, se uguale a 0 muore
 
     public M(Popolazione p) {
         //costruttore dei morigerati

@@ -22,6 +22,7 @@ public class Popolazione {
     public LinkedBlockingQueue<M> ristorante = new LinkedBlockingQueue<>(); //coda sincronizzata dei morigerati
     public LinkedBlockingQueue<A> osteria = new LinkedBlockingQueue<>(); //coda sincronizzata degli avventurieri
 
+
     public Popolazione(int a, int b, int c, int m, int av, int p, int s) throws InvalidPopulationException {
         //costruttore della popolazione
 
@@ -62,18 +63,24 @@ public class Popolazione {
         }
     }
 
-
     public void start(){
         // metodo che da vita al mondo, invocando il metodo run dei vari componenti della popolazione
-        Thread threadMor = new Thread(()->{for (M mor : morigerati){mor.start();}});
-        Thread threadAvv = new Thread(()->{for (A avv : avventurieri){avv.start();}});
-        Thread threadPru = new Thread(()->{for (P pru : prudenti){pru.start();}});
-        Thread threadSpr = new Thread(()->{for (S spr : spregiudicate){spr.start();}});
+        //Attenzione: un thread e' isAlive se e' started e non e' morto
+        Thread threadMor = new Thread(()->{for (M mor : morigerati){if (!mor.isAlive() && mor.getState() != Thread.State.TERMINATED) mor.start();}});
+        Thread threadAvv = new Thread(()->{for (A avv : avventurieri){if (!avv.isAlive() && avv.getState() != Thread.State.TERMINATED) avv.start();}});
+        Thread threadPru = new Thread(()->{for (P pru : prudenti){if (!pru.isAlive() && pru.getState() != Thread.State.TERMINATED) pru.start();}});
+        Thread threadSpr = new Thread(()->{for (S spr : spregiudicate){if (!spr.isAlive() && spr.getState() != Thread.State.TERMINATED)spr.start();}});
         threadPru.start();
         threadSpr.start();
         threadMor.start();
         threadAvv.start();
-        while (!calcolaStato().isStabile()) {calcolaStato().stampaStato();} //potrebbe andare in loop
+        while (!calcolaStato().isStabile()) {//potrebbe andare in loop
+            calcolaStato().stampaStato();
+            //perde tempo per 2 secondi
+            long start = System.currentTimeMillis();
+            while (System.currentTimeMillis() - start < 2000);
+        }
+        //ha trovato uno stato stabile'
         calcolaStato().stampaStato();
         for (M mor : morigerati){
             synchronized (mor.limiteMor) {
@@ -93,9 +100,8 @@ public class Popolazione {
         return new Stato();
     }
 
-
-    //classe annidata che rappresenta lo stato della popolazione
     public class Stato {
+        //classe annidata che rappresenta lo stato della popolazione
         //percentuale del numero di individui di ciascun tipo rispetto alla popolazione totale
         double perMor;
         double perAvv;
