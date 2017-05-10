@@ -70,10 +70,10 @@ public class Popolazione {
         Thread threadAvv = new Thread(()->{for (A avv : avventurieri){if (!avv.isAlive() && avv.getState() != Thread.State.TERMINATED) avv.start();}});
         Thread threadPru = new Thread(()->{for (P pru : prudenti){if (!pru.isAlive() && pru.getState() != Thread.State.TERMINATED) pru.start();}});
         Thread threadSpr = new Thread(()->{for (S spr : spregiudicate){if (!spr.isAlive() && spr.getState() != Thread.State.TERMINATED)spr.start();}});
-        threadPru.start();
-        threadSpr.start();
         threadMor.start();
         threadAvv.start();
+        threadPru.start();
+        threadSpr.start();
         while (!calcolaStato().isStabile()) {//potrebbe andare in loop
             calcolaStato().stampaStato();
             //perde tempo per 2 secondi
