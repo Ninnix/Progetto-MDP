@@ -28,11 +28,12 @@ public class P extends Persona {
     public void run() {
         M marito=corteggiamento();
         int tentativi=10;  // la prudente avra' 10 tentatvi a disposizione per trovare un compagno, altrimenti morira' di vecchiaia
-        while(marito == null || tentativi>0){
+        while(marito == null ){
             marito = corteggiamento(); // la prudente cerca un marito
             tentativi--;
+            if(tentativi<=0){break;}
         }
-        if (tentativi != 0){ // significa che ha trovato un marito
+        if (tentativi > 0){ // significa che ha trovato un marito
             while(fertilita != 0){
                 accoppiamento(marito);
             }
