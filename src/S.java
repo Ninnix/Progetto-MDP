@@ -33,15 +33,15 @@ public class S extends Persona{
             if(amante!=null) {
                 accoppiamento(amante);
                 if (amante.getType() == tipo.M) {
-                    synchronized (((M) amante).limiteMor) {
+                    synchronized (((M) amante).dormi) {
                         ((M) amante).limiteMor--;  // toglie un po di virilita' all'amante morigerato
-                        ((M) amante).limiteMor.notify();
+                        ((M) amante).dormi.notify();
                     }
                 }
                 else if(amante.getType() == tipo.A) {
-                    synchronized (((A)amante).conquiste) {
+                    synchronized (((A)amante).dormi) {
                         ((A) amante).conquiste++;
-                        ((A) amante).conquiste.notify();
+                        ((A) amante).dormi.notify();
                     }
                 }
             }
