@@ -1,4 +1,3 @@
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by nicolo on 28/04/17.
@@ -11,8 +10,7 @@ public class M extends Persona {
 
     public Popolazione popo;
 
-    protected Integer limiteMor = 3; //limite morale di un morigerato, se e' sfortunato in amore fa massimo 3 tentativi poi si rassegna
-                                                                //se e' settato a 0 muore
+    protected Integer limiteMor = 3; //limite morale di un morigerato, se e' sfortunato in amore fa massimo 3 tentativi poi si rassegna, se uguale a 0 muore
 
     public M(Popolazione p) {
         //costruttore dei morigerati
@@ -43,7 +41,11 @@ public class M extends Persona {
 
     private void corteggiamento(){
         //corteggiamento del morigerato
-        popo.mercato.add(this); //il morigerato si aggiunge alla coda per accoppiarsi
+        try {
+            popo.ristorante.put(this); //il morigerato si aggiunge alla coda per accoppiarsi
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     // il morigerato non necessita di un metodo accoppiamento perche' tale metodo e' gestito dalla moglie

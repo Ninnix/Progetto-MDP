@@ -1,5 +1,4 @@
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by nicolo on 28/04/17.
@@ -52,7 +51,11 @@ public class A extends Persona {
 
     private void corteggiamento(){
         //corteggiamento dell' avventuriero
-        popo.mercato.add(this); // in realta' e' un falso corteggiamento si mette solo nel mercato!
+        try {
+            popo.osteria.put(this); // in realta' e' un falso corteggiamento si mette solo nel mercato!
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     //accoppiamento dell'avventuriero gestito nel run

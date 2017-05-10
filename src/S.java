@@ -28,7 +28,7 @@ public class S extends Persona{
     @Override
     public void run() {
         int tentativi=10;  // la spregiudicata avra' 10 tentativi a disposizione per trovare un amante, altrimenti morira' di vecchiaia
-        while(fertilita != 0 || contentezza> (popo.a-popo.b)*4 || tentativi==0){ //dopo 3 o 4 figli avuti con avventurieri muore per la fatica di crescerli da sola
+        while(fertilita != 0 && contentezza > (popo.a-popo.b)*4 && tentativi > 0){ //dopo 3 o 4 figli avuti con avventurieri muore per la fatica di crescerli da sola
             Persona amante= corteggiamento();
             if(amante!=null) {
                 accoppiamento(amante);
@@ -52,7 +52,9 @@ public class S extends Persona{
 
     private Persona corteggiamento(){
         //corteggiamento della spregiudicata
-        Persona marito = popo.mercato.poll(); //marito sara' null se la coda e' vuota
+        boolean bool = new Random().nextBoolean();
+        Persona marito = ((bool) ? popo.ristorante.poll() : popo.osteria.poll()); //sceglie de prendere un morigerato o un avventuriero
+        if (marito == null) return null;
         if (!marito.isAlive()) {
             return corteggiamento(); //se il marito e' morto lo scarta e ne cerca un altro
         }
@@ -78,7 +80,7 @@ public class S extends Persona{
             else popo.avventurieri.add((A)figlio);
         }
 
-        figlio.run();   // nasce il figlio
+        figlio.start();   // nasce il figlio
         this.contentezza += ((m.getType()== tipo.M) ? popo.a - popo.b/2 : popo.a - popo.b );  // aggiorniamo il valore di contentezza della spregiudicata
         m.contentezza += ((m.getType()== tipo.M) ? popo.a - popo.b/2 : popo.a); // aggiorniamo il valore di contentezza del marito
         fertilita -= 0.18; // aggiorniamo la probabilita' che la spregiudicata abbia un altro figlio(stare attenti al valore)

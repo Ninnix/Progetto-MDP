@@ -26,51 +26,43 @@ public class P extends Persona {
 
     @Override
     public void run() {
-        Persona marito=corteggiamento();
+        M marito=corteggiamento();
         int tentativi=10;  // la prudente avra' 10 tentatvi a disposizione per trovare un compagno, altrimenti morira' di vecchiaia
-        while(marito == null || tentativi>0){
+        while(marito == null ){
             marito = corteggiamento(); // la prudente cerca un marito
             tentativi--;
+            if(tentativi<=0){break;}
         }
-        if (tentativi != 0){ // significa che ha trovato un marito
+        if (tentativi > 0){ // significa che ha trovato un marito
             while(fertilita != 0){
                 accoppiamento(marito);
             }
         }
         //la prudente e il marito morigerato muoiono insieme dopo aver cresciuto i propri figli
-        synchronized (((M)marito).limiteMor) {
-            ((M) marito).limiteMor = 0; //muore il marito ...
-            ((M) marito).limiteMor.notify();
+        synchronized (marito.limiteMor) {
+            marito.limiteMor = 0; //muore il marito ...
+            marito.limiteMor.notify();
         }
             // ... e muore lei
         this.popo.prudenti.remove(this);
     }
 
 
-    public Persona corteggiamento(){
+    public M corteggiamento(){
         //corteggiamento della prudente
-        Persona spasimante = popo.mercato.poll();
-        if(spasimante==null){return null;}
-        if(spasimante.getType()== tipo.A ){
-            Persona marito= corteggiamento(); // rischio buffer overflow nel caso di coda con moltissimi avventurieri
-            if(spasimante.isAlive()){// un avventuriero potrebbe essere nella coda ma morto
-                popo.mercato.add(spasimante);// lo rimette nella coda dando la possibilita' ad un altra donna di accoppiarsi con lui
-            }
-            return marito; //torno null o un morigerato vivo
+        M marito = popo.ristorante.poll();
+        if (marito == null) return null;
+        if (!marito.isAlive()) {
+            return corteggiamento(); //se il marito e' morto lo scarta e ne cerca un altro
         }
-        if(!spasimante.isAlive()){ //il morigerato e' morto
-            return corteggiamento(); //si scarta e si prosegue nella ricerca
-        }
-        //e' un morigerato vivo
         // un corteggiamento tra un uomo morigerato e una donna prudente causa un costo in termini genetici
         this.contentezza -= popo.c;
-        spasimante.contentezza -= popo.c;
-        return spasimante;  //spasimante sara' null se la coda e' vuota o non ci sono morigerati
-
+        marito.contentezza -= popo.c;
+        return marito;  //spasimante sara' null se la coda e' vuota o non ci sono morigerati
     }
 
 
-    public void accoppiamento(Persona m){
+    public void accoppiamento(M m){
         // si stabilisce se la donna prudente concepira' un nuovo figlio
         double random = new Random().nextDouble();
         if (random >= fertilita){   //significa che la donna non concepira' bambini da qui in avanti
@@ -82,7 +74,7 @@ public class P extends Persona {
         Persona figlio = ((new Random().nextBoolean()) ? new P(this.popo) : new M(this.popo)); // scelta del sesso del nascituro
         if (figlio.getType() == tipo.P) popo.prudenti.add((P)figlio);  //aggiunge il figlio alla popolazione
         else popo.morigerati.add((M)figlio);
-        figlio.run();   // nasce il figlio
+        figlio.start();   // nasce il figlio
         this.contentezza += (popo.a - popo.b/2 - popo.c);  // aggiorniamo il valore di contentezza della prudente
         m.contentezza += (popo.a - popo.b/2 - popo.c);  // aggiorniamo il valore di contentezza del morigerato
         fertilita -= 0.2; // aggiorniamo la probabilita' che la prudente abbia un altro figlio
