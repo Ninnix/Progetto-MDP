@@ -9,14 +9,14 @@ public class M extends Persona {
      */
 
     public Popolazione popo;
-    protected final Boolean dormi = true;
 
-    protected Integer limiteMor = 3; //limite morale di un morigerato, se e' sfortunato in amore fa massimo 3 tentativi poi si rassegna, se uguale a 0 muore
+    protected Integer limiteMor; //limite morale di un morigerato, se e' sfortunato in amore fa massimo 3 tentativi poi si rassegna, se uguale a 0 muore
 
     public M(Popolazione p) {
         //costruttore dei morigerati
         super();
         this.popo = p;
+        this.limiteMor=3;
     }
 
     @Override
@@ -26,11 +26,11 @@ public class M extends Persona {
 
     @Override
     public void run() {
-        synchronized (this.dormi) {
+        synchronized (this) {
             while (limiteMor > 0) {
                 this.corteggiamento(); //morigerato va alla ricerca di una donna al mercato
                 try {
-                    dormi.wait();
+                    this.wait();
                 } catch (InterruptedException e) {
                     System.out.println("problema con l accoppiamento del morigerato");
                 }

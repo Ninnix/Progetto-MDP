@@ -13,8 +13,7 @@ public class A extends Persona {
 
     public Popolazione popo;
 
-    protected Double virilita = 0.5; //indice che indica la probabilita' di inserirsi nella coda mercato
-    protected final Boolean dormi = true;
+    protected Double virilita = 0.4; //indice che indica la probabilita' di inserirsi nella coda mercato
     protected Integer conquiste = 0; // serve all avventuriero per tenere traccia del numero delle sue conquiste amorose
 
     public A(Popolazione p) {
@@ -30,13 +29,13 @@ public class A extends Persona {
 
     @Override
     public void run() {
-        for (int i = 0; i < 10; i++) { //tentativi di inserirsi nella coda
+        for (int i = 0; i < 7; i++) { //tentativi di inserirsi nella coda
             double random = new Random().nextDouble();
             if (random < virilita) { //probabilita di avere successo nella riproduzione
                 this.corteggiamento(); //non e' corretto che l' avventurriero corteggia, si mette semplicemente nella coda!
-                synchronized (this.dormi) {
+                synchronized (this) {
                     try {
-                        dormi.wait();
+                        this.wait();
                     } catch (InterruptedException e) {
                         System.out.println("problema con accoppiamento avventuriero");
                     }

@@ -33,15 +33,15 @@ public class S extends Persona{
             if(amante!=null) {
                 accoppiamento(amante);
                 if (amante.getType() == tipo.M) {
-                    synchronized (((M) amante).dormi) {
+                    synchronized (amante) {
                         ((M) amante).limiteMor--;  // toglie un po di virilita' all'amante morigerato
-                        ((M) amante).dormi.notify();
+                        amante.notify();
                     }
                 }
                 else if(amante.getType() == tipo.A) {
-                    synchronized (((A)amante).dormi) {
+                    synchronized (amante) {
                         ((A) amante).conquiste++;
-                        ((A) amante).dormi.notify();
+                        amante.notify();
                     }
                 }
             }
@@ -52,13 +52,7 @@ public class S extends Persona{
 
     private Persona corteggiamento(){
         //corteggiamento della spregiudicata
-        boolean bool = new Random().nextBoolean();
-        Persona marito = ((bool) ? popo.ristorante.poll() : popo.osteria.poll()); //sceglie de prendere un morigerato o un avventuriero
-        if (marito == null) return null;
-        if (!marito.isAlive()) {
-            return corteggiamento(); //se il marito e' morto lo scarta e ne cerca un altro
-        }
-        return marito;
+        return ((new Random().nextBoolean()) ? popo.ristorante.poll() : popo.osteria.poll()); //sceglie de prendere un morigerato o un avventuriero, potrebbe tornare null
     }
 
 
@@ -71,8 +65,8 @@ public class S extends Persona{
         }
 
         //a questo punto sara' generato un figlio
-        Persona figlio = ((m.getType()== tipo.M)) ? (new Random().nextBoolean()) ? new S(this.popo) : new M(this.popo) :
-                          (new Random().nextBoolean()) ? new S(this.popo) : new A(this.popo); // scelta del sesso del nascituro
+        Persona figlio = ((m.getType()== tipo.M)) ? ((new Random().nextBoolean()) ? new S(this.popo) : new M(this.popo) ):
+                ((new Random().nextBoolean()) ? new S(this.popo) : new A(this.popo)); // scelta del sesso del nascituro
 
         if (figlio.getType() == tipo.S) popo.spregiudicate.add((S)figlio);  //aggiunge il figlio alla popolazione
         else {
@@ -83,7 +77,7 @@ public class S extends Persona{
         figlio.start();   // nasce il figlio
         this.contentezza += ((m.getType()== tipo.M) ? popo.a - popo.b/2 : popo.a - popo.b );  // aggiorniamo il valore di contentezza della spregiudicata
         m.contentezza += ((m.getType()== tipo.M) ? popo.a - popo.b/2 : popo.a); // aggiorniamo il valore di contentezza del marito
-        fertilita -= 0.18; // aggiorniamo la probabilita' che la spregiudicata abbia un altro figlio(stare attenti al valore)
+        fertilita -= 0.25; // aggiorniamo la probabilita' che la spregiudicata abbia un altro figlio(stare attenti al valore)
                            //la donna spregiudicata non perde appeal verso il suo partner ed in media fara' piu' figli
     }
 }

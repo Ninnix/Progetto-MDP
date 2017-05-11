@@ -11,7 +11,7 @@ public class P extends Persona {
     public Popolazione popo;
 
     //probabilita' di avere un figlio
-    protected double fertilita= 0.95 ;
+    protected double fertilita= 0.90 ;
 
     public P(Popolazione p) {
         //costruttore delle prudenti
@@ -27,17 +27,20 @@ public class P extends Persona {
     @Override
     public void run() {
         M marito = corteggiamento();
-        while (marito == null) { //continua a cercare se non si sono ancora presentati morigerati
+        int tentativi=5;
+        while (marito == null && tentativi>0) { //continua a cercare se non si sono ancora presentati morigerati
             marito = corteggiamento();
+            tentativi--;
         }
+        if(marito==null){return;} //muore la prudente
         while (fertilita > 0.0) { //la coppia si riproduce finchè la moglie è fertile
             accoppiamento(marito);
-        synchronized (marito.dormi) { //la prudente e il marito morigerato muoiono insieme dopo aver cresciuto i propri figli
+        }
+        synchronized (marito) { //la prudente e il marito morigerato muoiono insieme dopo aver cresciuto i propri figli
             marito.limiteMor = 0; //muore il marito ...
-            marito.dormi.notify();
+            marito.notify();
         }
         // ... e muore lei
-        }
         this.popo.prudenti.remove(this);
     }
 
