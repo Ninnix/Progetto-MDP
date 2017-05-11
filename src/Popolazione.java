@@ -8,12 +8,12 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class Popolazione {
     //un insieme di individui
-    public HashSet<HashSet<? extends Persona>> population = new HashSet<>();
+    public HashSet<Set<? extends Persona>> population = new HashSet<>();
     //insiemi dei vari tipi
-    public HashSet<M> morigerati = new HashSet<M>();
-    public HashSet<A> avventurieri = new HashSet<A>();
-    public HashSet<P> prudenti = new HashSet<P>();
-    public HashSet<S> spregiudicate = new HashSet<S>();
+    public Set<M> morigerati = Collections.synchronizedSet(new HashSet<M>());
+    public Set<A> avventurieri = Collections.synchronizedSet(new HashSet<A>());
+    public Set<P> prudenti = Collections.synchronizedSet(new HashSet<P>());
+    public Set<S> spregiudicate = Collections.synchronizedSet(new HashSet<S>());
 
     //attributi che rappresentano costi e benefici evolutivi che incontriamo nella battaglia dei sessi
     protected int a;
