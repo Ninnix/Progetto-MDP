@@ -24,7 +24,6 @@ public class M extends Persona {
         return tipo.M ;
     }
 
-
     @Override
     public void run() {
         synchronized (this.dormi) {
