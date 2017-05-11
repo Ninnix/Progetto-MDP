@@ -27,26 +27,16 @@ public class P extends Persona {
     @Override
     public void run() {
         M marito = corteggiamento();
-        int tentativi = 10;  // la prudente avra' 10 tentatvi a disposizione per trovare un compagno, altrimenti morira' di vecchiaia
-        while (marito == null) {
-            marito = corteggiamento(); // la prudente cerca un marito
-            tentativi--;
-            if (tentativi <= 0) {
-                break;
-            }
+        while (marito == null) { //continua a cercare se non si sono ancora presentati morigerati
+            marito = corteggiamento();
         }
-        if (marito != null) {
-            if (tentativi > 0) { // significa che ha trovato un marito
-            while (fertilita != 0) {
-                accoppiamento(marito);
-            }
+        while (fertilita > 0.0) { //la coppia si riproduce finchè la moglie è fertile
+            accoppiamento(marito);
+        synchronized (marito.dormi) { //la prudente e il marito morigerato muoiono insieme dopo aver cresciuto i propri figli
+            marito.limiteMor = 0; //muore il marito ...
+            marito.dormi.notify();
         }
-        //la prudente e il marito morigerato muoiono insieme dopo aver cresciuto i propri figli
-            synchronized (marito.dormi) {
-                marito.limiteMor = 0; //muore il marito ...
-                marito.dormi.notify();
-            }
-            // ... e muore lei
+        // ... e muore lei
         }
         this.popo.prudenti.remove(this);
     }

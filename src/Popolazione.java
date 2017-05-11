@@ -1,3 +1,5 @@
+import com.sun.xml.internal.bind.v2.TODO;
+
 import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -80,17 +82,20 @@ public class Popolazione {
             long start = System.currentTimeMillis();
             while (System.currentTimeMillis() - start < 2000);
         }
+        // TODO: 11/05/17 controllare la sincronizzazione di start()
         //ha trovato uno stato stabile'
         calcolaStato().stampaStato();
         for (M mor : morigerati){
-            synchronized (mor.limiteMor) {
+            synchronized (mor.dormi) {
                 mor.limiteMor = 0;
+                mor.dormi.notify();
             }
         }
         ristorante = new LinkedBlockingQueue<M>();
         for (A avv : avventurieri) {
-            synchronized (avv.virilita) {
+            synchronized (avv.dormi) {
                 avv.virilita = 0.0;
+                avv.dormi.notify();
             }
         }
         osteria = new LinkedBlockingQueue<A>();
