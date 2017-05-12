@@ -46,7 +46,12 @@ public class P extends Persona {
 
     public M corteggiamento(){
         //corteggiamento della prudente
-        M marito = popo.ristorante.poll();
+        M marito = null;
+        try {
+            marito = popo.ristorante.exctract();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         if (marito == null) return null;
         if (!marito.isAlive()) {
             return corteggiamento(); //se il marito e' morto lo scarta e ne cerca un altro
