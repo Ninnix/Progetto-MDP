@@ -11,7 +11,7 @@ public class P extends Persona {
     public Popolazione popo;
 
     //probabilita' di avere un figlio
-    protected double fertilita= 0.90 ;
+    protected double fertilita= 0.95 ;
 
     public P(Popolazione p) {
         //costruttore delle prudenti
@@ -26,40 +26,24 @@ public class P extends Persona {
 
     @Override
     public void run() {
-        M marito = corteggiamento();
-        int tentativi=5;
-        while (marito == null && tentativi>0) { //continua a cercare se non si sono ancora presentati morigerati
-            marito = corteggiamento();
-            tentativi--;
+        try {
+            M marito = corteggiamento();
+            while (fertilita > 0.0) { //la coppia si riproduce finchè la moglie è fertile
+                accoppiamento(marito);
+            }
+            //la prudente e il marito morigerato muoiono insieme dopo aver cresciuto i propri figli
+            marito.sveglia();
+            marito.interrupt(); //muore il marito ...   \\qual e' l ordine???
+            // ... e muore lei
+            this.popo.prudenti.remove(this);
+        }catch(InterruptedException e){
+            System.out.println("problema prudente, interruzione coda");
         }
-        if(marito==null){return;} //muore la prudente
-        while (fertilita > 0.0) { //la coppia si riproduce finchè la moglie è fertile
-            accoppiamento(marito);
-        }
-        synchronized (marito) { //la prudente e il marito morigerato muoiono insieme dopo aver cresciuto i propri figli
-            marito.limiteMor = 0; //muore il marito ...
-            marito.notify();
-        }
-        // ... e muore lei
-        this.popo.prudenti.remove(this);
     }
 
-    public M corteggiamento(){
+    public M corteggiamento() throws InterruptedException{
         //corteggiamento della prudente
-        M marito = null;
-        try {
-            marito = popo.ristorante.exctract();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        if (marito == null) return null;
-        if (!marito.isAlive()) {
-            return corteggiamento(); //se il marito e' morto lo scarta e ne cerca un altro
-        }
-        // un corteggiamento tra un uomo morigerato e una donna prudente causa un costo in termini genetici
-        this.contentezza -= popo.c;
-        marito.contentezza -= popo.c;
-        return marito;  //spasimante sara' null se la coda e' vuota o non ci sono morigerati
+        return popo.ristorante.exctract();
     }
 
 

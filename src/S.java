@@ -27,36 +27,30 @@ public class S extends Persona{
 
     @Override
     public void run() {
-        int tentativi=20;  // la spregiudicata avra' 10 tentativi a disposizione per trovare un amante, altrimenti morira' di vecchiaia
-        while(fertilita > 0.0 && contentezza > (popo.a-popo.b)*4 && tentativi > 0){ //dopo 3 o 4 figli avuti con avventurieri muore per la fatica di crescerli da sola
-            Persona amante= corteggiamento();
-            if(amante!=null) {
-                accoppiamento(amante);
-                if (amante.getType() == tipo.M) {
-                    synchronized (amante) {
+        int tentativi=10;  // la spregiudicata avra' 10 tentativi a disposizione per trovare un amante, altrimenti morira' di vecchiaia
+        try {
+            while (fertilita > 0.0 && contentezza > (popo.a - popo.b) * 4 && tentativi > 0) { //dopo 3 o 4 figli avuti con avventurieri muore per la fatica di crescerli da sola
+                Persona amante = corteggiamento();
+                if (amante != null) {
+                    accoppiamento(amante);
+                    if (amante.getType() == tipo.M) {
                         ((M) amante).limiteMor--;  // toglie un po di virilita' all'amante morigerato
-                        amante.notify();
+                        ((M) amante).sveglia();
+                    } else if (amante.getType() == tipo.A) {
+                        ((A) amante).sveglia();
                     }
                 }
-                else if(amante.getType() == tipo.A) {
-                    synchronized (amante) {
-                        amante.notify();
-                    }
-                }
+                tentativi--;
             }
-            tentativi--;
+        }catch (InterruptedException e){
+            System.out.println("problema spregiudicata, interruzione coda");
         }
         this.popo.spregiudicate.remove(this);
     }
 
-    private Persona corteggiamento(){
+    private Persona corteggiamento() throws InterruptedException{
         //corteggiamento della spregiudicata
-        try {
-            return ((new Random().nextBoolean()) ? popo.ristorante.exctract() : popo.osteria.exctract()); //sceglie de prendere un morigerato o un avventuriero, potrebbe tornare null
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return ((new Random().nextBoolean()) ? popo.ristorante.exctract() : popo.osteria.exctract()); //sceglie de prendere un morigerato o un avventuriero, potrebbe tornare null
     }
 
 
