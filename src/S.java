@@ -40,7 +40,6 @@ public class S extends Persona{
                 }
                 else if(amante.getType() == tipo.A) {
                     synchronized (amante) {
-                        ((A) amante).conquiste++;
                         amante.notify();
                     }
                 }
@@ -52,7 +51,11 @@ public class S extends Persona{
 
     private Persona corteggiamento(){
         //corteggiamento della spregiudicata
-        return ((new Random().nextBoolean()) ? popo.ristorante.poll() : popo.osteria.poll()); //sceglie de prendere un morigerato o un avventuriero, potrebbe tornare null
+        try {
+            return ((new Random().nextBoolean()) ? popo.ristorante.exctract() : popo.osteria.exctract()); //sceglie de prendere un morigerato o un avventuriero, potrebbe tornare null
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 

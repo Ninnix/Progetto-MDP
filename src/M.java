@@ -41,11 +41,7 @@ public class M extends Persona {
 
     private void corteggiamento(){
         //corteggiamento del morigerato
-        try {
-            popo.ristorante.put(this); //il morigerato si aggiunge alla coda per accoppiarsi
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        popo.ristorante.insert(this); //il morigerato si aggiunge alla coda per accoppiarsi
     }
 
     // il morigerato non necessita di un metodo accoppiamento perche' tale metodo e' gestito dalla moglie

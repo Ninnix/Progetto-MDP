@@ -1,5 +1,3 @@
-import com.sun.xml.internal.bind.v2.TODO;
-
 import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -21,8 +19,8 @@ public class Popolazione {
     protected int c;
 
     //code delle richieste di accoppiamento degli uomini http://docs.oracle.com/javase/tutorial/collections/implementations/queue.html
-    public LinkedBlockingQueue<M> ristorante = new LinkedBlockingQueue<>(); //coda sincronizzata dei morigerati
-    public LinkedBlockingQueue<A> osteria = new LinkedBlockingQueue<>(); //coda sincronizzata degli avventurieri
+    public SynchroCoda<M> ristorante = new SynchroCoda<>(); //coda sincronizzata dei morigerati
+    public SynchroCoda<A> osteria = new SynchroCoda<>(); //coda sincronizzata degli avventurieri
 
 
     public Popolazione(int a, int b, int c, int m, int av, int p, int s) throws InvalidPopulationException {
@@ -67,20 +65,21 @@ public class Popolazione {
 
     public void start(){
         // metodo che da vita al mondo, invocando il metodo run dei vari componenti della popolazione
-        //Attenzione: un thread e' isAlive se e' started e non e' morto
-        HashSet<M> mor_temp=new HashSet<>();
-        mor_temp.addAll(morigerati);
-        HashSet<A> avv_temp=new HashSet<>();
-        avv_temp.addAll(avventurieri);
-        HashSet<P> pru_temp=new HashSet<>();
-        pru_temp.addAll(prudenti);
-        HashSet<S> spr_temp=new HashSet<>();
-        spr_temp.addAll(spregiudicate);
 
-        Thread threadMor = new Thread(()->{for (M mor : mor_temp){mor.start();}});
-        Thread threadAvv = new Thread(()->{for (A avv : avv_temp){ avv.start();}});
-        Thread threadPru = new Thread(()->{for (P pru : pru_temp){ pru.start();}});
-        Thread threadSpr = new Thread(()->{for (S spr : spr_temp){spr.start();}});
+        //creo degli insiemi temporanei per fare lo start della popolazione iniziale
+        HashSet<M> morTemp=new HashSet<>();
+        morTemp.addAll(morigerati);
+        HashSet<A> avvTemp=new HashSet<>();
+        avvTemp.addAll(avventurieri);
+        HashSet<P> pruTemp=new HashSet<>();
+        pruTemp.addAll(prudenti);
+        HashSet<S> sprTemp=new HashSet<>();
+        sprTemp.addAll(spregiudicate);
+
+        Thread threadMor = new Thread(()->{for (M mor : morTemp){mor.start();}});
+        Thread threadAvv = new Thread(()->{for (A avv : avvTemp){ avv.start();}});
+        Thread threadPru = new Thread(()->{for (P pru : pruTemp){ pru.start();}});
+        Thread threadSpr = new Thread(()->{for (S spr : sprTemp){spr.start();}});
         threadMor.start();
         threadAvv.start();
         threadPru.start();
@@ -102,14 +101,14 @@ public class Popolazione {
                 mor.notify();
             }
         }
-        ristorante = new LinkedBlockingQueue<M>();
+        ristorante = new SynchroCoda<M>();
         for (A avv : avventurieri) {
             synchronized (avv) {
                 avv.virilita = 0.0;
                 avv.notify();
             }
         }
-        osteria = new LinkedBlockingQueue<A>();
+        osteria = new SynchroCoda<A>();
     }
 
     private Stato calcolaStato() {

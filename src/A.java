@@ -14,7 +14,6 @@ public class A extends Persona {
     public Popolazione popo;
 
     protected Double virilita = 0.4; //indice che indica la probabilita' di inserirsi nella coda mercato
-    protected Integer conquiste = 0; // serve all avventuriero per tenere traccia del numero delle sue conquiste amorose
 
     public A(Popolazione p) {
         //costruttore degli avventurieri
@@ -48,11 +47,7 @@ public class A extends Persona {
 
     private void corteggiamento(){
         //corteggiamento dell' avventuriero
-        try {
-            popo.osteria.put(this); // in realta' e' un falso corteggiamento si mette solo nel mercato!
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        popo.osteria.insert(this); // in realta' e' un falso corteggiamento si mette solo nel mercato!
     }
 
     //accoppiamento dell'avventuriero gestito nel run
