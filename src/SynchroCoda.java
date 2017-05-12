@@ -1,4 +1,7 @@
-
+/**
+ * Implementazione con linked list del tipo di dato astratto delle code sincronizzate
+ * @param <E>
+ */
 public class SynchroCoda <E> {
 
     protected MyListElem<E> first = null;

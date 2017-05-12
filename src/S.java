@@ -27,20 +27,16 @@ public class S extends Persona{
 
     @Override
     public void run() {
-        int tentativi=10;  // la spregiudicata avra' 10 tentativi a disposizione per trovare un amante, altrimenti morira' di vecchiaia
         try {
-            while (fertilita > 0.0 && contentezza > (popo.a - popo.b) * 4 && tentativi > 0) { //dopo 3 o 4 figli avuti con avventurieri muore per la fatica di crescerli da sola
+            while (fertilita > 0.0 && contentezza > (popo.a - popo.b) * 4) { //dopo 3 o 4 figli avuti con avventurieri muore per la fatica di crescerli da sola
                 Persona amante = corteggiamento();
                 if (amante != null) {
                     accoppiamento(amante);
                     if (amante.getType() == tipo.M) {
-                        ((M) amante).limiteMor--;  // toglie un po di virilita' all'amante morigerato
+                        ((M) amante).limiteMor--;  // toglie un po di voglia di cercare un altro partner all'amante morigerato
                         ((M) amante).sveglia();
-                    } else if (amante.getType() == tipo.A) {
-                        ((A) amante).sveglia();
-                    }
+                    } else  {((A) amante).sveglia();} //e' un avventuriero
                 }
-                tentativi--;
             }
         }catch (InterruptedException e){
             System.out.println("problema spregiudicata, interruzione coda");

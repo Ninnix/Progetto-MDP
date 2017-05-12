@@ -38,11 +38,9 @@ public class A extends Persona {
                 } catch (InterruptedException e) {
                     System.out.println("problema con accoppiamento avventuriero");
                 }
-                }
             }
-
-            this.popo.avventurieri.remove(this);
-
+        }
+        this.popo.avventurieri.remove(this);
     }
 
     protected synchronized void sveglia(){notify();} //metodo che fa risvegliare l avventuriero che e' stato selezionato per l'accoppiamento

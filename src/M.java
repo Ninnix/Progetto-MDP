@@ -26,15 +26,13 @@ public class M extends Persona {
     @Override
     public synchronized void run() {
         try {
-        while (!isInterrupted() || limiteMor<=0) {
-            this.corteggiamento(); //morigerato va alla ricerca di una donna al mercato
-            wait();
-        }
+            while (!isInterrupted() || limiteMor<=0) {
+                this.corteggiamento(); //morigerato va alla ricerca di una donna al mercato
+                wait();
+            }
         } catch (InterruptedException e) {
             //System.out.println("problema con l accoppiamento del morigerato");
         }
-
-
         this.popo.morigerati.remove(this);
     }
 

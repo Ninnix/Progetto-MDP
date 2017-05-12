@@ -95,17 +95,14 @@ public class Popolazione {
         //ha trovato uno stato stabile'
         calcolaStato().stampaStato();
         for (M mor : morigerati){
-            synchronized (mor) {
-                mor.limiteMor = 0;
-                mor.notify();
-            }
+            mor.sveglia();
+            mor.interrupt();
         }
         ristorante = new SynchroCoda<M>();
         for (A avv : avventurieri) {
-            synchronized (avv) {
-                avv.virilita = 0.0;
-                avv.notify();
-            }
+            //avv.virilita = 0.0; se lo modifichiamo andrebbe messo volatile
+            avv.sveglia();
+            avv.interrupt();
         }
         osteria = new SynchroCoda<A>();
     }
