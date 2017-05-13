@@ -89,7 +89,7 @@ public class Popolazione {
             System.out.println("morigerati: "+ morigerati.size()+ "  avventurieri: "+avventurieri.size()+"  prudenti: "+prudenti.size()+" spregiudicate: "+ spregiudicate.size() );
             //perde tempo per 2 secondi
             long start = System.currentTimeMillis();
-            while (System.currentTimeMillis() - start < 1000);
+            while (System.currentTimeMillis() - start < 500);
         }
         // TODO: 11/05/17 controllare la sincronizzazione di start()
         //ha trovato uno stato stabile'

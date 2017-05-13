@@ -32,8 +32,8 @@ public class P extends Persona {
                 accoppiamento(marito);
             }
             //la prudente e il marito morigerato muoiono insieme dopo aver cresciuto i propri figli
+            marito.limiteMor=0; //muore il marito ...   \\qual e' l ordine???
             marito.sveglia();
-            marito.interrupt(); //muore il marito ...   \\qual e' l ordine???
             // ... e muore lei
             this.popo.prudenti.remove(this);
         }catch(InterruptedException e){
@@ -51,12 +51,12 @@ public class P extends Persona {
         // si stabilisce se la donna prudente concepira' un nuovo figlio
         double random = new Random().nextDouble();
         if (random >= fertilita){   //significa che la donna non concepira' bambini da qui in avanti
-            fertilita=0;
+            fertilita=0.0;
             return;
         }
 
         //a questo punto sara' generato un figlio
-        Persona figlio = ((new Random().nextBoolean()) ? new P(this.popo) : new M(this.popo)); // scelta del sesso del nascituro
+        Persona figlio = ((new Random().nextDouble()<0.55) ? new P(this.popo) : new M(this.popo)); // scelta del sesso del nascituro
         if (figlio.getType() == tipo.P) popo.prudenti.add((P)figlio);  //aggiunge il figlio alla popolazione
         else popo.morigerati.add((M)figlio);
         figlio.start();   // nasce il figlio

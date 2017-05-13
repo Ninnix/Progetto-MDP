@@ -10,7 +10,7 @@ public class M extends Persona {
 
     public Popolazione popo;
 
-    protected volatile int limiteMor=3;
+    protected volatile int limiteMor=2;
 
     public M(Popolazione p) {
         //costruttore dei morigerati
@@ -26,18 +26,20 @@ public class M extends Persona {
     @Override
     public synchronized void run() {
         try {
-            while (!isInterrupted() || limiteMor<=0) {
-                this.corteggiamento(); //morigerato va alla ricerca di una donna al mercato
-                wait();
-            }
-        } catch (InterruptedException e) {
-            //System.out.println("problema con l accoppiamento del morigerato");
+        while (!isInterrupted() && limiteMor>0) {
+            this.corteggiamento(); //morigerato va alla ricerca di una donna al mercato
+            this.wait();
         }
+        } catch (InterruptedException e) {
+            System.out.println("problema con l accoppiamento del morigerato");
+        }
+
+
         this.popo.morigerati.remove(this);
     }
 
 
-    protected synchronized void sveglia(){notify();} //metodo che fa risvegliare il morigerato che e' stato selezionato per l'accoppiamento
+    protected synchronized void sveglia(){this.notify();} //metodo che fa risvegliare il morigerato che e' stato selezionato per l'accoppiamento
 
     private void corteggiamento(){
         //corteggiamento del morigerato

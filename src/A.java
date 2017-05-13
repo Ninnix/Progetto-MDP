@@ -28,13 +28,13 @@ public class A extends Persona {
 
     @Override
     public synchronized void run() {
-        for (int i = 0; i < 8; i++) { //tentativi di inserirsi nella coda
+        for (int i = 0; i < 9; i++) { //tentativi di inserirsi nella coda
             if(isInterrupted()){break;}
             double random = new Random().nextDouble();
             if (random < virilita) { //probabilita di avere successo nella riproduzione
                 try {
                     this.corteggiamento(); //non e' corretto che l' avventurriero corteggia, si mette semplicemente nella coda!
-                    wait();
+                    this.wait();
                 } catch (InterruptedException e) {
                     System.out.println("problema con accoppiamento avventuriero");
                 }
