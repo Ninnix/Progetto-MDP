@@ -56,12 +56,12 @@ public class P extends Persona {
         }
 
         //a questo punto sara' generato un figlio
-        Persona figlio = ((new Random().nextDouble()<0.4522) ?  new M(this.popo) : new P(this.popo)); // scelta del sesso del nascituro
+        Persona figlio = ((new Random().nextDouble()<0.5) ?  new M(this.popo) : new P(this.popo)); // scelta del sesso del nascituro
         if (figlio.getType() == tipo.P) popo.prudenti.add((P)figlio);  //aggiunge il figlio alla popolazione
         else popo.morigerati.add((M)figlio);
         figlio.start();   // nasce il figlio
         this.contentezza += (popo.a - popo.b/2 - popo.c);  // aggiorniamo il valore di contentezza della prudente
         m.contentezza += (popo.a - popo.b/2 - popo.c);  // aggiorniamo il valore di contentezza del morigerato
-        fertilita -= 0.25; // aggiorniamo la probabilita' che la prudente abbia un altro figlio
+        fertilita -= 0.20; // aggiorniamo la probabilita' che la prudente abbia un altro figlio
     }
 }

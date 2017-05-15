@@ -10,7 +10,7 @@ public class M extends Persona {
 
     public Popolazione popo;
 
-    protected volatile int limiteMor=1;
+    protected volatile int limiteMor=2;
 
     public M(Popolazione p) {
         //costruttore dei morigerati
