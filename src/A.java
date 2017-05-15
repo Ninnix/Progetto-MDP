@@ -13,7 +13,7 @@ public class A extends Persona {
 
     public Popolazione popo;
 
-    protected Double virilita = 0.4; //indice che indica la probabilita' di inserirsi nella coda mercato
+    protected Double virilita = 0.30; //indice che indica la probabilita' di inserirsi nella coda mercato
 
     public A(Popolazione p) {
         //costruttore degli avventurieri
@@ -30,6 +30,8 @@ public class A extends Persona {
     public synchronized void run() {
         for (int i = 0; i < 9; i++) { //tentativi di inserirsi nella coda
             if(isInterrupted()){break;}
+            //la contentezza dell'avventuriero influisce sulla sua virilita'
+            virilita += (double)contentezza/1000;
             double random = new Random().nextDouble();
             if (random < virilita) { //probabilita di avere successo nella riproduzione
                 try {

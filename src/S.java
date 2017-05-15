@@ -46,7 +46,7 @@ public class S extends Persona{
 
     private Persona corteggiamento() throws InterruptedException{
         //corteggiamento della spregiudicata
-        return ((new Random().nextDouble()<0.3) ? popo.ristorante.exctract() : popo.osteria.exctract()); //sceglie de prendere un morigerato o un avventuriero, potrebbe tornare null
+        return ((new Random().nextDouble()<0.42) ? popo.ristorante.exctract() : popo.osteria.exctract()); //sceglie de prendere un morigerato o un avventuriero, potrebbe tornare null
     }
 
 
@@ -75,7 +75,7 @@ public class S extends Persona{
                            //la donna spregiudicata non perde appeal verso il suo partner ed in media fara' piu' figli*/
         else {
             if (m.getType() == tipo.M) {
-                Persona figlio = ((new Random().nextDouble()< 0.45) ? new M(this.popo) : new S(this.popo));
+                Persona figlio = ((new Random().nextDouble()< 0.50) ? new M(this.popo) : new S(this.popo));
                 if (figlio.getType() == tipo.S) {
                     popo.spregiudicate.add((S) figlio);
                 } //aggiunge il figlio alla popolazione
@@ -86,7 +86,7 @@ public class S extends Persona{
                 m.contentezza += popo.a - popo.b / 2;
                 this.contentezza += popo.a - popo.b / 2;
             } else {
-                Persona figlio = ((new Random().nextDouble()< 0.45) ? new A(this.popo) : new S(this.popo));
+                Persona figlio = ((new Random().nextDouble()< 0.503) ? new A(this.popo) : new S(this.popo));
                 if (figlio.getType() == tipo.S)
                     popo.spregiudicate.add((S) figlio);  //aggiunge il figlio alla popolazione
                 else {
@@ -96,7 +96,7 @@ public class S extends Persona{
                 m.contentezza += popo.a;
                 this.contentezza += popo.a - popo.b;
             }
-            this.fertilita -= 0.2;
+            this.fertilita -= 0.17;
         }
     }
 }
