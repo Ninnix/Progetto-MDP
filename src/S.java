@@ -96,7 +96,7 @@ public class S extends Persona{
                 m.contentezza += popo.a;
                 this.contentezza += popo.a - popo.b;
             }
-            this.fertilita -= 0.17;
+            this.fertilita -= 0.18;
         }
     }
 }

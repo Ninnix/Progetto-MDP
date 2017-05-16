@@ -13,7 +13,7 @@ public class A extends Persona {
 
     public Popolazione popo;
 
-    protected Double virilita = 0.30; //indice che indica la probabilita' di inserirsi nella coda mercato
+    protected Double virilita = 0.29; //indice che indica la probabilita' di inserirsi nella coda mercato
 
     public A(Popolazione p) {
         //costruttore degli avventurieri
