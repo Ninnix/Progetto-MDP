@@ -86,7 +86,8 @@ public class Popolazione {
 
         while (!calcolaStato().isStabile()) {//potrebbe andare in loop
             //calcolaStato().stampaStato();
-            System.out.println("morigerati: "+ morigerati.size()+ "  avventurieri: "+avventurieri.size()+"  prudenti: "+prudenti.size()+" spregiudicate: "+ spregiudicate.size() );
+            //System.out.println("morigerati: "+ morigerati.size()+ "  avventurieri: "+avventurieri.size()+"  prudenti: "+prudenti.size()+" spregiudicate: "+ spregiudicate.size() );
+            calcolaStato().stampaStato2();
             //perde tempo per 2 secondi
             long start = System.currentTimeMillis();
             while (System.currentTimeMillis() - start < 500);
@@ -144,6 +145,12 @@ public class Popolazione {
         public void stampaStato() {
             System.out.println("Ecco le percentuali dei tipi nella popolazione:");
             System.out.println("Morigerati: " + (perMor*100) + "%, " + "Avventurieri: " + (perAvv*100) + "%, " + "Prudenti: " + (perPru*100) + "%, " + "Spregiudicate: " + (perSpr*100) +"%");
+        }
+
+
+        public void stampaStato2() {
+            System.out.println("Ecco le percentuali dei tipi nella popolazione:");
+            System.out.println("Uomini= Morigerati: " + ((perMor/(perMor+perAvv))*100) + "%, " + "Avventurieri: " + ((perAvv/(perAvv+perMor))*100) + "% " + "    Donne= Prudenti: " + ((perPru/(perPru+perSpr))*100) + "%, " + "Spregiudicate: " + ((perSpr/(perSpr+perPru))*100) +"%");
         }
 
         //funzione che calcola il guadagno medio degli uomini morigerati in questo istante
