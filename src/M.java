@@ -1,3 +1,4 @@
+import java.util.Random;
 
 /**
  * Created by nicolo on 28/04/17.
@@ -10,7 +11,7 @@ public class M extends Persona {
 
     public Popolazione popo;
 
-    protected volatile int limiteMor=2;
+    protected volatile double virilita= 0.95 ;
 
     public M(Popolazione p) {
         //costruttore dei morigerati
@@ -26,9 +27,11 @@ public class M extends Persona {
     @Override
     public synchronized void run() {
         try {
-        while (!isInterrupted() && limiteMor>0) {
+        while (!isInterrupted() && virilita>0.0) {
+            if(new Random().nextDouble()>virilita){break;}
             this.corteggiamento(); //morigerato va alla ricerca di una donna al mercato
             this.wait();
+            virilita-=0.32;
         }
         } catch (InterruptedException e) {
             System.out.println("problema con l accoppiamento del morigerato");

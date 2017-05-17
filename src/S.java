@@ -32,7 +32,7 @@ public class S extends Persona{
                 Persona amante = corteggiamento();
                 accoppiamento(amante);
                 if (amante.getType() == tipo.M) {
-                    ((M) amante).limiteMor--;  // toglie un po di virilita' all'amante morigerato
+                    //((M) amante).limiteMor--;  // toglie un po di virilita' all'amante morigerato
                     ((M) amante).sveglia();
                 } else if (amante.getType() == tipo.A) {
                     ((A) amante).sveglia();

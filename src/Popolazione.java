@@ -84,7 +84,8 @@ public class Popolazione {
         threadPru.start();
         threadSpr.start();
 
-        while (!calcolaStato().isStabile()) {//potrebbe andare in loop
+        //while (!calcolaStato().isStabile()) {//potrebbe andare in loop
+        while(true){
             //calcolaStato().stampaStato();
             //System.out.println("morigerati: "+ morigerati.size()+ "  avventurieri: "+avventurieri.size()+"  prudenti: "+prudenti.size()+" spregiudicate: "+ spregiudicate.size() );
             calcolaStato().stampaStato2();
@@ -94,7 +95,7 @@ public class Popolazione {
         }
         // TODO: 11/05/17 controllare la sincronizzazione di start()
         //ha trovato uno stato stabile'
-        calcolaStato().stampaStato();
+        /*calcolaStato().stampaStato();
         for (M mor : morigerati){
             mor.sveglia();
             mor.interrupt();
@@ -105,7 +106,7 @@ public class Popolazione {
             avv.sveglia();
             avv.interrupt();
         }
-        osteria = new SynchroCoda<A>();
+        osteria = new SynchroCoda<A>();*/
     }
 
     private Stato calcolaStato() {

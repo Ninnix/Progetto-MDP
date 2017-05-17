@@ -32,7 +32,7 @@ public class P extends Persona {
                 accoppiamento(marito);
             }
             //la prudente e il marito morigerato muoiono insieme dopo aver cresciuto i propri figli
-            marito.limiteMor=0; //muore il marito ...   \\qual e' l ordine???
+            marito.virilita=0; //muore il marito ...   \\qual e' l ordine???
             marito.sveglia();
             // ... e muore lei
             this.popo.prudenti.remove(this);

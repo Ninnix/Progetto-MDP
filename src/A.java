@@ -28,7 +28,7 @@ public class A extends Persona {
 
     @Override
     public synchronized void run() {
-        for (int i = 0; i < 9; i++) { //tentativi di inserirsi nella coda
+        for (int i = 0; i < 7; i++) { //tentativi di inserirsi nella coda
             if(isInterrupted()){break;}
             //la contentezza dell'avventuriero influisce sulla sua virilita'
             virilita += (double)contentezza/1000;
