@@ -80,6 +80,7 @@ public class S extends Persona{
                     popo.spregiudicate.add((S) figlio);
                 } //aggiunge il figlio alla popolazione
                 else {
+                    ((M)figlio).virilita = ((M)m).virilita;
                     popo.morigerati.add((M) figlio);
                 }
                 figlio.start();
