@@ -17,7 +17,7 @@ public class Popolazione {
     protected int b;
     protected int c;
 
-    //code delle richieste di accoppiamento degli uomini http://docs.oracle.com/javase/tutorial/collections/implementations/queue.html
+    //code delle richieste di accoppiamento degli uomini
     public SynchroCoda<M> ristorante = new SynchroCoda<>(); //coda sincronizzata dei morigerati
     public SynchroCoda<A> osteria = new SynchroCoda<>(); //coda sincronizzata degli avventurieri
 
@@ -65,7 +65,7 @@ public class Popolazione {
     public void start(){
         // metodo che da vita al mondo, invocando il metodo run dei vari componenti della popolazione
 
-        //creo degli insiemi temporanei per fare lo start della popolazione iniziale
+        //insiemi temporanei per fare lo start della popolazione iniziale
         HashSet<M> morTemp=new HashSet<>();
         morTemp.addAll(morigerati);
         HashSet<A> avvTemp=new HashSet<>();
@@ -150,6 +150,7 @@ public class Popolazione {
 
 
         public void stampaStato2() {
+            //stampa percentuali divise per singoli sessi
             System.out.println("Ecco le percentuali dei tipi nella popolazione:");
             System.out.println("Uomini= Morigerati: " + ((perMor/(perMor+perAvv))*100) + "%, " + "Avventurieri: " + ((perAvv/(perAvv+perMor))*100) + "% " + "    Donne= Prudenti: " + ((perPru/(perPru+perSpr))*100) + "%, " + "Spregiudicate: " + ((perSpr/(perSpr+perPru))*100) +"%");
         }

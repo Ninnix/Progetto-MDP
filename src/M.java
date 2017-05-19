@@ -27,20 +27,17 @@ public class M extends Persona {
     @Override
     public synchronized void run() {
         try {
-        while (!isInterrupted() && virilita>0.0) {
-            if(new Random().nextDouble()>virilita){break;}
-            this.corteggiamento(); //morigerato va alla ricerca di una donna al mercato
-            this.wait();
-            virilita-=0.32;
-        }
+            while (!isInterrupted() && virilita>0.0) {
+                if(new Random().nextDouble()>virilita){break;}
+                this.corteggiamento(); //morigerato va alla ricerca di una donna al mercato
+                this.wait();
+                virilita-=0.32;
+            }
         } catch (InterruptedException e) {
             System.out.println("problema con l accoppiamento del morigerato");
         }
-
-
         this.popo.morigerati.remove(this);
     }
-
 
     protected synchronized void sveglia(){this.notify();} //metodo che fa risvegliare il morigerato che e' stato selezionato per l'accoppiamento
 
