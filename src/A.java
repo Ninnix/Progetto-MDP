@@ -49,7 +49,7 @@ public class A extends Persona {
 
     private void corteggiamento(){
         //corteggiamento dell' avventuriero
-        popo.osteria.insert(this); // in realta' e' un falso corteggiamento si mette solo nel mercato!
+        popo.ballo.insert(this); // in realta' e' un falso corteggiamento si mette solo nel mercato!
     }
 
     //accoppiamento dell'avventuriero gestito nel run

@@ -18,9 +18,7 @@ public class Popolazione {
     protected int c;
 
     //code delle richieste di accoppiamento degli uomini
-    public SynchroCoda<M> ristorante = new SynchroCoda<>(); //coda sincronizzata dei morigerati
-    public SynchroCoda<A> osteria = new SynchroCoda<>(); //coda sincronizzata degli avventurieri
-
+    public SynchroCoda<Persona> ballo = new SynchroCoda<>(); //coda sincronizzata dei morigerati
 
     public Popolazione(int a, int b, int c, int m, int av, int p, int s) throws InvalidPopulationException {
         //costruttore della popolazione
@@ -87,8 +85,8 @@ public class Popolazione {
         //while (!calcolaStato().isStabile()) {//potrebbe andare in loop
         while(true){
             //calcolaStato().stampaStato();
-            //System.out.println("morigerati: "+ morigerati.size()+ "  avventurieri: "+avventurieri.size()+"  prudenti: "+prudenti.size()+" spregiudicate: "+ spregiudicate.size() );
-            calcolaStato().stampaStato2();
+            System.out.println("morigerati: "+ morigerati.size()+ "  avventurieri: "+avventurieri.size()+"  prudenti: "+prudenti.size()+" spregiudicate: "+ spregiudicate.size() );
+            //calcolaStato().stampaStato2();
             //perde tempo per 2 secondi
             long start = System.currentTimeMillis();
             while (System.currentTimeMillis() - start < 500);

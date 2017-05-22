@@ -46,7 +46,7 @@ public class S extends Persona{
 
     private Persona corteggiamento() throws InterruptedException{
         //corteggiamento della spregiudicata
-        return ((new Random().nextDouble()<0.50) ? popo.ristorante.exctract() : popo.osteria.exctract()); //sceglie de prendere un morigerato o un avventuriero, potrebbe tornare null
+        return popo.ballo.exctract();
     }
 
 
@@ -97,7 +97,7 @@ public class S extends Persona{
                 m.contentezza += popo.a;
                 this.contentezza += popo.a - popo.b;
             }
-            this.fertilita -= 0.18;
+            this.fertilita -= 0.30;
         }
     }
 }

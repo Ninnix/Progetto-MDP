@@ -28,14 +28,16 @@ public class P extends Persona {
     public void run() {
         try {
             M marito = corteggiamento();
-            while (fertilita > 0.0) { //la coppia si riproduce finchè la moglie è fertile
-                accoppiamento(marito);
+            if(marito !=null) {
+                while (fertilita > 0.0) { //la coppia si riproduce finchè la moglie è fertile
+                    accoppiamento(marito);
+                }
+                //la prudente e il marito morigerato muoiono insieme dopo aver cresciuto i propri figli
+                marito.virilita = 0; //muore il marito ...   \\qual e' l ordine???
+                marito.sveglia();
+                // ... e muore lei
+                this.popo.prudenti.remove(this);
             }
-            //la prudente e il marito morigerato muoiono insieme dopo aver cresciuto i propri figli
-            marito.virilita=0; //muore il marito ...   \\qual e' l ordine???
-            marito.sveglia();
-            // ... e muore lei
-            this.popo.prudenti.remove(this);
         }catch(InterruptedException e){
             System.out.println("problema prudente, interruzione coda");
         }
@@ -43,25 +45,36 @@ public class P extends Persona {
 
     public M corteggiamento() throws InterruptedException{
         //corteggiamento della prudente
-        return popo.ristorante.exctract();
+        Persona spasimante=null;
+        int tentativi=2;
+        while(tentativi>0) {
+            spasimante = popo.ballo.exctract();
+            if (spasimante.getType() == tipo.A) {
+                ((A) spasimante).sveglia();
+                tentativi--;
+            } else {
+                return (M) spasimante;
+            }
+        }
+        return null;
     }
 
 
-    public void accoppiamento(M m){
+    public void accoppiamento(M m) {
         // si stabilisce se la donna prudente concepira' un nuovo figlio
         double random = new Random().nextDouble();
-        if (random >= fertilita){   //significa che la donna non concepira' bambini da qui in avanti
-            fertilita=0.0;
+        if (random >= fertilita) {   //significa che la donna non concepira' bambini da qui in avanti
+            fertilita = 0.0;
             return;
         }
 
         //a questo punto sara' generato un figlio
-        Persona figlio = ((new Random().nextDouble()<0.5) ?  new M(this.popo) : new P(this.popo)); // scelta del sesso del nascituro
-        if (figlio.getType() == tipo.P) popo.prudenti.add((P)figlio);  //aggiunge il figlio alla popolazione
-        else popo.morigerati.add((M)figlio);
+        Persona figlio = ((new Random().nextDouble() < 0.5) ? new M(this.popo) : new P(this.popo)); // scelta del sesso del nascituro
+        if (figlio.getType() == tipo.P) popo.prudenti.add((P) figlio);  //aggiunge il figlio alla popolazione
+        else popo.morigerati.add((M) figlio);
         figlio.start();   // nasce il figlio
-        this.contentezza += (popo.a - popo.b/2 - popo.c);  // aggiorniamo il valore di contentezza della prudente
-        m.contentezza += (popo.a - popo.b/2 - popo.c);  // aggiorniamo il valore di contentezza del morigerato
-        fertilita -= 0.20; // aggiorniamo la probabilita' che la prudente abbia un altro figlio
+        this.contentezza += (popo.a - popo.b / 2 - popo.c);  // aggiorniamo il valore di contentezza della prudente
+        m.contentezza += (popo.a - popo.b / 2 - popo.c);  // aggiorniamo il valore di contentezza del morigerato
+        fertilita -= 0.30; // aggiorniamo la probabilita' che la prudente abbia un altro figlio
     }
 }

@@ -31,7 +31,7 @@ public class M extends Persona {
                 if(new Random().nextDouble()>virilita){break;}
                 this.corteggiamento(); //morigerato va alla ricerca di una donna al mercato
                 this.wait();
-                virilita-=0.23;
+                virilita-=0.15;
             }
         } catch (InterruptedException e) {
             System.out.println("problema con l accoppiamento del morigerato");
@@ -43,7 +43,7 @@ public class M extends Persona {
 
     private void corteggiamento(){
         //corteggiamento del morigerato
-        popo.ristorante.insert(this); //il morigerato si aggiunge alla coda per accoppiarsi
+        popo.ballo.insert(this); //il morigerato si aggiunge alla coda per accoppiarsi
     }
 
     // il morigerato non necessita di un metodo accoppiamento perche' tale metodo e' gestito dalla moglie
