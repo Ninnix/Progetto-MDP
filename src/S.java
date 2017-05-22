@@ -12,7 +12,7 @@ public class S extends Persona{
     public Popolazione popo;
 
     //probabilita' di avere un figlio
-    protected double fertilita= 0.95 ;
+    protected double fertilita= 1 ;
 
     public S(Popolazione p) {
         //costruttore delle prudenti
@@ -28,7 +28,7 @@ public class S extends Persona{
     @Override
     public void run() {
         try {
-            while (fertilita > 0.0 && contentezza > (popo.a - popo.b) * 2 ) { //dopo 3 o 4 figli avuti con avventurieri muore per la fatica di crescerli da sola
+            while (fertilita  > 0.0 && contentezza > (popo.a - popo.b) * 2 ) { //dopo 3 o 4 figli avuti con avventurieri muore per la fatica di crescerli da sola
                 Persona amante = corteggiamento();
                 accoppiamento(amante);
                 if (amante.getType() == tipo.M) {
@@ -80,7 +80,6 @@ public class S extends Persona{
                     popo.spregiudicate.add((S) figlio);
                 } //aggiunge il figlio alla popolazione
                 else {
-                    ((M)figlio).virilita = ((M)m).virilita;
                     popo.morigerati.add((M) figlio);
                 }
                 figlio.start();
@@ -97,7 +96,7 @@ public class S extends Persona{
                 m.contentezza += popo.a;
                 this.contentezza += popo.a - popo.b;
             }
-            this.fertilita -= 0.30;
+            this.fertilita -= 0.20;
         }
     }
 }

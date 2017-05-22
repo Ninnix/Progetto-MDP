@@ -13,7 +13,7 @@ public class A extends Persona {
 
     public Popolazione popo;
 
-    protected Double virilita = 0.33; //indice che indica la probabilita' di inserirsi nella coda mercato
+    protected volatile double virilita = 1; //indice che indica la probabilita' di inserirsi nella coda mercato
 
     public A(Popolazione p) {
         //costruttore degli avventurieri
@@ -28,19 +28,15 @@ public class A extends Persona {
 
     @Override
     public synchronized void run() {
-        for (int i = 0; i < 8; i++) { //tentativi di inserirsi nella coda
-            if(isInterrupted()){break;}
-            //la contentezza dell'avventuriero influisce sulla sua virilita'
-            virilita += (double)contentezza/1000;
-            double random = new Random().nextDouble();
-            if (random < virilita) { //probabilita di avere successo nella riproduzione
-                try {
-                    this.corteggiamento(); //non e' corretto che l' avventurriero corteggia, si mette semplicemente nella coda!
-                    this.wait();
-                } catch (InterruptedException e) {
-                    System.out.println("problema con accoppiamento avventuriero");
-                }
+        try {
+            while (!isInterrupted() && virilita>0.0) {
+                if(new Random().nextDouble()>virilita){break;}
+                this.corteggiamento(); //morigerato va alla ricerca di una donna al mercato
+                this.wait();
+                virilita-=0.1;
             }
+        } catch (InterruptedException e) {
+            System.out.println("problema con l accoppiamento del morigerato");
         }
         this.popo.avventurieri.remove(this);
     }

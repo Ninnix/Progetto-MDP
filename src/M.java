@@ -31,7 +31,7 @@ public class M extends Persona {
                 if(new Random().nextDouble()>virilita){break;}
                 this.corteggiamento(); //morigerato va alla ricerca di una donna al mercato
                 this.wait();
-                virilita-=0.15;
+                virilita-=0.22;
             }
         } catch (InterruptedException e) {
             System.out.println("problema con l accoppiamento del morigerato");
