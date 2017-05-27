@@ -23,7 +23,7 @@ public class Popolazione {
     public Popolazione(int a, int b, int c, int m, int av, int p, int s) throws InvalidPopulationException {
         //costruttore della popolazione
 
-        if (m<=0 || av<=0 || p<=0 || s<=0) throw new InvalidPopulationException();
+        if (m<0 || av<0 || p<0 || s<0) throw new InvalidPopulationException();
 
         this.a=a;
         this.b=b;
