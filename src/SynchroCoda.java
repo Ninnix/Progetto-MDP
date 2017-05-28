@@ -8,6 +8,8 @@ public class SynchroCoda <E> {
     protected MyListElem<E> first = null;
     protected MyListElem<E> last =  null;
 
+    private boolean aperto= true;
+
     /**
      * controlla se la coda e' vuota o no
      * @return true se la coda e' vuota, false altrimenti
@@ -46,5 +48,13 @@ public class SynchroCoda <E> {
         first = first.next;
         if (first == null) last = null;
         return result;
+    }
+
+    public void chiudi(){
+        this.aperto=false;
+    }
+
+    public boolean isAperto(){
+        return aperto;
     }
 }

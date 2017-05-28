@@ -18,7 +18,7 @@ public class Popolazione {
     protected int c;
 
     //code delle richieste di accoppiamento degli uomini
-    public SynchroCoda<Persona> ballo = new SynchroCoda<>(); //coda sincronizzata dei morigerati
+    public SynchroCoda<Persona> ballo = new SynchroCoda<>(); //coda sincronizzata per gli accoppiamenti
 
     public Popolazione(int a, int b, int c, int m, int av, int p, int s) throws InvalidPopulationException {
         //costruttore della popolazione
@@ -82,8 +82,7 @@ public class Popolazione {
         threadPru.start();
         threadSpr.start();
 
-        //while (!calcolaStato().isStabile()) {//potrebbe andare in loop
-        while(true){
+        while (!calcolaStato().isStabile()) {//potrebbe andare in loop
             //calcolaStato().stampaStato();
             System.out.println("morigerati: "+ morigerati.size()+ "  avventurieri: "+avventurieri.size()+"  prudenti: "+prudenti.size()+" spregiudicate: "+ spregiudicate.size() );
             //calcolaStato().stampaStato2();
@@ -93,18 +92,25 @@ public class Popolazione {
         }
         // TODO: 11/05/17 controllare la sincronizzazione di start()
         //ha trovato uno stato stabile'
-        /*calcolaStato().stampaStato();
+        calcolaStato().stampaStato();
+        stop();
+    }
+
+    //metodo che blocca la simulazione
+    public void stop(){
+        ballo.chiudi();  //chiude il ballo
         for (M mor : morigerati){
-            mor.sveglia();
             mor.interrupt();
         }
-        ristorante = new SynchroCoda<M>();
         for (A avv : avventurieri) {
-            //avv.virilita = 0.0; se lo modifichiamo andrebbe messo volatile
-            avv.sveglia();
             avv.interrupt();
         }
-        osteria = new SynchroCoda<A>();*/
+        for (P pru : prudenti) {
+            pru.interrupt();
+        }
+        for (S spr : spregiudicate) {
+            spr.interrupt();
+        }
     }
 
     private Stato calcolaStato() {

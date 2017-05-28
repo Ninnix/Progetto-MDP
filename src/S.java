@@ -28,7 +28,7 @@ public class S extends Persona{
     @Override
     public void run() {
         try {
-            while (fertilita  > 0.0 && contentezza > (popo.a - popo.b) * 2 ) { //dopo 3 o 4 figli avuti con avventurieri muore per la fatica di crescerli da sola
+            while (fertilita  > 0.0 && contentezza > (popo.a - popo.b) * 2 && !isInterrupted() ) { //dopo 3 o 4 figli avuti con avventurieri muore per la fatica di crescerli da sola
                 Persona amante = corteggiamento();
                 accoppiamento(amante);
                 if (amante.getType() == tipo.M) {
@@ -39,7 +39,7 @@ public class S extends Persona{
                 }
             }
         }catch (InterruptedException e){
-            System.out.println("problema spregiudicata, interruzione coda");
+            //System.out.println("problema spregiudicata, interruzione coda");
         }
         this.popo.spregiudicate.remove(this);
     }

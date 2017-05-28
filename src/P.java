@@ -27,6 +27,7 @@ public class P extends Persona {
     @Override
     public void run() {
         try {
+            if(isInterrupted()){return;}
             M marito = corteggiamento();
             if(marito !=null) {
                 while (fertilita > 0.0) { //la coppia si riproduce finchè la moglie è fertile
@@ -39,7 +40,7 @@ public class P extends Persona {
                 this.popo.prudenti.remove(this);
             }
         }catch(InterruptedException e){
-            System.out.println("problema prudente, interruzione coda");
+            //System.out.println("problema prudente, interruzione coda");
         }
     }
 
