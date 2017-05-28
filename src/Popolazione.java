@@ -9,9 +9,9 @@ public class Popolazione {
     public HashSet<Set<? extends Persona>> population = new HashSet<>();
     //insiemi dei vari tipi
     public Set<M> morigerati = Collections.newSetFromMap(new ConcurrentHashMap<M, Boolean>());
-    public Set<A> avventurieri =Collections.newSetFromMap(new ConcurrentHashMap<A, Boolean>());;
-    public Set<P> prudenti = Collections.newSetFromMap(new ConcurrentHashMap<P, Boolean>());;
-    public Set<S> spregiudicate = Collections.newSetFromMap(new ConcurrentHashMap<S, Boolean>());;
+    public Set<A> avventurieri =Collections.newSetFromMap(new ConcurrentHashMap<A, Boolean>());
+    public Set<P> prudenti = Collections.newSetFromMap(new ConcurrentHashMap<P, Boolean>());
+    public Set<S> spregiudicate = Collections.newSetFromMap(new ConcurrentHashMap<S, Boolean>());
 
     private volatile boolean terminato;
 
@@ -117,6 +117,7 @@ public class Popolazione {
         for (A avv : avventurieri) {
             avv.interrupt();
         }
+        prudenti=Collections.newSetFromMap(new ConcurrentHashMap<P, Boolean>()); // le prudenti vanno svuotate manualmente
         this.terminato= true;
     }
 
