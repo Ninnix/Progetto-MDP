@@ -23,10 +23,10 @@ public class Popolazione {
     //code delle richieste di accoppiamento degli uomini
     public SynchroCoda<Persona> ballo = new SynchroCoda<>(); //coda sincronizzata per gli accoppiamenti
 
-    public Popolazione(int a, int b, int c, int m, int av, int p, int s)  {
+    public Popolazione(int a, int b, int c, int m, int av, int p, int s) throws InvalidPopulationException  {
         //costruttore della popolazione
 
-        //if (m<0 || av<0 || p<0 || s<0) throw new InvalidPopulationException();
+        if (m<0 || av<0 || p<0 || s<0) throw new InvalidPopulationException();
 
         this.a=a;
         this.b=b;

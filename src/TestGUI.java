@@ -20,7 +20,7 @@ public class TestGUI extends Application {
     }                  // termina. Può essere invocato una sola volta
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws InvalidPopulationException {
         Parent root = createChart();
         Scene scene = new Scene(root, 1000, 500);
         stage.setTitle("La Battaglia dei Sessi");
@@ -30,7 +30,7 @@ public class TestGUI extends Application {
 
     int type[] = new int[4];
 
-    private Parent createChart() {
+    private Parent createChart() throws InvalidPopulationException {
 
         Popolazione p1 = prepareData();
 
@@ -115,7 +115,7 @@ public class TestGUI extends Application {
     }
 
     //Prepara la i dati per i grafici a seconda della popolazione iniziale
-    private Popolazione prepareData() {
+    private Popolazione prepareData() throws InvalidPopulationException{
         Popolazione p1 = new Popolazione(15, 20, 3, 50, 50, 50, 50);
         for (int i = 0; i < 4; i++) {
             int numIni = 0;
