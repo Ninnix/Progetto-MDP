@@ -27,7 +27,10 @@ public class P extends Persona {
     @Override
     public void run() {
         try {
-            if(isInterrupted()){return;}
+            if(isInterrupted()){
+                this.popo.prudenti.remove(this);
+                return;
+            }
             M marito = corteggiamento();
             if(marito !=null) {
                 while (fertilita > 0.0) { //la coppia si riproduce finchè la moglie è fertile

@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by nicolo on 28/04/17.
@@ -7,10 +8,12 @@ public class Popolazione {
     //un insieme di individui
     public HashSet<Set<? extends Persona>> population = new HashSet<>();
     //insiemi dei vari tipi
-    public Set<M> morigerati = Collections.synchronizedSet(new HashSet<M>());
-    public Set<A> avventurieri = Collections.synchronizedSet(new HashSet<A>());
-    public Set<P> prudenti = Collections.synchronizedSet(new HashSet<P>());
-    public Set<S> spregiudicate = Collections.synchronizedSet(new HashSet<S>());
+    public Set<M> morigerati = Collections.newSetFromMap(new ConcurrentHashMap<M, Boolean>());
+    public Set<A> avventurieri =Collections.newSetFromMap(new ConcurrentHashMap<A, Boolean>());;
+    public Set<P> prudenti = Collections.newSetFromMap(new ConcurrentHashMap<P, Boolean>());;
+    public Set<S> spregiudicate = Collections.newSetFromMap(new ConcurrentHashMap<S, Boolean>());;
+
+    private volatile boolean terminato;
 
     //attributi che rappresentano costi e benefici evolutivi che incontriamo nella battaglia dei sessi
     protected int a;
@@ -82,35 +85,39 @@ public class Popolazione {
         threadPru.start();
         threadSpr.start();
 
-        while (!calcolaStato().isStabile()) {//potrebbe andare in loop
+        while (!calcolaStato().isStabile() && !terminato) {//potrebbe andare in loop
             //calcolaStato().stampaStato();
             System.out.println("morigerati: "+ morigerati.size()+ "  avventurieri: "+avventurieri.size()+"  prudenti: "+prudenti.size()+" spregiudicate: "+ spregiudicate.size() );
             //calcolaStato().stampaStato2();
             //perde tempo per 2 secondi
             long start = System.currentTimeMillis();
             while (System.currentTimeMillis() - start < 500);
+
         }
         // TODO: 11/05/17 controllare la sincronizzazione di start()
         //ha trovato uno stato stabile'
         calcolaStato().stampaStato();
-        stop();
+        stop(); //da togliere
     }
 
     //metodo che blocca la simulazione
     public void stop(){
         ballo.chiudi();  //chiude il ballo
-        for (M mor : morigerati){
-            mor.interrupt();
-        }
-        for (A avv : avventurieri) {
-            avv.interrupt();
-        }
+
+
         for (P pru : prudenti) {
             pru.interrupt();
         }
         for (S spr : spregiudicate) {
             spr.interrupt();
         }
+        for (M mor : morigerati){
+            mor.interrupt();
+        }
+        for (A avv : avventurieri) {
+            avv.interrupt();
+        }
+        this.terminato= true;
     }
 
     private Stato calcolaStato() {

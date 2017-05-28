@@ -8,7 +8,7 @@ public class SynchroCoda <E> {
     protected MyListElem<E> first = null;
     protected MyListElem<E> last =  null;
 
-    private boolean aperto= true;
+    private volatile boolean aperto= true;
 
     /**
      * controlla se la coda e' vuota o no
