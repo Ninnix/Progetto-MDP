@@ -121,6 +121,10 @@ public class Popolazione {
         this.terminato= true;
     }
 
+    public boolean isRunning() {
+        return !terminato;
+    }
+
     private Stato calcolaStato() {
         return new Stato();
     }

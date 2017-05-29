@@ -1,13 +1,16 @@
 
+import com.sun.xml.internal.bind.v2.TODO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -20,7 +23,7 @@ public class TestGUI extends Application {
     }                  // termina. Può essere invocato una sola volta
 
     @Override
-    public void start(Stage stage) throws InvalidPopulationException {
+    public void start(Stage stage) {
         Parent root = createChart();
         Scene scene = new Scene(root, 1000, 500);
         stage.setTitle("La Battaglia dei Sessi");
@@ -30,7 +33,7 @@ public class TestGUI extends Application {
 
     int type[] = new int[4];
 
-    private Parent createChart() throws InvalidPopulationException {
+    private Parent createChart() {
 
         Popolazione p1 = prepareData();
 
@@ -73,12 +76,26 @@ public class TestGUI extends Application {
         vBoxPieChart2.getChildren().addAll(pieChart2);
         //fine del pieChart2
 
+        //bottone start/stop
+        Button startStop = new Button("Stop");
+        startStop.setOnAction(e -> {
+            if (p1.isRunning()) {
+                p1.stop();
+                startStop.setText("Start");
+            } else {
+                //dovrebbe rifar settare i parametri o altro
+                startStop.setText("Stop");
+            }
+        });
+
         //Layout
         HBox hBoxCharts = new HBox();
         hBoxCharts.getChildren().addAll(vBoxBarChart1, vBoxPieChart2);
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(hBoxCharts);
+        vBox.getChildren().addAll(hBoxCharts, startStop);
+        vBox.setAlignment(Pos.CENTER);  // Allineamento dei nodi
+        vBox.setSpacing(30); // Spazio tra i nodi
 
         StackPane root = new StackPane();
         root.getChildren().add(vBox);
@@ -94,18 +111,18 @@ public class TestGUI extends Application {
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().add(
                 new KeyFrame(Duration.millis(200), (ActionEvent actionEvent) -> {
-                        //aggiorno i grafici dei morigerati
-                        series1.getData().set(0, new XYChart.Data("Morigerati", p1.morigerati.size()));
-                        pieChartData.set(0, new PieChart.Data("Morigerati", p1.morigerati.size()));
-                        //aggiorno i grafici degli avventurieri
-                        series1.getData().set(1, new XYChart.Data("Avventurieri", p1.avventurieri.size()));
-                        pieChartData.set(1, new PieChart.Data("Avventurieri",  p1.avventurieri.size()));
-                        //aggiorno i grafici delle prudenti
-                        series1.getData().set(2, new XYChart.Data("Prudenti", p1.prudenti.size()));
-                        pieChartData.set(2, new PieChart.Data("Prudenti", p1.prudenti.size()));
-                        //aggiorno i grafici delle spregiudicate
-                        series1.getData().set(3, new XYChart.Data("Spregiudicate", p1.spregiudicate.size()));
-                        pieChartData.set(3, new PieChart.Data("Spregiudicate", p1.spregiudicate.size()));
+                    //aggiorno i grafici dei morigerati
+                    series1.getData().set(0, new XYChart.Data("Morigerati", p1.morigerati.size()));
+                    pieChartData.set(0, new PieChart.Data("Morigerati", p1.morigerati.size()));
+                    //aggiorno i grafici degli avventurieri
+                    series1.getData().set(1, new XYChart.Data("Avventurieri", p1.avventurieri.size()));
+                    pieChartData.set(1, new PieChart.Data("Avventurieri",  p1.avventurieri.size()));
+                    //aggiorno i grafici delle prudenti
+                    series1.getData().set(2, new XYChart.Data("Prudenti", p1.prudenti.size()));
+                    pieChartData.set(2, new PieChart.Data("Prudenti", p1.prudenti.size()));
+                    //aggiorno i grafici delle spregiudicate
+                    series1.getData().set(3, new XYChart.Data("Spregiudicate", p1.spregiudicate.size()));
+                    pieChartData.set(3, new PieChart.Data("Spregiudicate", p1.spregiudicate.size()));
                 }));
 
         timeline.setCycleCount(1000);
@@ -115,16 +132,20 @@ public class TestGUI extends Application {
     }
 
     //Prepara la i dati per i grafici a seconda della popolazione iniziale
-    private Popolazione prepareData() throws InvalidPopulationException{
-        Popolazione p1 = new Popolazione(15, 20, 3, 50, 50, 50, 50);
-        for (int i = 0; i < 4; i++) {
-            int numIni = 0;
-            if (i == 0) numIni = p1.morigerati.size();
-            else if (i == 1) numIni = p1.avventurieri.size();
-            else if (i == 2) numIni = p1.prudenti.size();
-            else if (i == 3) numIni = p1.spregiudicate.size();
-            type[i] = numIni;
+    private Popolazione prepareData() {
+        try {
+            Popolazione p1 = new Popolazione(15, 20, 3, 50, 50, 50, 50);
+            for (int i = 0; i < 4; i++) {
+                int numIni = 0;
+                if (i == 0) numIni = p1.morigerati.size();
+                else if (i == 1) numIni = p1.avventurieri.size();
+                else if (i == 2) numIni = p1.prudenti.size();
+                else if (i == 3) numIni = p1.spregiudicate.size();
+                type[i] = numIni;
+            }
+            return p1;
+        } catch (InvalidPopulationException u) {
         }
-        return p1;
+        return null; // non dovrebbe mai essere raggiunto
     }
 }
