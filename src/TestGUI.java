@@ -18,13 +18,22 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class TestGUI extends Application {
+    //attributo
+    Popolazione popolo;
+
+    TestGUI(Popolazione popolo){
+        super();
+        this.popolo=popolo;
+    }
+
+
     public static void main(String[] args) {
         launch(args);  // Lancia l'applicazione, ritorna quando l'applicazione
     }                  // termina. Può essere invocato una sola volta
 
     @Override
     public void start(Stage stage) {
-        Parent root = createChart();
+        Parent root = createChart(stage);
         Scene scene = new Scene(root, 1000, 500);
         stage.setTitle("La Battaglia dei Sessi");
         stage.setScene(scene);
@@ -33,7 +42,7 @@ public class TestGUI extends Application {
 
     int type[] = new int[4];
 
-    private Parent createChart() {
+    private Parent createChart(Stage stage) {
 
         Popolazione p1 = prepareData();
 
@@ -79,13 +88,8 @@ public class TestGUI extends Application {
         //bottone start/stop
         Button startStop = new Button("Stop");
         startStop.setOnAction(e -> {
-            if (p1.isRunning()) {
-                p1.stop();
-                startStop.setText("Start");
-            } else {
-                //dovrebbe rifar settare i parametri o altro
-                startStop.setText("Stop");
-            }
+             p1.stop();
+             stage.close();
         });
 
         //Layout
@@ -133,19 +137,15 @@ public class TestGUI extends Application {
 
     //Prepara la i dati per i grafici a seconda della popolazione iniziale
     private Popolazione prepareData() {
-        try {
-            Popolazione p1 = new Popolazione(15, 20, 3, 50, 50, 50, 50);
-            for (int i = 0; i < 4; i++) {
-                int numIni = 0;
-                if (i == 0) numIni = p1.morigerati.size();
-                else if (i == 1) numIni = p1.avventurieri.size();
-                else if (i == 2) numIni = p1.prudenti.size();
-                else if (i == 3) numIni = p1.spregiudicate.size();
-                type[i] = numIni;
-            }
-            return p1;
-        } catch (InvalidPopulationException u) {
+        Popolazione p1 = popolo;
+        for (int i = 0; i < 4; i++) {
+            int numIni = 0;
+            if (i == 0) numIni = p1.morigerati.size();
+            else if (i == 1) numIni = p1.avventurieri.size();
+            else if (i == 2) numIni = p1.prudenti.size();
+            else if (i == 3) numIni = p1.spregiudicate.size();
+            type[i] = numIni;
         }
-        return null; // non dovrebbe mai essere raggiunto
+        return p1;
     }
 }
