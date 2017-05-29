@@ -1,13 +1,16 @@
 
+import com.sun.xml.internal.bind.v2.TODO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -73,12 +76,26 @@ public class TestGUI extends Application {
         vBoxPieChart2.getChildren().addAll(pieChart2);
         //fine del pieChart2
 
+        //bottone start/stop
+        Button startStop = new Button("Stop");
+        startStop.setOnAction(e -> {
+            if (p1.isRunning()) {
+                p1.stop();
+                startStop.setText("Start");
+            } else {
+                //dovrebbe rifar settare i parametri o altro
+                startStop.setText("Stop");
+            }
+        });
+
         //Layout
         HBox hBoxCharts = new HBox();
         hBoxCharts.getChildren().addAll(vBoxBarChart1, vBoxPieChart2);
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(hBoxCharts);
+        vBox.getChildren().addAll(hBoxCharts, startStop);
+        vBox.setAlignment(Pos.CENTER);  // Allineamento dei nodi
+        vBox.setSpacing(30); // Spazio tra i nodi
 
         StackPane root = new StackPane();
         root.getChildren().add(vBox);

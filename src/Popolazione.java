@@ -94,16 +94,14 @@ public class Popolazione {
             while (System.currentTimeMillis() - start < 500);
 
         }
-        // TODO: 11/05/17 controllare la sincronizzazione di start()
-        //ha trovato uno stato stabile'
-        calcolaStato().stampaStato();
-        stop(); //da togliere
+    //ha trovato uno stato stabile'
+    calcolaStato().stampaStato();
+    stop(); //da togliere
     }
 
     //metodo che blocca la simulazione
     public void stop(){
         ballo.chiudi();  //chiude il ballo
-
 
         for (P pru : prudenti) {
             pru.interrupt();
@@ -119,6 +117,10 @@ public class Popolazione {
         }
         prudenti=Collections.newSetFromMap(new ConcurrentHashMap<P, Boolean>()); // le prudenti vanno svuotate manualmente
         this.terminato= true;
+    }
+
+    public boolean isRunning() {
+        return !terminato;
     }
 
     private Stato calcolaStato() {
