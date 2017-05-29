@@ -13,7 +13,7 @@ public class A extends Persona {
 
     public Popolazione popo;
 
-    protected volatile double virilita = 0.98; //indice che indica la probabilita' di inserirsi nella coda mercato
+    protected volatile double virilita = 1; //indice che indica la probabilita' di inserirsi nella coda mercato
 
     public A(Popolazione p) {
         //costruttore degli avventurieri
@@ -33,7 +33,7 @@ public class A extends Persona {
                 if(new Random().nextDouble()>virilita){break;}
                 this.corteggiamento(); //morigerato va alla ricerca di una donna al mercato
                 this.wait();
-                virilita-=0.9;
+                virilita-=0.13;
             }
         } catch (InterruptedException e) {
             //System.out.println("problema con l accoppiamento del morigerato");
