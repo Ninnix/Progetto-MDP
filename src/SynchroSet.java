@@ -13,7 +13,6 @@ public class SynchroSet<E> {
 
     public synchronized boolean isEmpty() { return spasimanti.isEmpty(); }
 
-
     public synchronized void insert(E elem) {
 
         if (isEmpty()) {
@@ -30,9 +29,9 @@ public class SynchroSet<E> {
         while (isEmpty()){
             wait();
         }
-
         int indice= new Random().nextInt(spasimanti.size());
         E result = spasimanti.get(indice);
+
         return result;
     }
 
