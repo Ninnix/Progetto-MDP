@@ -21,7 +21,7 @@ public class Popolazione {
     protected int c;
 
     //code delle richieste di accoppiamento degli uomini
-    public SynchroCoda<Persona> ballo = new SynchroCoda<>(); //coda sincronizzata per gli accoppiamenti
+    public SynchroSet<Persona> ballo = new SynchroSet<>(); //coda sincronizzata per gli accoppiamenti
 
     public Popolazione(int a, int b, int c, int m, int av, int p, int s) throws InvalidPopulationException  {
         //costruttore della popolazione

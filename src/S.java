@@ -38,7 +38,7 @@ public class S extends Persona{
                     ((M) amante).virilita-=0.16;
                     ((M) amante).sveglia();
                 } else if (amante.getType() == tipo.A) {
-                    ((A) amante).virilita-=0.12;
+                    ((A) amante).virilita-=0.14;
                     ((A) amante).sveglia();
                 }
             }
