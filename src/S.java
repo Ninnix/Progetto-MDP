@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by nicolo on 03/05/17.
@@ -9,10 +10,12 @@ public class S extends Persona{
      * se cosı̀ credono.
      */
 
+    static AtomicInteger count=new AtomicInteger(0);
+
     public Popolazione popo;
 
     //probabilita' di avere un figlio
-    protected double fertilita= 1 ;
+    protected double fertilita= 0.95 ;
 
     public S(Popolazione p) {
         //costruttore delle prudenti
@@ -28,13 +31,14 @@ public class S extends Persona{
     @Override
     public void run() {
         try {
-            while (fertilita  > 0.0 && contentezza > (popo.a - popo.b) * 2 && !isInterrupted() ) { //dopo 3 o 4 figli avuti con avventurieri muore per la fatica di crescerli da sola
+            while (fertilita  > 0.0 && contentezza > ((popo.a - popo.b) * 3 ) && !isInterrupted() ) { //dopo 3 o 4 figli avuti con avventurieri muore per la fatica di crescerli da sola
                 Persona amante = corteggiamento();
                 accoppiamento(amante);
                 if (amante.getType() == tipo.M) {
-                    //((M) amante).limiteMor--;  // toglie un po di virilita' all'amante morigerato
+                    ((M) amante).virilita-=0.16;
                     ((M) amante).sveglia();
                 } else if (amante.getType() == tipo.A) {
+                    ((A) amante).virilita-=0.12;
                     ((A) amante).sveglia();
                 }
             }
@@ -77,21 +81,28 @@ public class S extends Persona{
             if (m.getType() == tipo.M) {
                 Persona figlio = ((new Random().nextDouble()< 0.50) ? new M(this.popo) : new S(this.popo));
                 if (figlio.getType() == tipo.S) {
+                    figlio.setName("S"+S.count.incrementAndGet());
                     popo.spregiudicate.add((S) figlio);
                 } //aggiunge il figlio alla popolazione
                 else {
+                    figlio.setName("M"+M.count.incrementAndGet());
                     popo.morigerati.add((M) figlio);
                 }
+                //System.out.println(this.getName()+" si accoppia con "+m.getName()+", e nasce "+figlio.getName());  //da rimuovere
                 figlio.start();
                 m.contentezza += popo.a - popo.b / 2;
                 this.contentezza += popo.a - popo.b / 2;
             } else {
                 Persona figlio = ((new Random().nextDouble()< 0.50) ? new A(this.popo) : new S(this.popo));
-                if (figlio.getType() == tipo.S)
+                if (figlio.getType() == tipo.S) {
+                    figlio.setName("S"+S.count.incrementAndGet());
                     popo.spregiudicate.add((S) figlio);  //aggiunge il figlio alla popolazione
+                }
                 else {
+                    figlio.setName("A"+A.count.incrementAndGet());
                     popo.avventurieri.add((A) figlio);
                 }
+                //System.out.println(this.getName()+" si accoppia con "+m.getName()+", e nasce "+figlio.getName());  //da rimuovere
                 figlio.start();
                 m.contentezza += popo.a;
                 this.contentezza += popo.a - popo.b;

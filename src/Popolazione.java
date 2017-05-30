@@ -34,24 +34,28 @@ public class Popolazione {
         //crea l'insieme dei morigerati
         for (int i=0; i < m; i++) {
             M mor = new M(this);
+            mor.setName("M"+M.count.incrementAndGet());
             morigerati.add(mor);
         }
 
         //crea l'insieme degli avventurieri
         for (int i=0; i < av; i++) {
             A avv = new A(this);
+            avv.setName("A"+A.count.incrementAndGet());
             avventurieri.add(avv);
         }
 
         //crea l'insieme delle prudenti
         for (int i=0; i < p; i++) {
             P pru = new P(this);
+            pru.setName("P"+P.count.incrementAndGet());
             prudenti.add(pru);
         }
 
         //crea l'insieme delle spregiudicate
         for (int i=0; i < s; i++) {
             S spr = new S(this);
+            spr.setName("S"+S.count.incrementAndGet());
             spregiudicate.add(spr);
         }
 
@@ -91,7 +95,7 @@ public class Popolazione {
             //calcolaStato().stampaStato2();
             //perde tempo per 2 secondi
             long start = System.currentTimeMillis();
-            while (System.currentTimeMillis() - start < 500);
+            while (System.currentTimeMillis() - start < 300);
 
         }
     //ha trovato uno stato stabile'

@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by nicolo on 28/04/17.
@@ -11,9 +12,11 @@ public class A extends Persona {
      * lasciando a lei l’incombenza di crescere la prole;
      */
 
+    static AtomicInteger count=new AtomicInteger(0);
+
     public Popolazione popo;
 
-    protected volatile double virilita = 1; //indice che indica la probabilita' di inserirsi nella coda mercato
+    protected volatile double virilita = 0.95; //indice che indica la probabilita' di inserirsi nella coda mercato
 
     public A(Popolazione p) {
         //costruttore degli avventurieri
@@ -33,7 +36,7 @@ public class A extends Persona {
                 if(new Random().nextDouble()>virilita){break;}
                 this.corteggiamento(); //morigerato va alla ricerca di una donna al mercato
                 this.wait();
-                virilita-=0.13;
+                //virilita-=0.15;
             }
         } catch (InterruptedException e) {
             //System.out.println("problema con l accoppiamento del morigerato");
