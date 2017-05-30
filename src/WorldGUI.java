@@ -22,10 +22,10 @@ import javafx.stage.Stage;
 /**
  * Created by Samuele on 27/05/2017.
  */
-public class worldGUI extends Application{
+public class WorldGUI extends Application{
     public static void main(String[] args) {
         Platform.runLater(() -> {
-            new worldGUI().start(new Stage());
+            new WorldGUI().start(new Stage());
         });
         //launch(args);  // Lancia l'applicazione, ritorna quando l'applicazione
     }                  // termina. Può essere invocato una sola volta

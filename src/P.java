@@ -55,7 +55,7 @@ public class P extends Persona {
     public M corteggiamento() throws InterruptedException{
         //corteggiamento della prudente
         Persona spasimante;
-        int tentativi=3;
+        int tentativi=2;
         while(tentativi>0) {
             spasimante = popo.ballo.exctract();
             if (spasimante.getType() == tipo.A) {
