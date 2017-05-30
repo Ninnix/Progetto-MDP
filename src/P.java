@@ -69,6 +69,7 @@ public class P extends Persona {
     }
 
 
+
     public void accoppiamento(M m) {
         // si stabilisce se la donna prudente concepira' un nuovo figlio
         double random = new Random().nextDouble();
