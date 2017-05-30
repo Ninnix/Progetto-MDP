@@ -1,10 +1,8 @@
-import com.sun.org.glassfish.gmbal.Impact;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -34,14 +32,14 @@ public class WorldGUI extends Application{
     public void start(Stage primaryStage) {
         //settore iniziale con intestazioni         a   b   c
         Text t1= new Text("a");
-        t1.setFont(new Font("Impact" , 20));
-        t1.setFill(Color.SPRINGGREEN);
+        t1.setFont(new Font("Arial" , 20));
+        t1.setFill(Color.rgb(0, 0, 0));
         Text t2= new Text("b");
-        t2.setFont(new Font("Impact" , 20));
-        t2.setFill(Color.SPRINGGREEN);
+        t2.setFont(new Font("Arial" , 20));
+        t2.setFill(Color.rgb(0, 0, 0));
         Text t3= new Text("c");
-        t3.setFont(new Font("Impact" , 20));
-        t3.setFill(Color.SPRINGGREEN);
+        t3.setFont(new Font("Arial" , 20));
+        t3.setFill(Color.rgb(0, 0, 0));
         HBox hb1= new HBox(t1,t2,t3);
         hb1.setAlignment(Pos.CENTER);
         hb1.setSpacing(200);
@@ -87,17 +85,17 @@ public class WorldGUI extends Application{
 
         //intestazioni      morigerati     avventurieri    prudenti      spregiudicate
         Text t2_1= new Text("   Morigerati");
-        t2_1.setFont(new Font("Impact" , 20));
-        t2_1.setFill(Color.NAVY);
+        t2_1.setFont(new Font("Arial" , 20));
+        t2_1.setFill(Color.rgb(232, 108, 62));
         Text t2_2= new Text("Avventurieri");
-        t2_2.setFont(new Font("Impact" , 20));
-        t2_2.setFill(Color.NAVY);
+        t2_2.setFont(new Font("Arial" , 20));
+        t2_2.setFill(Color.rgb(237, 164, 46));
         Text t2_3= new Text("  Prudenti");
-        t2_3.setFont(new Font("Impact" , 20));
-        t2_3.setFill(Color.NAVY);
+        t2_3.setFont(new Font("Arial" , 20));
+        t2_3.setFill(Color.rgb(83, 169, 83));
         Text t2_4= new Text("Spregiudicate");
-        t2_4.setFont(new Font("Impact" , 20));
-        t2_4.setFill(Color.NAVY);
+        t2_4.setFont(new Font("Arial" , 20));
+        t2_4.setFill(Color.rgb(70, 162, 190));
         HBox hb3= new HBox(t2_1,t2_2,t2_3,t2_4);
         hb3.setAlignment(Pos.CENTER);
         hb3.setSpacing(100);
@@ -178,8 +176,8 @@ public class WorldGUI extends Application{
 
         //bottoni
         Button start = new Button("START");
-        start.setFont(new Font("Comic Sans MS" , 15));
-        start.setBackground(new Background(new BackgroundFill(Color.CYAN, CornerRadii.EMPTY, Insets.EMPTY)));
+        start.setFont(new Font("Arial" , 15));
+        start.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
         start.setOnAction(e -> {
             try {
                 if(tf1.getText().equals("")){tf1.setText("0");}
@@ -202,8 +200,8 @@ public class WorldGUI extends Application{
 
 
         Button def= new Button("Default");
-        def.setFont(new Font("Comic Sans MS" , 15));
-        def.setBackground(new Background(new BackgroundFill(Color.BROWN, CornerRadii.EMPTY, Insets.EMPTY)));
+        def.setFont(new Font("Arial" , 15));
+        def.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
         def.setOnAction(event -> {
             tf1.setText("15");
             tf2.setText("20");
@@ -221,11 +219,11 @@ public class WorldGUI extends Application{
         //box finale
         VBox fin=new VBox(vb1,vb2,hb5);
         fin.setSpacing(100);
-        fin.setBackground(new Background(new BackgroundFill(Color.CORAL, CornerRadii.EMPTY, Insets.EMPTY)));
+        fin.setBackground(new Background(new BackgroundFill(Color.rgb(244, 244, 244), CornerRadii.EMPTY, Insets.EMPTY)));
 
         Parent root= fin;
         Scene scena = new Scene(root, 840, 500);
-        scena.setFill(Color.TAN);
+        scena.setFill(Color.rgb(244, 244, 244));
 
         primaryStage.setScene(scena);
         primaryStage.setTitle("La Battaglia Dei Sessi");
