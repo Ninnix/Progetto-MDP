@@ -35,10 +35,10 @@ public class S extends Persona{
                 Persona amante = corteggiamento();
                 accoppiamento(amante);
                 if (amante.getType() == tipo.M) {
-                    ((M) amante).virilita-=0.16;
+                    ((M) amante).virilita-=0.20;
                     ((M) amante).sveglia();
                 } else if (amante.getType() == tipo.A) {
-                    ((A) amante).virilita-=0.14;
+                    ((A) amante).virilita-=0.20;
                     ((A) amante).sveglia();
                 }
             }
