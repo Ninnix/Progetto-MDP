@@ -14,7 +14,7 @@ public class M extends Persona {
 
     public Popolazione popo;
 
-    protected volatile double virilita = 0.95 ;
+    protected volatile double virilita = 0.90 ;
 
     public M(Popolazione p) {
         //costruttore dei morigerati

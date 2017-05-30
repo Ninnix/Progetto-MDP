@@ -98,9 +98,10 @@ public class Popolazione {
             while (System.currentTimeMillis() - start < 300);
 
         }
-    //ha trovato uno stato stabile'
-    calcolaStato().stampaStato();
-    stop(); //da togliere
+        if(!terminato) {
+            //ha trovato uno stato stabile'
+            calcolaStato().stampaStato();
+        }
     }
 
     //metodo che blocca la simulazione
