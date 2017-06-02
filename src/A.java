@@ -16,7 +16,8 @@ public class A extends Persona {
 
     public Popolazione popo;
 
-    protected volatile double virilita = 0.80; //indice che indica la probabilita' di inserirsi nella coda mercato
+    protected volatile double virilita = 0.95; //indice che indica la probabilita' di inserirsi nella coda mercato
+    protected volatile tipo ultimaDonna=null;
 
     public A(Popolazione p) {
         //costruttore degli avventurieri
@@ -33,10 +34,11 @@ public class A extends Persona {
     public synchronized void run() {
         try {
             while (!isInterrupted() && virilita>0.0 && popo.ballo.isAperto()) {
-                if(new Random().nextDouble()>virilita){break;}
+                if (ultimaDonna==null || ultimaDonna==tipo.S) {
+                    if(new Random().nextDouble()>virilita){break;}
+                }
                 this.corteggiamento(); //morigerato va alla ricerca di una donna al mercato
                 this.wait();
-                //virilita-=0.15;
             }
         } catch (InterruptedException e) {
             //System.out.println("problema con l accoppiamento del morigerato");

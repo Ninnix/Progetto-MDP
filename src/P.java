@@ -15,7 +15,7 @@ public class P extends Persona {
     public Popolazione popo;
 
     //probabilita' di avere un figlio
-    protected double fertilita= 1 ;
+    protected double fertilita= 0.95 ;
 
     public P(Popolazione p) {
 
@@ -42,9 +42,7 @@ public class P extends Persona {
                     accoppiamento(marito);
                     sleep(50);
                 }
-
                 //la prudente e il marito morigerato muoiono insieme dopo aver cresciuto i propri figli
-                marito.virilita = 0.0; //muore il marito ...   \\qual e' l ordine???
                 marito.sveglia();
 
             }
@@ -58,10 +56,11 @@ public class P extends Persona {
     public M corteggiamento() throws InterruptedException{
         //corteggiamento della prudente
         Persona spasimante;
-        int tentativi=5;
+        int tentativi=4;
         while(tentativi>=0) {
             spasimante = popo.ballo.exctract();
             if (spasimante.getType() == tipo.A) {
+                ((A)spasimante).ultimaDonna= tipo.P;
                 ((A) spasimante).sveglia();
                 tentativi--;
             } else {
@@ -95,6 +94,6 @@ public class P extends Persona {
         figlio.start();   // nasce il figlio
         this.contentezza += (popo.a - popo.b / 2 - popo.c);  // aggiorniamo il valore di contentezza della prudente
         m.contentezza += (popo.a - popo.b / 2 - popo.c);  // aggiorniamo il valore di contentezza del morigerato
-        fertilita -= 0.2; // aggiorniamo la probabilita' che la prudente abbia un altro figlio
+        fertilita -= 0.21; // aggiorniamo la probabilita' che la prudente abbia un altro figlio
     }
 }

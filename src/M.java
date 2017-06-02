@@ -14,7 +14,7 @@ public class M extends Persona {
 
     public Popolazione popo;
 
-    protected volatile double virilita = 0.7 ;
+    protected volatile double virilita = 0.95 ;
 
     public M(Popolazione p) {
         //costruttore dei morigerati
@@ -34,7 +34,6 @@ public class M extends Persona {
                 if(new Random().nextDouble()>virilita){break;}
                 this.corteggiamento(); //morigerato va alla ricerca di una donna al mercato
                 this.wait();
-                //virilita-=0.20;
             }
         } catch (InterruptedException e) {
             //System.out.println("problema con l accoppiamento del morigerato");

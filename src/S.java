@@ -31,14 +31,15 @@ public class S extends Persona{
     @Override
     public void run() {
         try {
-            while (fertilita  > 0.0 && contentezza > ((popo.a - popo.b) * 3 ) && !isInterrupted() ) { //dopo 3 o 4 figli avuti con avventurieri muore per la fatica di crescerli da sola
+            while (fertilita  > 0.0 && contentezza > ((popo.a - popo.b) * 2 ) && !isInterrupted() ) { //dopo 3 o 4 figli avuti con avventurieri muore per la fatica di crescerli da sola
                 Persona amante = corteggiamento();
                 accoppiamento(amante);
                 if (amante.getType() == tipo.M) {
-                    ((M) amante).virilita = 0.0; //e' un settaggio, il morigerato morira'
+                    ((M)amante).virilita-=0.34;
                     ((M) amante).sveglia();
                 } else if (amante.getType() == tipo.A) {
-                    ((A) amante).virilita-=0.2;
+                    ((A) amante).virilita-=0.11;
+                    ((A)amante).ultimaDonna= tipo.S;
                     ((A) amante).sveglia();
                 }
             }
@@ -107,7 +108,7 @@ public class S extends Persona{
                 m.contentezza += popo.a;
                 this.contentezza += popo.a - popo.b;
             }
-            this.fertilita -= 0.2;
+            this.fertilita -= 0.21;
         }
     }
 }

@@ -30,7 +30,7 @@ public class SynchroSet<E> {
             wait();
         }
         int indice= new Random().nextInt(spasimanti.size());
-        E result = spasimanti.get(indice);
+        E result = spasimanti.remove(indice);
 
         return result;
     }
