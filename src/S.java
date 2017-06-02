@@ -35,7 +35,7 @@ public class S extends Persona{
                 Persona amante = corteggiamento();
                 accoppiamento(amante);
                 if (amante.getType() == tipo.M) {
-                    ((M) amante).virilita-=0.3;
+                    ((M) amante).virilita = 0.0; //e' un settaggio, il morigerato morira'
                     ((M) amante).sveglia();
                 } else if (amante.getType() == tipo.A) {
                     ((A) amante).virilita-=0.2;
@@ -107,7 +107,7 @@ public class S extends Persona{
                 m.contentezza += popo.a;
                 this.contentezza += popo.a - popo.b;
             }
-            this.fertilita -= 0.22;
+            this.fertilita -= 0.2;
         }
     }
 }
