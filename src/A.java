@@ -16,7 +16,7 @@ public class A extends Persona {
 
     public Popolazione popo;
 
-    protected volatile double virilita = 0.95; //indice che indica la probabilita' di inserirsi nella coda mercato
+    protected volatile double virilita = 1; //indice che indica la probabilita' di inserirsi nella coda mercato
     protected volatile tipo ultimaDonna=null;
 
     public A(Popolazione p) {

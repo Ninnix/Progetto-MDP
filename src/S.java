@@ -15,7 +15,7 @@ public class S extends Persona{
     public Popolazione popo;
 
     //probabilita' di avere un figlio
-    protected double fertilita= 0.95 ;
+    protected double fertilita= 1 ;
 
     public S(Popolazione p) {
         //costruttore delle prudenti
@@ -35,10 +35,10 @@ public class S extends Persona{
                 Persona amante = corteggiamento();
                 accoppiamento(amante);
                 if (amante.getType() == tipo.M) {
-                    ((M)amante).virilita-=0.34;
+                    ((M)amante).virilita-=0.4;
                     ((M) amante).sveglia();
                 } else if (amante.getType() == tipo.A) {
-                    ((A) amante).virilita-=0.11;
+                    ((A) amante).virilita-=0.15;
                     ((A)amante).ultimaDonna= tipo.S;
                     ((A) amante).sveglia();
                 }
@@ -108,7 +108,7 @@ public class S extends Persona{
                 m.contentezza += popo.a;
                 this.contentezza += popo.a - popo.b;
             }
-            this.fertilita -= 0.21;
+            this.fertilita -= 0.2;
         }
     }
 }
