@@ -16,7 +16,7 @@ public class A extends Persona {
 
     public Popolazione popo;
 
-    protected volatile double virilita = 1; //indice che indica la probabilita' di inserirsi nella coda mercato
+    protected volatile double virilita = 0.95; //indice che indica la probabilita' di inserirsi nella coda mercato
     protected volatile tipo ultimaDonna=null;
 
     public A(Popolazione p) {
@@ -34,9 +34,9 @@ public class A extends Persona {
     public synchronized void run() {
         try {
             while (!isInterrupted() && virilita>0.0 && popo.ballo.isAperto()) {
-                if (ultimaDonna==null || ultimaDonna==tipo.S) {
+                if (ultimaDonna==null || ultimaDonna==tipo.S)
                     if(new Random().nextDouble()>virilita){break;}
-                }
+
                 this.corteggiamento(); //morigerato va alla ricerca di una donna al mercato
                 this.wait();
             }
