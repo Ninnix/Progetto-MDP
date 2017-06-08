@@ -1,5 +1,4 @@
 
-import com.sun.xml.internal.bind.v2.TODO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -17,11 +16,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class TestGUI extends Application {
+public class ChartGUI extends Application {
     //attributo
     Popolazione popolo;
 
-    TestGUI(Popolazione popolo){
+    ChartGUI(Popolazione popolo){
         super();
         this.popolo=popolo;
     }

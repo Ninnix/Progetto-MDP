@@ -193,7 +193,7 @@ public class WorldGUI extends Application{
                 corrente=p1;
 
                 Platform.runLater(() -> {
-                    new TestGUI(p1).start(new Stage());
+                    new ChartGUI(p1).start(new Stage());
                 });
             }catch (InvalidPopulationException f){}
         });
