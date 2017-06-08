@@ -55,18 +55,18 @@ public class P extends Persona {
     public M corteggiamento() throws InterruptedException{
         //corteggiamento della prudente
         Persona spasimante;
-        int tentativi=8;
-        while(tentativi>=0) {
+        //int tentativi=500;
+        while(true) {
             spasimante = popo.ballo.exctract();
             if (spasimante.getType() == tipo.A) {
                 ((A)spasimante).ultimaDonna= tipo.P;
                 ((A) spasimante).sveglia();
-                tentativi--;
+                //tentativi--;
             } else {
                 return (M) spasimante;
             }
         }
-        return null;
+        //return null;
     }
 
 
