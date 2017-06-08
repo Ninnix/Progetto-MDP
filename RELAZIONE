@@ -2,19 +2,23 @@ APPUNTI UTILI RELAZIONE
 
 Argomenti da trattare nella relazione:
 Idea implementativa:
--	Rappresentazione degli individui con thread
--	Incontro tra thread(scelta di inserire la struttura dati ballo)
--	Regole per l’accoppiamento ( introduzione di virilita’/fertilita’ per ogni individuo)
--	Regole riproduttive(come si propagano i geni tra genitori e figli)
--	Generazione di figli all’interno del sistema(utilizzo di tecniche probabilistiche per stabilire il numero e il sesso dei nascituri)
--	Concetto di vita e morte
--	Concetto di tempo(perche’ si e’ preferito non introdurlo)
+-	Rappresentazione degli individui con thread      <1>
+-	Incontro tra thread(scelta di inserire la struttura dati ballo)    <2>
+-	Regole per l’accoppiamento ( introduzione di virilita’/fertilita’ per ogni individuo)    <3>
+-	Regole riproduttive(come si propagano i geni tra genitori e figli)   <4>
+-	Generazione di figli all’interno del sistema(utilizzo di tecniche probabilistiche per stabilire il numero e il sesso dei nascituri)     <5>
+-	Concetto di vita e morte    <6>
+-	Concetto di tempo(perche’ si e’ preferito non introdurlo)    <7>
 
 Struttura del modello:
--	Dato astratto dell’insieme concorrente Syncroset per l’incontro dei thread (spiegazione del perche’ e’ stato realizzato e del suo funzionamento)
--	Struttura di Popolazione (set , metodi e sottoclassi che la compongono e loro funzionamento)
+-	Dato astratto dell’insieme concorrente Syncroset per l’incontro dei thread (spiegazione del perche’ e’ stato realizzato e del suo funzionamento)    <8>
+-	Struttura di Popolazione (set , metodi e sottoclassi che la compongono e loro funzionamento)   <9>
 -	Realizzazione delle 2 GUI (breve)
 
 Risultati notevoli della Simulazione:
--	Risultati  derivanti dai vari modelli provati durante la realizzazioni, spiegazione del perche’ sono state preferite alcune scelte rispetto ad altre e del perche’ alcune caratteristiche si sono rivelate svantaggiose
+-	Risultati  derivanti dai vari modelli provati durante la realizzazioni, spiegazione del perche’ sono state preferite alcune scelte rispetto ad altre e del perche’ alcune caratteristiche si sono rivelate svantaggiose  <10>
 -	Osservazioni relative al simulatore finale in alcuni casi di interesse
+
+
+      Samuele:  5 10 7 4 9 + GUI
+      Nicolo':  1  2 3 6 8 + GUI
