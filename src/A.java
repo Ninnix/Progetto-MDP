@@ -4,6 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Created by nicolo on 28/04/17.
  */
+
 public class A extends Persona {
     /**
      * gli avventurieri, uomini senza scrupoli: se una donna non gli si concede
