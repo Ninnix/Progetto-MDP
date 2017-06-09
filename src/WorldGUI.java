@@ -219,11 +219,14 @@ public class WorldGUI extends Application{
         //box finale
         VBox fin=new VBox(vb1,vb2,hb5);
         fin.setSpacing(100);
-        fin.setBackground(new Background(new BackgroundFill(Color.rgb(244, 244, 244), CornerRadii.EMPTY, Insets.EMPTY)));
+        fin.setBackground(new Background(new BackgroundFill(Color.rgb(244, 244, 244), CornerRadii.EMPTY, Insets.EMPTY))); //sfondo tinta unita
+        /**
+        String image = WorldGUI.class.getResource("World.jpg").toExternalForm();
+        fin.setStyle("-fx-background-image: url('" + image + "'); " + "-fx-background-position: center center; " + "-fx-background-repeat: stretch;");
+        */
 
         Parent root= fin;
         Scene scena = new Scene(root, 840, 500);
-        scena.setFill(Color.rgb(244, 244, 244));
 
         primaryStage.setScene(scena);
         primaryStage.setTitle("La Battaglia Dei Sessi");

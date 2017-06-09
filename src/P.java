@@ -60,6 +60,7 @@ public class P extends Persona {
             spasimante = popo.ballo.exctract();
             if (spasimante.getType() == tipo.A) {
                 ((A)spasimante).ultimaDonna= tipo.P;
+                ((A)spasimante).virilita -= 0.000003;
                 ((A) spasimante).sveglia();
                 //tentativi--;
             } else {

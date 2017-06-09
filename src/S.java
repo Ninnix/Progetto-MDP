@@ -60,6 +60,7 @@ public class S extends Persona{
         double random = new Random().nextDouble();
         if (random >= fertilita){   //significa che la donna non concepira' bambini da qui in avanti
             fertilita=0;
+            //if(m.getType()==tipo.M){((M)m).virilita=0;} //muore il marito morigerato
             return;
         }
 

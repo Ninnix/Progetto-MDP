@@ -132,6 +132,8 @@ public class ChartGUI extends Application {
         timeline.setAutoReverse(true);  //!?
         timeline.play();
         return root;
+
+
     }
 
     //Prepara la i dati per i grafici a seconda della popolazione iniziale
