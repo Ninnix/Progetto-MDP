@@ -1,14 +1,12 @@
+
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Created by nicolo on 28/04/17.
+ * donne prudenti, accettano un compagno con cui fare un figlio solo
+ * dopo un congruo periodo di corteggiamento;
  */
 public class P extends Persona {
-    /**
-     * donne prudenti, accettano un compagno con cui fare un figlio solo
-     * dopo un congruo periodo di corteggiamento;
-     */
 
     static AtomicInteger count=new AtomicInteger(0);
 

@@ -1,14 +1,13 @@
+
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Created by nicolo on 03/05/17.
+ * donne spregiudicate, si concedono ad un uomo anche al primo incontro,
+ * se cosı̀ credono.
  */
+
 public class S extends Persona{
-    /**
-     * donne spregiudicate, si concedono ad un uomo anche al primo incontro,
-     * se cosı̀ credono.
-     */
 
     static AtomicInteger count=new AtomicInteger(0);
 

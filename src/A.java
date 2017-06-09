@@ -1,17 +1,14 @@
+
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Created by nicolo on 28/04/17.
+ * gli avventurieri, uomini senza scrupoli: se una donna non gli si concede
+ * immediatamente, tentano la sorte altrove senza perdere tempo corteggiarla;
+ * se gli si concede, partono comunque subito dopo per una nuova avventura,
+ * lasciando a lei l’incombenza di crescere la prole;
  */
-
 public class A extends Persona {
-    /**
-     * gli avventurieri, uomini senza scrupoli: se una donna non gli si concede
-     * immediatamente, tentano la sorte altrove senza perdere tempo corteggiarla;
-     * se gli si concede, partono comunque subito dopo per una nuova avventura,
-     * lasciando a lei l’incombenza di crescere la prole;
-     */
 
     static AtomicInteger count=new AtomicInteger(0);
 

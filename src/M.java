@@ -1,14 +1,13 @@
+
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Created by nicolo on 28/04/17.
+ * uomini morigerati, sono disposti a corteggiare la donna amata e
+ * contribuiscono al pari di lei a crescere la prole;
  */
 public class M extends Persona {
-    /**
-     * uomini morigerati, sono disposti a corteggiare la donna amata e
-     * contribuiscono al pari di lei a crescere la prole;
-     */
+
 
     static AtomicInteger count=new AtomicInteger(0);
 

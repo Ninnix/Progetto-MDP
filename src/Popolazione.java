@@ -187,7 +187,7 @@ public class Popolazione {
          * @return Ritorna true o false a seconda che lo stato della popolazione sia stabile o meno
          */
         public boolean isStabile(){
-            if ( Math.abs(guadagno_p()-guadagno_s()) <= 0.01 && Math.abs(guadagno_m()-guadagno_av())<= 0.01 ){return true;} //errore dell 1%
+            if ( Math.abs(guadagnoM()-guadagnoA()) <= 0.01 && Math.abs(guadagnoP()-guadagnoS())<= 0.01 ){return true;} //errore dell 1%
             return false;
         }
 
@@ -204,20 +204,20 @@ public class Popolazione {
         }
 
         /**Funzione che calcola il guadagno medio degli uomini morigerati in questo istante*/
-        private double guadagno_m(){ return  (double)(a-b/2-c)*perPru + (float)(a - b/2)*perSpr;}
+        private double guadagnoM(){ return  (double)(a-b/2-c)*perPru + (float)(a - b/2)*perSpr;}
 
         /**funzione che calcola il guadagno medio degli uomini avventurieri in questo istante*/
-        private double guadagno_av(){
+        private double guadagnoA(){
             return (double)a*perSpr ;
         }
 
         /**funzione che calcola il guadagno medio delle donne prudenti in questo istante*/
-        private double guadagno_p(){
+        private double guadagnoP(){
             return (double)(a-b/2-c)*perMor;
         }
 
         /**funzione che calcola il guadagno medio delle donne spregiudicate in questo istante*/
-        private double guadagno_s(){
+        private double guadagnoS(){
             return (double)(a-b/2)*perMor + (float)(a-b)*perAvv;
         }
     }
