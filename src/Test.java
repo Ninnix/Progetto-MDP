@@ -1,7 +1,6 @@
-import java.util.Random;
 
 /**
- * Created by nicolo on 29/04/17.
+ * Test sulle simulazioni
  */
 public class Test {
     public static void main(String[] args) throws InvalidPopulationException {

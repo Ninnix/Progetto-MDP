@@ -2,7 +2,8 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Created by nicolo on 28/04/17.
+ * E’ la classe principale del simulatore e rappresenta l’insieme degli individui,
+ * contiene anche tutte le funzioni per calcolare lo stato della popolazione o i guadagni genetici.
  */
 public class Popolazione {
     //un insieme di individui
@@ -13,8 +14,6 @@ public class Popolazione {
     public Set<P> prudenti = Collections.newSetFromMap(new ConcurrentHashMap<P, Boolean>());
     public Set<S> spregiudicate = Collections.newSetFromMap(new ConcurrentHashMap<S, Boolean>());
 
-    private volatile boolean terminato;
-
     //attributi che rappresentano costi e benefici evolutivi che incontriamo nella battaglia dei sessi
     protected int a;
     protected int b;
@@ -23,6 +22,20 @@ public class Popolazione {
     //code delle richieste di accoppiamento degli uomini
     public SynchroSet<Persona> ballo = new SynchroSet<>(); //coda sincronizzata per gli accoppiamenti
 
+    private volatile boolean terminato; //segnala la fine di una simulazione
+
+    /**
+     * Costruttore di Popolazione, crea la popolazione e inizializza lo stato iniziale
+     * a seconda dei parametri forniti in input
+     * @param a premio per il successo nella generazione di figli
+     * @param b costo del crescere figli
+     * @param c costo del corteggiamento
+     * @param m numero di morigerati iniziale
+     * @param av numero di avventurieri iniziale
+     * @param p numero di prudenti iniziale
+     * @param s numero di spregiudicate iniziale
+     * @throws InvalidPopulationException se un tipo è inizializzato minore di 0
+     */
     public Popolazione(int a, int b, int c, int m, int av, int p, int s) throws InvalidPopulationException  {
         //costruttore della popolazione
 
@@ -67,8 +80,10 @@ public class Popolazione {
         }
     }
 
+    /**
+     *  Metodo che da vita al mondo, invocando il metodo run dei vari componenti della popolazione
+     */
     public void start(){
-        // metodo che da vita al mondo, invocando il metodo run dei vari componenti della popolazione
 
         //insiemi temporanei per fare lo start della popolazione iniziale
         HashSet<M> morTemp=new HashSet<>();
@@ -91,12 +106,11 @@ public class Popolazione {
 
         while (!calcolaStato().isStabile() && !terminato) {//potrebbe andare in loop
             //calcolaStato().stampaStato();
-            System.out.println("morigerati: "+ morigerati.size()+ "  avventurieri: "+avventurieri.size()+"  prudenti: "+prudenti.size()+" spregiudicate: "+ spregiudicate.size() );
             //calcolaStato().stampaStato2();
+            System.out.println("morigerati: "+ morigerati.size()+ "  avventurieri: "+avventurieri.size()+"  prudenti: "+prudenti.size()+" spregiudicate: "+ spregiudicate.size() );
             //perde tempo per 2 secondi
             long start = System.currentTimeMillis();
             while (System.currentTimeMillis() - start < 300);
-
         }
         if(!terminato) {
             //ha trovato uno stato stabile'
@@ -124,24 +138,38 @@ public class Popolazione {
         this.terminato= true;
     }
 
+    /**
+     * permette di vedere se il simulatore è in funzione
+     * @return true se il simulatore è in funzione, false se non lo è
+     */
     public boolean isRunning() {
         return !terminato;
     }
 
+    /**
+     *  Calcola lo stato di una popolazione in un determinato instantee lo ritorna
+     * @return Stato
+     */
     private Stato calcolaStato() {
         return new Stato();
     }
 
+
+    /**
+     * classe annidata che rappresenta lo stato della popolazione, Chiamiamo stato di una popolazione
+     * la percentuale del numero di individui di ciascun tipo rispetto alla popolazione totale
+     */
     public class Stato {
-        //classe annidata che rappresenta lo stato della popolazione
         //percentuale del numero di individui di ciascun tipo rispetto alla popolazione totale
         double perMor;
         double perAvv;
         double perPru;
         double perSpr;
 
+        /**
+         * Costruttore che calcola lo stato della popolazione
+         */
         public Stato() {
-            //costruttore che calcola gli stati
             int numMor = morigerati.size();
             int numAvv = avventurieri.size();
             int numPru = prudenti.size();
@@ -155,43 +183,43 @@ public class Popolazione {
         }
 
 
+        /**
+         * @return Ritorna true o false a seconda che lo stato della popolazione sia stabile o meno
+         */
         public boolean isStabile(){
-            // metodo che torna true o false a seconda che lo stato della popolazione sia stabile o meno
             if ( Math.abs(guadagno_p()-guadagno_s()) <= 0.01 && Math.abs(guadagno_m()-guadagno_av())<= 0.01 ){return true;} //errore dell 1%
             return false;
         }
 
-
+        /**Stampa le percentuali della popolazione*/
         public void stampaStato() {
             System.out.println("Ecco le percentuali dei tipi nella popolazione:");
             System.out.println("Morigerati: " + (perMor*100) + "%, " + "Avventurieri: " + (perAvv*100) + "%, " + "Prudenti: " + (perPru*100) + "%, " + "Spregiudicate: " + (perSpr*100) +"%");
         }
 
-
+        /** Stampa percentuali divise per singoli sessi*/
         public void stampaStato2() {
-            //stampa percentuali divise per singoli sessi
             System.out.println("Ecco le percentuali dei tipi nella popolazione:");
             System.out.println("Uomini= Morigerati: " + ((perMor/(perMor+perAvv))*100) + "%, " + "Avventurieri: " + ((perAvv/(perAvv+perMor))*100) + "% " + "    Donne= Prudenti: " + ((perPru/(perPru+perSpr))*100) + "%, " + "Spregiudicate: " + ((perSpr/(perSpr+perPru))*100) +"%");
         }
 
-        //funzione che calcola il guadagno medio degli uomini morigerati in questo istante
+        /**Funzione che calcola il guadagno medio degli uomini morigerati in questo istante*/
         private double guadagno_m(){ return  (double)(a-b/2-c)*perPru + (float)(a - b/2)*perSpr;}
 
-        //funzione che calcola il guadagno medio degli uomini avventurieri in questo istante
+        /**funzione che calcola il guadagno medio degli uomini avventurieri in questo istante*/
         private double guadagno_av(){
             return (double)a*perSpr ;
         }
 
-        //funzione che calcola il guadagno medio delle donne prudenti in questo istante
+        /**funzione che calcola il guadagno medio delle donne prudenti in questo istante*/
         private double guadagno_p(){
             return (double)(a-b/2-c)*perMor;
         }
 
-        //funzione che calcola il guadagno medio delle donne spregiudicate in questo istante
+        /**funzione che calcola il guadagno medio delle donne spregiudicate in questo istante*/
         private double guadagno_s(){
             return (double)(a-b/2)*perMor + (float)(a-b)*perAvv;
         }
     }
 
-    // TODO: 04/05/17 costruttore con percentuali
 }
