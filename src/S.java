@@ -7,14 +7,11 @@ import java.util.concurrent.atomic.AtomicInteger;
  * se cosı̀ credono.
  */
 
-public class S extends Persona{
+public class S extends Donna{
 
     static AtomicInteger count=new AtomicInteger(0);
 
     public Popolazione popo;
-
-    //probabilita' di avere un figlio
-    protected double fertilita= 0.95 ;
 
     public S(Popolazione p) {
         //costruttore delle prudenti
@@ -31,16 +28,15 @@ public class S extends Persona{
     public void run() {
         try {
             while (fertilita  > 0.0 && contentezza > ((popo.a - popo.b) * 3 ) && !isInterrupted() ) { //dopo 3 o 4 figli avuti con avventurieri muore per la fatica di crescerli da sola
-                Persona amante = corteggiamento();
+                Uomo amante = corteggiamento();
                 accoppiamento(amante);
                 if (amante.getType() == tipo.M) {
-                    ((M)amante).virilita-=0.15;
-                    ((M) amante).sveglia();
+                    amante.virilita-=0.15;
                 } else if (amante.getType() == tipo.A) {
-                    ((A) amante).virilita-=0.11;
+                    amante.virilita-=0.11;
                     ((A)amante).ultimaDonna= tipo.S;
-                    ((A) amante).sveglia();
                 }
+                amante.sveglia();
             }
         }catch (InterruptedException e){
             //System.out.println("problema spregiudicata, interruzione coda");
@@ -48,13 +44,13 @@ public class S extends Persona{
         this.popo.spregiudicate.remove(this);
     }
 
-    private Persona corteggiamento() throws InterruptedException{
+    private Uomo corteggiamento() throws InterruptedException{
         //corteggiamento della spregiudicata
         return popo.ballo.exctract();
     }
 
 
-    private void accoppiamento(Persona m){
+    private void accoppiamento(Uomo m){
         // si stabilisce se la donna spregiudicata concepira' un nuovo figlio
         double random = new Random().nextDouble();
         if (random >= fertilita){   //significa che la donna non concepira' bambini da qui in avanti

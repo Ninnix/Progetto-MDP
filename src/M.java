@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * uomini morigerati, sono disposti a corteggiare la donna amata e
  * contribuiscono al pari di lei a crescere la prole;
  */
-public class M extends Persona {
+public class M extends Uomo {
 
 
     static AtomicInteger count=new AtomicInteger(0);
@@ -39,8 +39,6 @@ public class M extends Persona {
         }
         this.popo.morigerati.remove(this);
     }
-
-    protected synchronized void sveglia(){this.notify();} //metodo che fa risvegliare il morigerato che e' stato selezionato per l'accoppiamento
 
     private void corteggiamento(){
         //corteggiamento del morigerato

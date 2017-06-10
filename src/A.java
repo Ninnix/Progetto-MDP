@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * se gli si concede, partono comunque subito dopo per una nuova avventura,
  * lasciando a lei l’incombenza di crescere la prole;
  */
-public class A extends Persona {
+public class A extends Uomo {
 
     static AtomicInteger count=new AtomicInteger(0);
 
@@ -43,8 +43,6 @@ public class A extends Persona {
         }
         this.popo.avventurieri.remove(this);
     }
-
-    protected synchronized void sveglia(){notify();} //metodo che fa risvegliare l avventuriero che e' stato selezionato per l'accoppiamento
 
     private void corteggiamento(){
         //corteggiamento dell' avventuriero

@@ -6,14 +6,11 @@ import java.util.concurrent.atomic.AtomicInteger;
  * donne prudenti, accettano un compagno con cui fare un figlio solo
  * dopo un congruo periodo di corteggiamento;
  */
-public class P extends Persona {
+public class P extends Donna {
 
     static AtomicInteger count=new AtomicInteger(0);
 
     public Popolazione popo;
-
-    //probabilita' di avere un figlio
-    protected double fertilita= 0.95;
 
     public P(Popolazione p) {
 
@@ -52,14 +49,14 @@ public class P extends Persona {
 
     public M corteggiamento() throws InterruptedException{
         //corteggiamento della prudente
-        Persona spasimante;
+        Uomo spasimante;
         //int tentativi=500;
         while(true) {
             spasimante = popo.ballo.exctract();
             if (spasimante.getType() == tipo.A) {
                 ((A)spasimante).ultimaDonna= tipo.P;
-                ((A)spasimante).virilita -= 0.000003;
-                ((A) spasimante).sveglia();
+                spasimante.virilita -= 0.000003;
+                spasimante.sveglia();
                 //tentativi--;
             } else {
                 return (M) spasimante;

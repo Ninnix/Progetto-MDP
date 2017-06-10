@@ -20,7 +20,7 @@ public class Popolazione {
     protected int c;
 
     //code delle richieste di accoppiamento degli uomini
-    public SynchroSet<Persona> ballo = new SynchroSet<>(); //coda sincronizzata per gli accoppiamenti
+    public SynchroSet<Uomo> ballo = new SynchroSet<>(); //coda sincronizzata per gli accoppiamenti
 
     private volatile boolean terminato; //segnala la fine di una simulazione
 
