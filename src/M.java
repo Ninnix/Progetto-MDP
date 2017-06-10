@@ -3,7 +3,7 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * uomini morigerati, sono disposti a corteggiare la donna amata e
+ * Uomini morigerati, sono disposti a corteggiare la donna amata e
  * contribuiscono al pari di lei a crescere la prole;
  */
 public class M extends Uomo {

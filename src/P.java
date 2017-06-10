@@ -3,7 +3,7 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * donne prudenti, accettano un compagno con cui fare un figlio solo
+ * Donne prudenti, accettano un compagno con cui fare un figlio solo
  * dopo un congruo periodo di corteggiamento;
  */
 public class P extends Donna {
@@ -12,18 +12,26 @@ public class P extends Donna {
 
     public Popolazione popo;
 
+    /**
+     * Costruttore delle prudenti
+     * @param p Popolazione
+     */
     public P(Popolazione p) {
-
-        //costruttore delle prudenti
         super();
         this.popo = p;
     }
 
+    /**
+     * @return tipo.p rappresenta la prudente
+     */
     @Override
     public tipo getType(){
         return tipo.P ;
     }
 
+    /**
+     * Azioni svolte dalla prudente durante la sua vita generosa
+     */
     @Override
     public void run() {
         try {
@@ -46,17 +54,20 @@ public class P extends Donna {
         this.popo.prudenti.remove(this);
     }
 
+
+    /**
+     * Corteggiamento della prudente cerca finchè non è un morigerato
+     * @return il marito
+     * @throws InterruptedException
+     */
     public M corteggiamento() throws InterruptedException{
-        //corteggiamento della prudente
         Uomo spasimante;
-        //int tentativi=500;
         while(true) {
             spasimante = popo.ballo.exctract();
             if (spasimante.getType() == tipo.A) {
                 ((A)spasimante).ultimaDonna= tipo.P;
                 spasimante.virilita -= 0.000005;
                 spasimante.sveglia();
-                //tentativi--;
             } else {
                 return (M) spasimante;
             }
@@ -64,7 +75,10 @@ public class P extends Donna {
     }
 
 
-
+    /**
+     * Accopiamento della prudente
+     * @param m il marito
+     */
     public void accoppiamento(M m) {
         // si stabilisce se la donna prudente concepira' un nuovo figlio
         double random = new Random().nextDouble();
@@ -74,7 +88,7 @@ public class P extends Donna {
         }
 
         //a questo punto sara' generato un figlio
-        Persona figlio = ((new Random().nextDouble() < 0.5) ? new M(this.popo) : new P(this.popo)); // scelta del sesso del nascituro
+        Persona figlio = ((new Random().nextBoolean()) ? new M(this.popo) : new P(this.popo)); // scelta del sesso del nascituro
         if (figlio.getType() == tipo.P) {
             figlio.setName("P"+P.count.incrementAndGet());
             popo.prudenti.add((P) figlio); //aggiunge il figlio alla popolazione
@@ -83,7 +97,7 @@ public class P extends Donna {
             figlio.setName("M"+M.count.incrementAndGet());
             popo.morigerati.add((M) figlio);
         }
-        //System.out.println(this.getName()+" si accoppia con "+m.getName()+", e nasce "+figlio.getName());  //da rimuovere
+        //System.out.println(this.getName()+" si accoppia con "+m.getName()+", e nasce "+figlio.getName());  //Stampa identificativo del figlio
         figlio.start();   // nasce il figlio
         this.contentezza += (popo.a - popo.b / 2 - popo.c);  // aggiorniamo il valore di contentezza della prudente
         m.contentezza += (popo.a - popo.b / 2 - popo.c);  // aggiorniamo il valore di contentezza del morigerato

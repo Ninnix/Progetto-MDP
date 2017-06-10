@@ -3,7 +3,7 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * gli avventurieri, uomini senza scrupoli: se una donna non gli si concede
+ * Gli avventurieri, uomini senza scrupoli: se una donna non gli si concede
  * immediatamente, tentano la sorte altrove senza perdere tempo per corteggiarla;
  * se non gli si concede, partono comunque subito dopo per una nuova avventura,
  * lasciando a lei l’incombenza di crescere la prole;
@@ -53,7 +53,7 @@ public class A extends Uomo {
     }
 
     /**
-     * //corteggiamento dell' avventuriero, e' un falso corteggiamento si mette solo nel ballo per accoppiarsi!
+     * //Corteggiamento dell' avventuriero, e' un falso corteggiamento si mette solo nel ballo per accoppiarsi!
      */
     private void corteggiamento(){
         popo.ballo.insert(this);
