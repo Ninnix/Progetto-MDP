@@ -32,14 +32,13 @@ public class P extends Donna {
                 return;
             }
             M marito = corteggiamento();
-            if(marito !=null) {
-                while (fertilita > 0.0) { //la coppia si riproduce finchè la moglie è fertile
-                    accoppiamento(marito);
-                }
-                //la prudente e il marito morigerato muoiono insieme dopo aver cresciuto i propri figli
-                marito.virilita = 0; //muore il marito...
-                marito.sveglia();
+            while (fertilita > 0.0) { //la coppia si riproduce finchè la moglie è fertile
+                accoppiamento(marito);
             }
+            //la prudente e il marito morigerato muoiono insieme dopo aver cresciuto i propri figli
+            marito.virilita = 0; //muore il marito...
+            marito.sveglia();
+
         }catch(InterruptedException e){
             //System.out.println("problema prudente, interruzione coda");
         }
@@ -55,14 +54,13 @@ public class P extends Donna {
             spasimante = popo.ballo.exctract();
             if (spasimante.getType() == tipo.A) {
                 ((A)spasimante).ultimaDonna= tipo.P;
-                spasimante.virilita -= 0.000003;
+                spasimante.virilita -= 0.000005;
                 spasimante.sveglia();
                 //tentativi--;
             } else {
                 return (M) spasimante;
             }
         }
-        //return null;
     }
 
 
