@@ -10,6 +10,10 @@ public abstract class Persona extends Thread {
     // indica la felicita' di un individuo(in termini di guadagno genetico)
     protected volatile int contentezza=0; //volatile serve per gestire il possibile aggiornamento concorrente della variabile
 
-    public abstract tipo getType(); //restituisce il tipo della persona
+    /**
+     * metodo astratto
+     * @return restituisce il tipo della persona
+     */
+    public abstract tipo getType();
 
 }
