@@ -62,7 +62,7 @@ public class ChartGUI extends Application {
      */
     private Parent createChart(Stage stage) {
 
-        Popolazione p1 = prepareData();
+        Popolazione p1 = popolo;
 
         //Creo barChart1 (instogramma)
         VBox vBoxBarChart1 = new VBox();
@@ -151,22 +151,5 @@ public class ChartGUI extends Application {
         timeline.setAutoReverse(true);  //!?
         timeline.play();
         return root;
-    }
-
-    /**
-     * Prepara la i dati per i grafici a seconda della popolazione iniziale
-     * @return Popolazione
-     */
-    private Popolazione prepareData() {
-        Popolazione p1 = popolo;
-        for (int i = 0; i < 4; i++) {
-            int numIni = 0;
-            if (i == 0) numIni = p1.morigerati.size();
-            else if (i == 1) numIni = p1.avventurieri.size();
-            else if (i == 2) numIni = p1.prudenti.size();
-            else if (i == 3) numIni = p1.spregiudicate.size();
-            type[i] = numIni;
-        }
-        return p1;
     }
 }
