@@ -108,7 +108,7 @@ public class Popolazione {
             //calcolaStato().stampaStato();
             //calcolaStato().stampaStato2();
             System.out.println("morigerati: "+ morigerati.size()+ "  avventurieri: "+avventurieri.size()+"  prudenti: "+prudenti.size()+" spregiudicate: "+ spregiudicate.size() );
-            //perde tempo per 2 secondi
+            //perde tempo per un po
             long start = System.currentTimeMillis();
             while (System.currentTimeMillis() - start < 300);
         }

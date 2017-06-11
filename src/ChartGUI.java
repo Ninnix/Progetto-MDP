@@ -132,7 +132,7 @@ public class ChartGUI extends Application {
         //Sezione "Animating Data in Charts"
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(200), (ActionEvent actionEvent) -> {
+                new KeyFrame(Duration.millis(300), (ActionEvent actionEvent) -> {
                     //aggiorno i grafici dei morigerati
                     series1.getData().set(0, new XYChart.Data("Morigerati", p1.morigerati.size()));
                     pieChartData.set(0, new PieChart.Data("Morigerati", p1.morigerati.size()));
