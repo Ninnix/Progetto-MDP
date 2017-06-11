@@ -16,20 +16,34 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/**
+ * GUI lanciata da WorldGUI che mostra i grafici della popolazione
+ */
 public class ChartGUI extends Application {
     //attributo
     Popolazione popolo;
 
+    /**
+     * Costuttore ChartGUI
+     * @param popolo Popolazione
+     */
     ChartGUI(Popolazione popolo){
         super();
         this.popolo=popolo;
     }
 
-
+    /**
+     * Il metodo statico void launch(String... args) di Application, lancia l'applicazione JavaFX
+     * @param args array di argomenti
+     */
     public static void main(String[] args) {
         launch(args);  // Lancia l'applicazione, ritorna quando l'applicazione
     }                  // termina. Può essere invocato una sola volta
 
+    /**
+     * Estende il metodo astratto abstract void start(Stage primaryStage) di Application
+     * @param stage la finestra
+     */
     @Override
     public void start(Stage stage) {
         Parent root = createChart(stage);
@@ -39,8 +53,13 @@ public class ChartGUI extends Application {
         stage.show();
     }
 
-    int type[] = new int[4];
+    int type[] = new int[4]; //array di interi usata per l'animazione
 
+    /**
+     * Crea i due grafici i barChart1 (instogramma) e PieChart2 (Diagramma a torta)
+     * @param stage finestra
+     * @return root del grafo(scene graph) che è una struttura ad albero i cui nodi sono le componenti di una GUI
+     */
     private Parent createChart(Stage stage) {
 
         Popolazione p1 = prepareData();
@@ -132,11 +151,12 @@ public class ChartGUI extends Application {
         timeline.setAutoReverse(true);  //!?
         timeline.play();
         return root;
-
-
     }
 
-    //Prepara la i dati per i grafici a seconda della popolazione iniziale
+    /**
+     * Prepara la i dati per i grafici a seconda della popolazione iniziale
+     * @return Popolazione
+     */
     private Popolazione prepareData() {
         Popolazione p1 = popolo;
         for (int i = 0; i < 4; i++) {
