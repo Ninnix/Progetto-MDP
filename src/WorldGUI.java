@@ -20,7 +20,15 @@ import javafx.stage.Stage;
 /**
  * Created by Samuele on 27/05/2017.
  */
+
+/**
+ * Interfaccia grafica per inserire i prametri iniziali della popolazione e far partire la simulazione
+ */
 public class WorldGUI extends Application{
+    /**
+     * Invoca il metodo start che Lancia l'applicazione
+     * @param args
+     */
     public static void main(String[] args) {
         Platform.runLater(() -> {
             new WorldGUI().start(new Stage());
@@ -28,6 +36,10 @@ public class WorldGUI extends Application{
         //launch(args);  // Lancia l'applicazione, ritorna quando l'applicazione
     }                  // termina. Può essere invocato una sola volta
 
+    /**
+     * Metodo che apre la finestra dell'interfaccia e crea le varie componenti che la rendono utilizzabile
+     * @param primaryStage
+     */
     @Override
     public void start(Stage primaryStage) {
         //settore iniziale con intestazioni         a   b   c
