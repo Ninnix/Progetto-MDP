@@ -81,7 +81,7 @@ public class Popolazione {
     }
 
     /**
-     *  Metodo che da vita al mondo, invocando il metodo run dei vari componenti della popolazione
+     * Metodo che da vita al mondo, invocando il metodo run dei vari componenti della popolazione
      */
     public void start(){
 
@@ -120,6 +120,7 @@ public class Popolazione {
 
     //metodo che blocca la simulazione
     public void stop(){
+        this.terminato= true;
         ballo.chiudi();  //chiude il ballo
 
         for (P pru : prudenti) {
@@ -128,14 +129,13 @@ public class Popolazione {
         for (S spr : spregiudicate) {
             spr.interrupt();
         }
-        for (M mor : morigerati){
+        for (M mor : morigerati) {
             mor.interrupt();
         }
         for (A avv : avventurieri) {
             avv.interrupt();
         }
         prudenti=Collections.newSetFromMap(new ConcurrentHashMap<P, Boolean>()); // le prudenti vanno svuotate manualmente
-        this.terminato= true;
     }
 
     /**
