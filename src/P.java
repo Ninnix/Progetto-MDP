@@ -66,7 +66,7 @@ public class P extends Donna {
             spasimante = popo.ballo.exctract();
             if (spasimante.getType() == tipo.A) {
                 ((A)spasimante).ultimaDonna= tipo.P;
-                spasimante.virilita -= 0.000005;
+                spasimante.virilita -= 0.0005;
                 spasimante.sveglia();
             } else {
                 return (M) spasimante;

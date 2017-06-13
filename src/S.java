@@ -41,7 +41,7 @@ public class S extends Donna{
                 if (amante.getType() == tipo.M) {
                     amante.virilita-=0.15;
                 } else if (amante.getType() == tipo.A) {
-                    amante.virilita-=0.11;
+                    amante.virilita-=0.1;
                     ((A)amante).ultimaDonna= tipo.S;
                 }
                 amante.sveglia();
@@ -102,7 +102,7 @@ public class S extends Donna{
                 m.contentezza += popo.a;
                 this.contentezza += popo.a - popo.b;
             }
-            this.fertilita -= 0.21;
+            this.fertilita -= 0.2;
         }
     }
 }

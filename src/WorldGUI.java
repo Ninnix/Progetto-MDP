@@ -109,27 +109,27 @@ public class WorldGUI extends Application{
         hb3.setSpacing(100);
 
         //immagini    morigerati     avventurieri    prudenti      spregiudicate
-        Image cencia= new Image(getClass().getResource("Cenciarelli.jpg").toString());
-        ImageView cenciaview= new ImageView(cencia);
-        cenciaview.setFitHeight(100);
-        cenciaview.setFitWidth(100);
+        Image oba= new Image(getClass().getResource("Obama.jpg").toString());
+        ImageView obaview= new ImageView(oba);
+        obaview.setFitHeight(100);
+        obaview.setFitWidth(100);
 
         Image trump= new Image(getClass().getResource("DonaldTrump.jpg").toString());
         ImageView trumpview = new ImageView(trump);
         trumpview.setFitHeight(100);
         trumpview.setFitWidth(110);
 
-        Image monta= new Image(getClass().getResource("Montalcini.jpg").toString());
-        ImageView montaview = new ImageView(monta);
-        montaview.setFitHeight(100);
-        montaview.setFitWidth(100);
+        Image clint= new Image(getClass().getResource("Clinton.jpg").toString());
+        ImageView clintview = new ImageView(clint);
+        clintview.setFitHeight(100);
+        clintview.setFitWidth(100);
 
         Image merkel= new Image(getClass().getResource("Merkel.jpg").toString());
         ImageView merkelview = new ImageView(merkel);
         merkelview.setFitHeight(100);
         merkelview.setFitWidth(100);
 
-        HBox himg= new HBox(cenciaview,trumpview,montaview,merkelview);
+        HBox himg= new HBox(obaview,trumpview,clintview,merkelview);
         himg.setAlignment(Pos.CENTER);
         himg.setSpacing(90);
 
